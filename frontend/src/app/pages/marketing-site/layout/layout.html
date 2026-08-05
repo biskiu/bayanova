@@ -1,0 +1,97 @@
+<!-- ===================== NAVIGATION ===================== -->
+<header class="site-header">
+  <nav class="nav-bar">
+    <a href="#home" (click)="scrollTo('home', $event)" class="brand">
+      <div class="brand-row">
+        <div class="brand-icon">
+          <span class="material-icons brand-icon-heart">favorite</span>
+          <span class="material-icons brand-icon-people">groups</span>
+        </div>
+        <span class="brand-name">
+          <span class="brand-baya">Baya</span><span class="brand-nova">Nova</span>
+        </span>
+      </div>
+      <span class="brand-tagline">A NEW HOPE FOR EVERY COMMUNITY</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about" (click)="scrollTo('about', $event)">About Us</a></li>
+      <li><a href="#membership" (click)="scrollTo('membership', $event)">Membership</a></li>
+      <li><a href="#benefits" (click)="scrollTo('benefits', $event)">Benefits</a></li>
+      <li><a href="#how-it-works" (click)="scrollTo('how-it-works', $event)">How It Works</a></li>
+      <li><a href="#faq" (click)="scrollTo('faq', $event)">FAQ</a></li>
+      <li><a href="#contact" (click)="scrollTo('contact', $event)">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#membership" (click)="scrollTo('membership', $event)" class="btn-primary hide-mobile">
+        Become a Member
+      </a>
+      <button (click)="toggleMobileMenu()" class="mobile-toggle" aria-label="Toggle menu">
+        <span class="material-icons" *ngIf="!mobileOpen">menu</span>
+        <span class="material-icons" *ngIf="mobileOpen">close</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" *ngIf="mobileOpen">
+    <ul>
+      <li><a href="#about" (click)="scrollTo('about', $event)">About Us</a></li>
+      <li><a href="#membership" (click)="scrollTo('membership', $event)">Membership</a></li>
+      <li><a href="#benefits" (click)="scrollTo('benefits', $event)">Benefits</a></li>
+      <li><a href="#how-it-works" (click)="scrollTo('how-it-works', $event)">How It Works</a></li>
+      <li><a href="#faq" (click)="scrollTo('faq', $event)">FAQ</a></li>
+      <li><a href="#contact" (click)="scrollTo('contact', $event)">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===================== PAGE CONTENT (child route) ===================== -->
+<main>
+  <router-outlet />
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact" class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-row">
+          <span class="material-icons brand-icon-heart footer-icon">favorite</span>
+          <span class="footer-brand">Baya<span class="text-red">Nova</span></span>
+        </div>
+        <p class="footer-tagline">A community that stands beside you before life becomes difficult.</p>
+      </div>
+
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#about" (click)="scrollTo('about', $event)">Our Story</a></li>
+          <li><a href="#about" (click)="scrollTo('about', $event)">Mission &amp; Vision</a></li>
+          <li><a href="#about" (click)="scrollTo('about', $event)">Leadership Team</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Download Center</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li><span class="material-icons">location_on</span> Quezon City, Philippines</li>
+          <li><span class="material-icons">mail</span> hello&#64;bayanova.ph</li>
+          <li><span class="material-icons">public</span> facebook.com/bayanova</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">&copy; 2026 BayaNova. All rights reserved.</div>
+  </div>
+</footer>
