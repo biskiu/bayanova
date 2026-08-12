@@ -2,16 +2,14 @@
 <header class="site-header">
   <nav class="nav-bar">
     <a href="#home" (click)="scrollTo('home', $event)" class="brand">
-      <div class="brand-row">
-        <div class="brand-icon">
-          <span class="material-icons brand-icon-heart">favorite</span>
-          <span class="material-icons brand-icon-people">groups</span>
-        </div>
-        <span class="brand-name">
-          <span class="brand-baya">Baya</span><span class="brand-nova">Nova</span>
-        </span>
-      </div>
-      <span class="brand-tagline">A NEW HOPE FOR EVERY COMMUNITY</span>
+      <img
+        ngSrc="/images/BAYANOVA_LOGO_TRANSPARENT.png"
+        alt="BayaNova"
+        width="867"
+        height="339"
+        priority
+        class="brand-logo"
+      />
     </a>
 
     <ul class="nav-links">
@@ -24,8 +22,8 @@
     </ul>
 
     <div class="nav-actions">
-      <a href="#membership" (click)="scrollTo('membership', $event)" class="btn-primary hide-mobile">
-        Become a Member
+      <a href="/login-signup" class="btn-primary hide-mobile">
+        Log In / Sign Up
       </a>
       <button (click)="toggleMobileMenu()" class="mobile-toggle" aria-label="Toggle menu">
         <span class="material-icons" *ngIf="!mobileOpen">menu</span>
@@ -55,15 +53,18 @@
 <!-- ===================== FOOTER ===================== -->
 <footer id="contact" class="site-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="brand-row">
-          <span class="material-icons brand-icon-heart footer-icon">favorite</span>
-          <span class="footer-brand">Baya<span class="text-red">Nova</span></span>
-        </div>
-        <p class="footer-tagline">A community that stands beside you before life becomes difficult.</p>
-      </div>
+    <a href="#home" (click)="scrollTo('home', $event)" class="brand">
+      <img
+        ngSrc="/images/BAYANOVA_LOGO_TRANSPARENT.png"
+        alt="BayaNova"
+        width="867"
+        height="339"
+        priority
+        class="brand-logo"
+      />
+    </a>
 
+    <div class="footer-grid">
       <div>
         <h4>About</h4>
         <ul>
@@ -78,7 +79,7 @@
         <ul>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Download Center</a></li>
+          <!-- <li><a href="#">Download Center</a></li> -->
         </ul>
       </div>
 

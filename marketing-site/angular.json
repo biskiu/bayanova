@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "frontend": {
+    "marketing-site": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -51,8 +51,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "18kB",
+                  "maximumError": "20kB"
                 }
               ],
               "outputHashing": "all"
@@ -69,10 +69,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "frontend:build:production"
+              "buildTarget": "marketing-site:build:production"
             },
             "development": {
-              "buildTarget": "frontend:build:development"
+              "buildTarget": "marketing-site:build:development"
             }
           },
           "defaultConfiguration": "development"

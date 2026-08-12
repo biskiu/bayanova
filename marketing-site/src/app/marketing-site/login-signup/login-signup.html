@@ -1,0 +1,97 @@
+<div class="card">
+
+  <!-- ── LEFT ── -->
+  <div class="left">
+
+    <div class="logo-row">
+      <img class="logo-img" src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova logo" />
+    </div>
+
+    <h1 class="headline">
+      Unity &amp; hope<br>for every<br>
+      <span class="hl-blue">Baya</span><span class="hl-red">Nova</span><br>community
+    </h1>
+
+    <p class="desc">
+      Together we build stronger communities through compassion, trust, and collective action.
+    </p>
+
+    <div class="word-cards">
+      <div class="word-card">
+        <span class="word-badge badge-blue">Bayan</span>
+        <span class="word-desc">Community, unity, and the Filipino spirit of helping one another</span>
+      </div>
+      <div class="word-card">
+        <span class="word-badge badge-red">Nova</span>
+        <span class="word-desc">A new beginning, hope, and transformation for all</span>
+      </div>
+    </div>
+
+    <div class="left-foot">© 2026 BayaNova · Bacolod City</div>
+
+  </div>
+
+  <!-- ── RIGHT ── -->
+  <div class="right">
+
+    <div class="right-logo">
+      <img class="right-logo-img" src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova" />
+    </div>
+
+    <div class="form-title">Welcome back</div>
+    <div class="form-sub">Sign in to your BayaNova account</div>
+
+    <div class="field">
+      <label class="field-label">Username</label>
+      <div class="input-wrap">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <input type="text" placeholder="Enter your username" [(ngModel)]="username" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Password</label>
+      <div class="input-wrap">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="2"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+          </svg>
+        </div>
+        <input type="password" placeholder="Enter your password" [(ngModel)]="password" />
+      </div>
+    </div>
+
+    <div class="meta-row">
+      <label class="remember">
+        <input type="checkbox" [(ngModel)]="rememberMe" /> Keep me signed in
+      </label>
+      <!-- <a href="#" class="forgot">Forgot password?</a> -->
+    </div>
+
+    <button class="btn" (click)="onSignIn()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      Sign in
+    </button>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">NEW TO BAYANOVA</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="membership">
+      <span class="membership-text">Not yet a member?</span>
+      <a href="#" class="membership-link">Apply for membership →</a>
+    </div>
+
+  </div>
+
+</div>
