@@ -255,6 +255,7 @@ img { display: block; max-width: 100%; }
 
 .community {
   background: #fff;
+  padding-bottom: 0;
 }
 
 .benefit-grid {
@@ -884,16 +885,16 @@ img { display: block; max-width: 100%; }
   color: #E5222A;
   background: repeating-linear-gradient(90deg, #064BC3 0 2px, transparent 2px 6px);
 
-  span {
+  svg {
     position: absolute;
     top: 50%;
     left: 50%;
     padding: 2px;
     transform: translate(-50%, -50%);
     background: #F8FAFC;
-    font-size: 17px;
-    line-height: 1;
-    font-variation-settings: 'FILL' 1;
+    width: 21px;
+    height: 21px;
+    fill: currentColor;
   }
 }
 
@@ -1487,6 +1488,8 @@ img { display: block; max-width: 100%; }
 }
 
 .cta-card {
+  position: relative;
+  background: linear-gradient(140deg, #062d80 0%, #0648b7 46%, #0648b7 100%);
   max-width: 1360px;
   margin: 0 auto;
   border-radius: 32px 32px 0 0;  // bottom corners squared off — strip completes the shape
@@ -1499,8 +1502,44 @@ img { display: block; max-width: 100%; }
   @media (max-width: 768px) { grid-template-columns: 1fr; }
 }
 
+.cta-heart-seam {
+  position: absolute;
+  z-index: 2;
+  left: calc(46% + clamp(18px, 1.75vw, 28px));
+  bottom: 0;
+  width: auto;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  transform: translateX(-50%);
+
+  @media (max-width: 768px) { display: none; }
+}
+
+.cta-seam-red,
+.cta-seam-white {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cta-seam-red {
+  stroke: var(--red);
+  // Overlap the white seam slightly so the photo cannot show through
+  // between the two anti-aliased SVG strokes.
+  stroke-width: 22px;
+}
+
+.cta-seam-white {
+  stroke: #fff;
+  stroke-width: 5px;
+}
+
+.cta-heart-red { fill: var(--red); }
+.cta-heart-white { fill: #fff; }
+
 .cta-left {
-  background: linear-gradient(140deg, #062D80 0%, #0648B7 100%);
+  background: transparent;
   padding: clamp(32px, 4vw, 56px);
   display: flex;
   flex-direction: column;
@@ -1580,6 +1619,7 @@ img { display: block; max-width: 100%; }
 .cta-right {
   position: relative;
   min-height: 360px;
+  background: transparent;
 
   img {
     position: absolute;
@@ -1587,6 +1627,7 @@ img { display: block; max-width: 100%; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+    clip-path: url(#cta-photo-clip);
   }
 }
 
@@ -1631,6 +1672,7 @@ img { display: block; max-width: 100%; }
 
   span    { display: block; }
   strong  { display: block; color: #0753B8; font-weight: 900; }
+  strong.hope-tomorrow { color: var(--red); }
 
   &:nth-child(5) strong { color: var(--red); }
 }
@@ -1647,8 +1689,6 @@ img { display: block; max-width: 100%; }
 
   .mi { font-size: 22px; color: var(--blue); }
 }
-
-.footer-pad { height: 56px; background: #fff; }
 
 @media (max-width: 768px) {
   .hero-right { width: 100%; height: 45%; top: 0; }
@@ -1690,6 +1730,23 @@ img { display: block; max-width: 100%; }
   }
 }
 
+.community-message {
+  display: grid;
+  min-height: 60px;
+  margin-top: 80px;
+  padding: 12px 24px;
+  place-items: center;
+  background: linear-gradient(100deg, #1552c4 0%, var(--blue) 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.community-message p {
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
 .about-section {
   --about-navy: #061f62;
   --about-blue: #0a4bd0;
@@ -1700,7 +1757,7 @@ img { display: block; max-width: 100%; }
   display: grid;
   box-sizing: border-box;
   min-height: clamp(610px, 44vw, 730px);
-  padding: 10px 0 96px;
+  padding: 0 0 96px;
   grid-template-columns: minmax(330px, 36%) minmax(360px, 36%) minmax(270px, 28%);
   align-items: start;
   background: #fff;
@@ -1744,7 +1801,7 @@ img { display: block; max-width: 100%; }
   justify-content: flex-start;
   z-index: 6;
   gap: 0;
-  padding: 16px clamp(24px, 3vw, 48px) 0 8px;
+  padding: clamp(38px, 3vw, 48px) clamp(24px, 3vw, 48px) 0 8px;
   align-items: center;
   text-align: center;
 }
@@ -1809,7 +1866,7 @@ img { display: block; max-width: 100%; }
   align-content: start;
   gap: 10px;
   max-width: none;
-  padding: 6px clamp(28px, 3vw, 48px) 0 clamp(18px, 1.6vw, 30px);
+  padding: clamp(38px, 3vw, 48px) clamp(28px, 3vw, 48px) 0 clamp(18px, 1.6vw, 30px);
   border-left: 1px solid #e3eafb;
   font-size: clamp(12px, .82vw, 14px);
   line-height: 1.42;
@@ -1856,9 +1913,10 @@ img { display: block; max-width: 100%; }
 
 .about-section .divider-heart {
   color: var(--about-red);
-  font-size: 23px;
-  line-height: 1;
-  font-variation-settings: 'FILL' 1;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  fill: currentColor;
 }
 
 .about-section .benefits {

@@ -190,22 +190,26 @@ p { margin: 0; }
 // ===================== FOOTER =====================
 .site-footer {
   background: $slate-900;
-  padding: 64px 0 32px;
+  padding: 36px 0 20px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(180px, .8fr) minmax(0, 3fr);
+  align-items: start;
+  gap: clamp(32px, 5vw, 72px);
+  margin-bottom: 28px;
 }
 
 .footer-grid {
   display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr;
-  margin-bottom: 48px;
-
-  @media (min-width: 640px) { grid-template-columns: 1fr 1fr; }
-  @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+  grid-template-columns: .8fr .8fr 1.4fr;
+  gap: clamp(24px, 4vw, 56px);
 
   h4 {
     color: #fff;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin: 0 0 10px;
     font-size: 15px;
     font-family: 'Poppins', system-ui, sans-serif;
   }
@@ -213,8 +217,8 @@ p { margin: 0; }
   ul {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    font-size: 14px;
+    gap: 8px;
+    font-size: 13px;
     color: $slate-400;
   }
 
@@ -234,8 +238,8 @@ p { margin: 0; }
 }
 
 .site-footer .brand-logo {
-  height: 56px;
-  max-width: 220px;
+  height: 48px;
+  max-width: 190px;
 }
 
 .text-red { color: $red; }
@@ -243,8 +247,8 @@ p { margin: 0; }
 .footer-tagline {
   color: $slate-400;
   font-size: 14px;
-  line-height: 1.6;
-  margin-top: 8px;
+  line-height: 1.45;
+  margin-top: 6px;
 }
 
 .contact-list li {
@@ -252,13 +256,35 @@ p { margin: 0; }
   align-items: center;
   gap: 8px;
 
-  .material-icons { color: $red; }
+  .material-icons { color: $red; font-size: 18px; }
 }
 
 .footer-bottom {
   border-top: 1px solid #1E293B;
-  padding-top: 24px;
+  padding-top: 16px;
   text-align: center;
   color: $slate-400;
   font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer { padding-top: 28px; }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 24px;
+  }
+
+  .footer-contact { grid-column: 1 / -1; }
 }
