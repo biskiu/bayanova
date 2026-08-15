@@ -5,6 +5,9 @@
       <div class="hero-fade"></div>
     </div>
 
+
+
+
     <div class="hero-left">
       <h1>
         Be Part of a Community<br />
@@ -118,69 +121,391 @@
 
   </section>
 
- 
- <!-- â”€â”€ ABOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-     <div class="community-bar fade-up">
-      <span>Building communities of hope, one family at a time.</span>
-    </div> 
- 
- <section id="about" class="about section" style="background:#F8FAFC;">
-    <div class="container">
+<!-- ABOUT US -->
 
-      <div class="about-img fade-up">
-        <img src="/images/pinoy%202.png" alt="Filipino extended family" loading="lazy" />
-      </div>
 
-      <div class="about-content fade-up">
-        <span class="about-label">
-          <span class="material-icons-round" style="font-size:16px">groups</span>
-          ABOUT US
+<section id="about" class="about-section">
+
+  <!-- =========================================================
+       LEFT VISUAL
+       ========================================================= -->
+  <div class="about-visual">
+
+    <svg
+      class="about-visual-svg"
+      viewBox="0 0 700 650"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+    >
+
+      <defs>
+
+        <!-- Organic photo shape -->
+        <clipPath id="familyClip">
+          <path
+            d="
+              M 0 0
+              L 215 0
+              C 270 0 305 35 330 72
+              C 355 108 410 115 452 140
+              C 515 177 560 230 570 292
+              C 582 365 540 420 488 468
+              C 425 525 375 565 305 592
+              C 220 620 100 595 0 535
+              Z
+            "
+          />
+        </clipPath>
+
+        <!-- Soft shadow -->
+        <filter
+          id="photoShadow"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feDropShadow
+            dx="0"
+            dy="8"
+            stdDeviation="12"
+            flood-opacity=".10"
+          />
+        </filter>
+
+      </defs>
+
+
+      <!-- =====================================================
+           FAMILY PHOTO
+           ===================================================== -->
+
+      <image
+        href="/images/pinoy%202.png"
+        x="0"
+        y="0"
+        width="600"
+        height="610"
+        preserveAspectRatio="xMidYMid slice"
+        clip-path="url(#familyClip)"
+        filter="url(#photoShadow)"
+      />
+
+
+      <!-- =====================================================
+           RED SWOOSH
+           ===================================================== -->
+
+      <path
+        class="visual-red"
+        d="
+          M -20 532
+          C 100 594 220 619 305 591
+          C 375 564 425 524 488 467
+          C 545 415 585 365 635 100
+          L 635 352
+          C 550 450 480 545 390 600
+          C 255 680 105 616 -20 540
+          Z
+        "
+      />
+
+
+      <!-- =====================================================
+           WHITE SEPARATOR
+           ===================================================== -->
+
+      <path
+        class="visual-white"
+        d="
+          M -20 540
+          C 105 616 255 680 390 600
+          C 480 545 550 450 635 352
+          L 646 365
+          C 560 466 492 558 402 610
+          C 260 692 108 642 -20 558
+          Z
+        "
+      />
+
+
+      <!-- =====================================================
+           BLUE LOWER SWOOSH
+           ===================================================== -->
+
+      <path
+        class="visual-blue"
+        d="
+          M -20 556
+          C 108 642 260 692 402 610
+          C 492 558 560 466 646 365
+          C 680 445 696 540 700 650
+          L -20 650
+          Z
+        "
+      />
+
+
+      <!-- =====================================================
+           LARGE HEART
+           ===================================================== -->
+
+      <g
+        class="visual-heart"
+        transform="translate(225 500) rotate(30 65 65)"
+      >
+
+        <!-- Red heart -->
+        <path
+          class="heart-red"
+          d="
+            M 65 128
+
+            C 55 116
+              8 85
+              8 48
+
+            C 8 27
+              23 13
+              43 13
+
+            C 54 13
+              62 19
+              65 30
+
+            C 68 19
+              76 13
+              87 13
+
+            C 107 13
+              122 27
+              122 48
+
+            C 122 85
+              75 116
+              65 128
+
+            Z
+          "
+        />
+
+        <!-- White heart -->
+        <path
+          class="heart-white"
+          d="
+            M 65 105
+
+            C 57 95
+              28 76
+              28 56
+
+            C 28 44
+              36 36
+              47 36
+
+            C 55 36
+              62 41
+              65 50
+
+            C 68 41
+              75 36
+              83 36
+
+            C 94 36
+              102 44
+              102 56
+
+            C 102 76
+              73 95
+              65 105
+
+            Z
+          "
+        />
+
+      </g>
+
+    </svg>
+
+  </div>
+
+
+  <!-- =========================================================
+       RIGHT CONTENT
+       ========================================================= -->
+
+  <div class="about-content">
+
+    <!-- ABOUT US BADGE -->
+    <div class="about-badge">
+
+      <span class="material-symbols-rounded badge-icon">groups</span>
+
+      <span>ABOUT US</span>
+
+    </div>
+
+
+    <!-- HEADING -->
+
+    <h2 class="about-heading">
+      A community built
+      <br />
+      the <span>Filipino</span> way
+    </h2>
+
+
+    <!-- DESCRIPTION -->
+
+    <p class="about-description">
+      We believe that when people come together,
+      no family has to face life's challenges alone.
+    </p>
+
+
+    <!-- HEART DIVIDER -->
+
+    <div class="heart-divider">
+
+      <span class="line blue-line"></span>
+
+      <span class="material-symbols-rounded divider-heart">favorite</span>
+
+      <span class="line red-line"></span>
+
+    </div>
+
+
+    <!-- =====================================================
+         BENEFITS
+         ===================================================== -->
+
+    <div class="benefits">
+
+
+      <!-- WE CARE -->
+
+      <article class="benefit">
+
+        <div class="benefit-icon blue"><span class="material-symbols-rounded">groups</span></div>
+
+        <h3>We Care</h3>
+
+        <p>
+          We support one another in times
+          that matter most.
+        </p>
+
+      </article>
+
+
+      <!-- WE SHARE -->
+
+      <article class="benefit">
+
+        <div class="benefit-icon red"><span class="material-symbols-rounded">volunteer_activism</span></div>
+
+        <h3>We Share</h3>
+
+        <p>
+          We contribute a little so others can
+          receive help and hope.
+        </p>
+
+      </article>
+
+
+      <!-- WE GROW -->
+
+      <article class="benefit">
+
+        <div class="benefit-icon blue"><span class="material-symbols-rounded">diversity_3</span></div>
+
+        <h3>We Grow</h3>
+
+        <p>
+          Together we build stronger families
+          and stronger communities.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       BOTTOM BLUE RIBBON
+       ========================================================= -->
+
+  <div class="about-ribbon">
+
+    <svg
+      class="ribbon-svg"
+      viewBox="0 0 1600 180"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+
+      <path
+        d="
+          M0 0
+
+          C180 12
+           370 16
+           570 10
+
+          C790 4
+           990 8
+           1170 14
+
+          C1370 20
+           1510 38
+           1600 82
+
+          L1600 180
+          L0 180
+
+          Z
+        "
+      />
+
+    </svg>
+
+
+    <div class="ribbon-content">
+
+      <!-- ICON -->
+
+      <div class="ribbon-icon"><span class="material-symbols-rounded">diversity_1</span></div>
+
+
+      <!-- DIVIDER -->
+
+      <div class="ribbon-divider"></div>
+
+
+      <!-- TEXT -->
+
+      <div class="ribbon-text">
+
+        <strong>
+          BayaNova is more than a membership.
+        </strong>
+
+        <span>
+          It’s a promise: We stand together,
+          today and always.
         </span>
 
-        <h2>A community<br />built the <span>Filipino</span> way</h2>
-        <p class="intro">We believe that when people come together, no family has to face life's
-          challenges alone.</p>
-
-
-        <div class="about-values">
-          <div class="about-val">
-            <div class="val-icon blue"><span class="material-icons-round mi">favorite</span></div>
-            <h3>We Care</h3>
-            <p>We support one another in times that matter most.</p>
-          </div>
-          <div class="about-val">
-            <div class="val-icon red"><span class="material-icons-round mi">share</span></div>
-            <h3>We Share</h3>
-            <p>We contribute a little so others can receive help and hope.</p>
-          </div>
-          <div class="about-val">
-            <div class="val-icon purp"><span class="material-icons-round mi">trending_up</span></div>
-            <h3>We Grow</h3>
-            <p>Together we build stronger families and stronger communities.</p>
-          </div>
-        </div>
-
-        <div class="story-box">
-          <span class="story-label">
-            <span class="material-icons-round" style="font-size:14px">play_arrow</span>
-            OUR STORY
-          </span>
-          <h3>How BayaNova Began</h3>
-          <p>BayaNova started with a simple question: <em>"What if we could help one another before
-              someone has to face a difficult moment alone?"</em></p>
-          <p>We grew up knowing the Filipino spirit of Bayanihan—the neighbor who brings food when a
-            family is struggling, the community that comes together after a loss.</p>
-          <p>We are building a community where care is shared, hope is passed forward, and no one
-            has to carry life's burdens alone.
-            <strong>We are stronger when we stand together.</strong>
-          </p>
-        </div>
       </div>
 
     </div>
-  </section>
 
+  </div>
 
+</section>
 
 
 <section class="events-section">
