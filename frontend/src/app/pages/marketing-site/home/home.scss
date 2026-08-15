@@ -263,7 +263,7 @@ img { display: block; max-width: 100%; }
 // ── COMMUNITY BENEFITS ────────────────────────────────────
 .community {
   background: #fff;
-  padding: 64px clamp(20px, 5vw, 70px) 0;
+  // padding: 64px clamp(20px, 5vw, 70px) 0;
 }
 
 .benefit-grid {
@@ -394,28 +394,34 @@ img { display: block; max-width: 100%; }
   }
 }
 
+
+// ── ABOUT ─────────────────────────────────────────────────
+
+
 .community-bar {
-  margin-top: 24px;
+  margin-top: auto;
   height: 68px;
+  width: 100%;
   background: linear-gradient(90deg, #0F55C8 0%, #1F5BFF 60%, #0F55C8 100%);
   border-radius: 0;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding-left: 40px;
+  justify-content: center;
+  padding: 0;
+  text-align: center;
 
   span {
-    color: rgba(255,255,255,.85);
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 700;
     font-size: clamp(12px, 1vw, 15px);
-    letter-spacing: .02em;
+    letter-spacing: 0.02em;
   }
 }
 
-// ── ABOUT ─────────────────────────────────────────────────
 .about {
-  background: #fff;
+  background: #F8FAFC;
   padding: clamp(72px, 7vw, 112px) 0;
 
   .container {
@@ -568,7 +574,7 @@ img { display: block; max-width: 100%; }
 
 // ── MEMBERSHIP ────────────────────────────────────────────
 .membership {
-  background: #F8FAFC;
+  background: #fff;
 
   .container {
     padding-left: clamp(24px, 5vw, 70px);
@@ -1209,6 +1215,338 @@ img { display: block; max-width: 100%; }
 // ── CTA SECTION ───────────────────────────────────────────
 // The card and the strip are now visually unified: same border-radius family,
 // strip bleeds under the card with a shared box-shadow.
+.events-section {
+  padding: clamp(72px, 7vw, 110px) 24px clamp(80px, 8vw, 120px);
+  background:
+    radial-gradient(circle at top left, rgba(31, 91, 255, .08), transparent 28%),
+    linear-gradient(180deg, #fff 0%, var(--tint) 100%);
+  overflow: hidden;
+
+  .header {
+    max-width: var(--max);
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--blue);
+    font-size: clamp(1.8rem, 2.7vw, 2.6rem);
+    font-weight: 900;
+
+    span { color: var(--blue); }
+
+    svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue);
+      flex-shrink: 0;
+    }
+  }
+
+  .rule {
+    flex: 1;
+    height: 1px;
+  background: linear-gradient(90deg, rgba(31, 91, 255, 0), rgba(31, 91, 255, .25), rgba(31, 91, 255, 0));
+  }
+}
+
+.carousel {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-btn {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(31, 91, 255, .12);
+  background: var(--tint);
+  color: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, color .18s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba(31, 91, 255, .34);
+    color: var(--blue);
+    box-shadow: 0 10px 24px rgba(31, 91, 255, .10);
+  }
+
+}
+
+.slide-track {
+  position: relative;
+  flex: 1;
+  min-height: 460px;
+}
+
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(170px, 38vw);
+  height: 220px;
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1), opacity .4s ease, width .6s cubic-bezier(.22, 1, .36, 1), height .6s cubic-bezier(.22, 1, .36, 1);
+  &[data-pos='0'] {
+    width: min(560px, 86vw);
+    height: 304px;
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 5;
+  }
+
+  &[data-pos='-1'] {
+    width: min(260px, 48vw);
+    height: 248px;
+    transform: translate(-50%, -50%) translateX(-240px) scale(.98);
+    opacity: .72;
+    z-index: 4;
+  }
+
+  &[data-pos='1'] {
+    width: min(260px, 48vw);
+    height: 248px;
+    transform: translate(-50%, -50%) translateX(240px) scale(.98);
+    opacity: .72;
+    z-index: 4;
+  }
+
+  &[data-pos='-2'] {
+    width: min(190px, 34vw);
+    height: 210px;
+    transform: translate(-50%, -50%) translateX(-390px) scale(.92);
+    opacity: .34;
+    z-index: 3;
+  }
+
+  &[data-pos='2'] {
+    width: min(190px, 34vw);
+    height: 210px;
+    transform: translate(-50%, -50%) translateX(390px) scale(.92);
+    opacity: .34;
+    z-index: 3;
+  }
+
+  &[data-pos='far'] {
+    transform: translate(-50%, -50%) scale(.72);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.slide-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--tint);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.slide-tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .92);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.subrule {
+  max-width: 1120px;
+  margin: 28px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(31, 91, 255, 0), rgba(31, 91, 255, .18), rgba(31, 91, 255, 0));
+  }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 6px rgba(31, 91, 255, .10);
+  flex-shrink: 0;
+}
+
+.info-card {
+  max-width: 1120px;
+  margin: 22px auto 0;
+  padding: 28px 32px;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgba(31, 91, 255, .12);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.info-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-title {
+  color: #1d4ed8;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.info-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-bottom: 14px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #5b6b8a;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: #5f7cff;
+    flex-shrink: 0;
+  }
+}
+
+.info-desc {
+  color: #2c3f73;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 72ch;
+}
+
+.info-side {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.info-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #e9edff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .carousel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    justify-items: center;
+  }
+
+  .nav-btn {
+    order: 2;
+  }
+
+  .slide-track {
+    width: 100%;
+    min-height: 460px;
+    order: 1;
+  }
+
+  .slide[data-pos='-1'] { transform: translate(-50%, -50%) translateX(-170px) scale(.88) rotateY(14deg); }
+  .slide[data-pos='1']  { transform: translate(-50%, -50%) translateX(170px) scale(.88) rotateY(-14deg); }
+  .slide[data-pos='-2'] { transform: translate(-50%, -50%) translateX(-290px) scale(.78) rotateY(22deg); }
+  .slide[data-pos='2']  { transform: translate(-50%, -50%) translateX(290px) scale(.78) rotateY(-22deg); }
+
+  .info-card {
+    flex-direction: column;
+  }
+
+  .info-side {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .events-section {
+    padding-left: 18px;
+    padding-right: 18px;
+
+    .header {
+      margin-bottom: 22px;
+      gap: 12px;
+    }
+
+    h1 {
+      font-size: clamp(1.45rem, 6vw, 2rem);
+    }
+  }
+
+  .slide-track {
+    min-height: 420px;
+  }
+
+  .slide {
+    width: min(160px, 42vw);
+    height: 210px;
+  }
+
+  .slide[data-pos='0'] { width: min(360px, 84vw); height: 236px; }
+  .slide[data-pos='-1'] { transform: translate(-50%, -50%) translateX(-132px) scale(.98); }
+  .slide[data-pos='1']  { transform: translate(-50%, -50%) translateX(132px) scale(.98); }
+  .slide[data-pos='-2'] { transform: translate(-50%, -50%) translateX(-220px) scale(.92); }
+  .slide[data-pos='2']  { transform: translate(-50%, -50%) translateX(220px) scale(.92); }
+
+  .info-card {
+    padding: 22px 20px;
+  }
+
+  .info-no {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .cta-wrap {
   padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 60px) 0;
   background: #fff;
