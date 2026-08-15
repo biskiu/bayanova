@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 interface Faq {
   q: string;
@@ -18,7 +18,7 @@ interface EventItem {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
