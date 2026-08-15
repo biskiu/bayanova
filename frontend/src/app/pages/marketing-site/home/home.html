@@ -640,7 +640,7 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
 
 
   <!-- â”€â”€ MEMBERSHIP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-  <section id="membership" class="membership section" style="background:#F8FAFC;">
+  <section id="membership" class="membership section">
     <div class="container">
       <div class="membership-grid fade-up">
         <div class="membership-copy">
@@ -648,7 +648,10 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
             <span class="material-icons-round" style="font-size:16px">badge</span>
             MEMBERSHIP
           </span>
-          <h2>One membership, four lives protected</h2>
+          <h2 class="membership-heading">
+            <span class="membership-heading__line membership-heading__line--blue">One membership,</span>
+            <span class="membership-heading__line"><span class="membership-heading__accent-red">four lives</span> protected.</span>
+          </h2>
           <p class="membership-lead">
             Joining BayaNova is simple. Register as a member, add up to four family members to your
             coverage, and maintain your monthly subscription to stay eligible for community assistance.
@@ -658,19 +661,19 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
               <span class="membership-check">
                 <span class="material-icons-round mi">check</span>
               </span>
-              <span>Simple online or in-person registration</span>
+              <span><strong>Simple</strong> online or in-person registration</span>
             </li>
             <li>
               <span class="membership-check">
                 <span class="material-icons-round mi">check</span>
               </span>
-              <span>Covers the member plus 3 dependents</span>
+              <span><strong>Covers four lives</strong> — the member plus 3 dependents</span>
             </li>
             <li>
               <span class="membership-check">
                 <span class="material-icons-round mi">check</span>
               </span>
-              <span>Cancel or update coverage anytime</span>
+              <span><strong>Flexible coverage</strong> you can cancel or update anytime</span>
             </li>
           </ul>
           <button class="btn-primary lg membership-cta">
@@ -797,11 +800,11 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
 
       </div>
 
-      <div class="benefits-footnote fade-up">
+      <!-- <div class="benefits-footnote fade-up">
         <span class="material-icons-round" style="font-size:16px;color:rgba(255,255,255,.5)">info</span>
         Assistance amounts are subject to program guidelines and fund availability.
         <a href="#faq" class="benefits-footnote__link" (click)="setActive('faq', $event)">See FAQ →</a>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -814,7 +817,7 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
           <span class="material-icons-round" style="font-size:16px">groups</span>
           HOW IT WORKS
         </span>
-        <h2>How We Stand <span>Together</span></h2>
+        <h2>How We <span>Stand </span> <span class="red">Together</span></h2>
         <p class="how-sub">From joining the community to being there for one another.</p>
 
         <div class="steps">
@@ -822,7 +825,7 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
           <div class="step">
             <div class="step-col">
               <div class="step-num-icon">
-                <span class="material-icons-round mi">group_add</span>
+                <span class="material-icons-round mi">groups</span>
                 <span class="step-num">1</span>
               </div>
             </div>
@@ -831,18 +834,24 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
               <p>Become part of BayaNova and a growing community of Filipinos who believe in helping
                 one another.</p>
             </div>
+            <div class="step-connector" aria-hidden="true">
+              <span class="material-symbols-rounded">favorite</span>
+            </div>
           </div>
 
           <div class="step">
             <div class="step-col">
               <div class="step-num-icon">
-                <span class="material-icons-round mi">family_restroom</span>
+                <span class="material-icons-round mi red">family_restroom</span>
                 <span class="step-num">2</span>
               </div>
             </div>
             <div class="step-body">
               <h3>Bring Your Loved Ones Along</h3>
               <p>One membership can include up to 4 individuals from your family.</p>
+            </div>
+            <div class="step-connector" aria-hidden="true">
+              <span class="material-symbols-rounded">favorite</span>
             </div>
           </div>
 
@@ -858,12 +867,15 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
               <p>Through the <strong>₱200</strong> monthly subscription fund, members help build a
                 shared source of support for qualified community needs.</p>
             </div>
+            <div class="step-connector" aria-hidden="true">
+              <span class="material-symbols-rounded">favorite</span>
+            </div>
           </div>
 
           <div class="step">
             <div class="step-col">
               <div class="step-num-icon">
-                <span class="material-icons-round mi">volunteer_activism</span>
+                <span class="material-icons-round mi red">volunteer_activism</span>
                 <span class="step-num">4</span>
               </div>
             </div>
@@ -877,7 +889,7 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
         </div>
 
         <div class="how-bottom">
-          <span class="material-icons-round mi">favorite</span>
+          <img class="how-bottom-logo" src="/images/BAYANOVA_LOGO_TRANSPARENT_notxt.png" alt="" aria-hidden="true" />
           <div class="how-bottom-copy">
             <strong>Because Community Is More Than Membership.</strong>
             <p>It is knowing that when difficult moments come, you don't have to face them alone.</p>
@@ -888,9 +900,11 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
       <div class="how-img fade-up">
         <img src="/images/pinoy%203.png" alt="Filipino family standing together" loading="lazy" />
         <div class="how-img-overlay">
+          <span class="material-icons-round how-img-overlay-icon" aria-hidden="true">diversity_1</span>
           <div class="how-img-overlay-msg">
-            <span>Receive support. Give support.</span>
-            <span>Keep Bayanihan alive.</span>
+            <strong>Receive support.</strong>
+            <strong>Give support.</strong>
+            <strong>Keep Bayanihan alive.</strong>
           </div>
         </div>
       </div>
@@ -900,40 +914,50 @@ M -200 583 C 47 653 179 644 251 620 C 323 596 375 572 423 515 C 453 479 476 435 
 
 
   <!-- â”€â”€ WHY BAYANOVA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
-  <section class="why section">
-    <div class="container">
+  <section class="why section" aria-labelledby="why-title">
+    <div class="container why-layout">
       <div class="section-heading fade-up">
         <span class="badge badge-blue">
-          <span class="material-icons-round" style="font-size:16px">shield</span>
+          <span class="material-icons-round">verified_user</span>
           WHY CHOOSE BAYANOVA
         </span>
-        <h2>Recognized, compliant, and built on trust</h2>
+        <h2 id="why-title">
+          <span class="text-blue">Recognized</span>, compliant,<br />
+          and <span class="text-red">built on trust</span>
+        </h2>
+        <p>We pair responsible operations with a community-first purpose, so every member knows what BayaNova stands for.</p>
+
+        <div class="why-assurance">
+          <span class="material-icons-round">shield</span>
+          <span><strong>Accountability at every step</strong>Clear standards. Transparent service.</span>
+        </div>
       </div>
+
       <div class="trust-grid fade-up">
-        <div class="trust-card">
+        <article class="trust-card trust-card--blue">
           <div class="t-icon blue"><span class="material-icons-round mi">assignment_turned_in</span></div>
-          SEC Registered
-        </div>
-        <div class="trust-card">
-          <div class="t-icon red"><span class="material-icons-round mi">account_balance</span></div>
-          BIR Compliant
-        </div>
-        <div class="trust-card">
+          <div class="trust-card__copy"><h3>SEC Registered</h3><span>Formal organization</span></div>
+        </article>
+        <article class="trust-card trust-card--blue">
+          <div class="t-icon blue"><span class="material-icons-round mi">account_balance</span></div>
+          <div class="trust-card__copy"><h3>BIR Compliant</h3><span>Responsible operations</span></div>
+        </article>
+        <article class="trust-card trust-card--blue">
           <div class="t-icon blue"><span class="material-icons-round mi">description</span></div>
-          Local Government Permits
-        </div>
-        <div class="trust-card">
-          <div class="t-icon red"><span class="material-icons-round mi">diversity_3</span></div>
-          DSWD Recognition
-        </div>
-        <div class="trust-card">
+          <div class="trust-card__copy"><h3>Local Government Permits</h3><span>Required clearances</span></div>
+        </article>
+        <article class="trust-card trust-card--blue">
+          <div class="t-icon blue"><span class="material-icons-round mi">diversity_3</span></div>
+          <div class="trust-card__copy"><h3>DSWD Recognition</h3><span>Welfare-centered mission</span></div>
+        </article>
+        <article class="trust-card trust-card--blue">
           <div class="t-icon blue"><span class="material-icons-round mi">groups</span></div>
-          Community-Based
-        </div>
-        <div class="trust-card">
-          <div class="t-icon red"><span class="material-icons-round mi">visibility</span></div>
-          Transparent Process
-        </div>
+          <div class="trust-card__copy"><h3>Community-Based</h3><span>Rooted in Bayanihan</span></div>
+        </article>
+        <article class="trust-card trust-card--blue">
+          <div class="t-icon blue"><span class="material-icons-round mi">visibility</span></div>
+          <div class="trust-card__copy"><h3>Transparent Process</h3><span>Clear member guidelines</span></div>
+        </article>
       </div>
     </div>
   </section>
