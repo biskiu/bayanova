@@ -1,10 +1,26 @@
+// BayaNova uses a fixed light palette. Keep browser-native controls and
+// third-party components from following the operating system's dark theme.
+:root {
+  color-scheme: light;
+}
+
 html, body {
+  width: 100%;
+  min-width: 0;
   font-family: 'Poppins', sans-serif;
   background: #fff;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 .material-icons,

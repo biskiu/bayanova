@@ -18,6 +18,8 @@ $soft-red: #ffe0e5;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
+  min-width: 0;
   padding: 24px;
   background:
     radial-gradient(circle at 12% 12%, rgba(226, 45, 70, 0.09), transparent 24rem),
@@ -420,8 +422,12 @@ $soft-red: #ffe0e5;
 }
 
 @media (max-width: 390px) {
+  :host {
+    padding-inline: 10px;
+  }
+
   .right {
-    padding-inline: 22px;
+    padding-inline: 18px;
   }
 
   .membership {

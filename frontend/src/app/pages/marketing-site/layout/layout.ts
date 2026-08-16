@@ -9,12 +9,21 @@ import { NgOptimizedImage } from '@angular/common';
   imports: [CommonModule, RouterLink, RouterOutlet, NgOptimizedImage],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
+  host: {
+    '(window:resize)': 'onViewportResize()',
+  },
 })
 export class Layout {
   mobileOpen = false;
 
   toggleMobileMenu(): void {
     this.mobileOpen = !this.mobileOpen;
+  }
+
+  onViewportResize(): void {
+    if (window.innerWidth >= 1024 && this.mobileOpen) {
+      this.mobileOpen = false;
+    }
   }
 
   scrollTo(id: string, event: Event): void {
