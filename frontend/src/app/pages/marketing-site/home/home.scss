@@ -156,8 +156,14 @@ img { display: block; max-width: 100%; }
 .hero-fade {
   position: absolute;
   top: 0; left: 0; bottom: 0;
-  width: 40%;
-  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.92) 30%, rgba(255,255,255,0) 100%);
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 40%,
+    rgba(255,255,255,.96) 55%,
+    rgba(255,255,255,0) 100%
+  );
   pointer-events: none;
 }
 
@@ -1519,13 +1525,13 @@ img { display: block; max-width: 100%; }
 }
 
 .cta.section {
-  padding: 0 0 clamp(40px, 5vw, 72px);
-  background: #fff;
+  padding: 0;
+  background-color: #fff;
 }
 
 .cta-wrap {
-  padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 60px) 0;
-  background: #fff;
+  padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 60px) clamp(40px, 5vw, 72px);
+  background-color: #fff;
 }
 
 .cta-card {
@@ -1540,7 +1546,7 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 16px 48px rgba(6,58,160,.14);
   min-height: 460px;
 
-  @media (max-width: 768px) { grid-template-columns: 1fr; }
+  @media (max-width: 1024px) { grid-template-columns: 1fr; }
 }
 
 .cta-heart-seam {
@@ -1554,7 +1560,7 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
   transform: translateX(-50%);
 
-  @media (max-width: 768px) { display: none; }
+  @media (max-width: 1024px) { display: none; }
 }
 
 .cta-seam-red,
@@ -1566,9 +1572,8 @@ img { display: block; max-width: 100%; }
 
 .cta-seam-red {
   stroke: var(--red);
-  // Overlap the white seam slightly so the photo cannot show through
-  // between the two anti-aliased SVG strokes.
-  stroke-width: 22px;
+  // Keep the red and white paths overlapped at every rendered size.
+  stroke-width: 32px;
 }
 
 .cta-seam-white {
@@ -1669,6 +1674,12 @@ img { display: block; max-width: 100%; }
     height: 100%;
     object-fit: cover;
     clip-path: url(#cta-photo-clip);
+  }
+}
+
+@media (max-width: 1024px) {
+  .cta-right img {
+    clip-path: none;
   }
 }
 
@@ -2410,7 +2421,7 @@ img { display: block; max-width: 100%; }
   .nav-btn.next { justify-self: start; }
 
   .cta-wrap {
-    padding: 48px 14px 0;
+    padding: 48px 14px 40px;
   }
 
   .cta-card {
