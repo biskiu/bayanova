@@ -21,8 +21,28 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'member',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./pages/member/login/login-signup').then((m) => m.LoginSignup),
+      },
+      {
+        path: 'signup',
+        loadComponent: () =>
+          import('./pages/member/signup/login-signup').then((m) => m.LoginSignup),
+      },
+    ],
+  },
+  {
     path: 'login-signup',
-    loadComponent: () =>
-      import('./pages/marketing-site/login-signup/login-signup').then((m) => m.LoginSignup),
+    pathMatch: 'full',
+    redirectTo: 'member/login',
   },
 ];

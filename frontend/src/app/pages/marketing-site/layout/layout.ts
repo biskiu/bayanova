@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NgOptimizedImage],
+  imports: [CommonModule, RouterLink, RouterOutlet, NgOptimizedImage],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
 })

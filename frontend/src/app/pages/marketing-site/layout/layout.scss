@@ -409,34 +409,78 @@ p { margin: 0; }
 
 @media (max-width: 560px) {
   .nav-bar {
-    min-height: 72px;
-    padding: 10px 18px;
+    box-sizing: border-box;
+    min-height: 64px;
+    padding: 6px 18px;
   }
 
   .site-header .brand-logo {
-    width: 148px;
-    height: 44px;
+    width: 136px;
+    height: 40px;
   }
 
   .mobile-toggle {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
   }
 
   .mobile-menu__links {
     padding-inline: 18px;
   }
 
-  .site-footer { padding-top: 28px; }
+  .site-footer {
+    padding: 32px 0 18px;
+    text-align: center;
+  }
 
   .site-footer .container {
     padding-inline: 18px;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 24px;
+  .footer-main {
+    gap: 28px;
+    margin-bottom: 24px;
   }
 
-  .footer-contact { grid-column: 1 / -1; }
+  .footer-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-footer .brand-logo {
+    height: auto;
+    width: min(180px, 55vw);
+  }
+
+  .footer-tagline {
+    margin-top: 8px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 16px;
+  }
+
+  .footer-grid ul {
+    align-items: center;
+  }
+
+  .footer-grid h4 {
+    margin-bottom: 12px;
+  }
+
+  .footer-contact {
+    grid-column: 1 / -1;
+    padding-top: 2px;
+  }
+
+  .contact-list li {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .footer-bottom {
+    line-height: 1.5;
+  }
 }

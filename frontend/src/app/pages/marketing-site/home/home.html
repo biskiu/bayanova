@@ -997,15 +997,16 @@
 
       <div class="faq-grid fade-up">
         @for (faq of faqs; track faq.q; let i = $index) {
-          <article class="faq-card">
-            <div class="faq-card__icon" [class.red]="i % 2 === 0" [class.blue]="i % 2 !== 0">
-              <span class="material-icons-round">{{ faq.icon }}</span>
-            </div>
-            <div class="faq-card__body">
+          <details class="faq-card">
+            <summary class="faq-card__summary">
+              <span class="faq-card__icon" [class.red]="i % 2 === 0" [class.blue]="i % 2 !== 0">
+                <span class="material-icons-round">{{ faq.icon }}</span>
+              </span>
               <h3>{{ faq.q }}</h3>
-              <p>{{ faq.a }}</p>
-            </div>
-          </article>
+              <span class="faq-card__chevron material-icons-round" aria-hidden="true">expand_more</span>
+            </summary>
+            <p class="faq-card__answer">{{ faq.a }}</p>
+          </details>
         }
       </div>
     </div>
