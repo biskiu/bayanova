@@ -22,10 +22,18 @@
     </ul>
 
     <div class="nav-actions">
-      <a href="/login-signup" class="btn-primary hide-mobile">
-        Log In / Sign Up
-      </a>
-      <button (click)="toggleMobileMenu()" class="mobile-toggle" aria-label="Toggle menu">
+      <div class="desktop-auth hide-mobile" aria-label="Account actions">
+        <a href="/login-signup?mode=login" class="desktop-auth__login">Log In</a>
+        <a href="/login-signup?mode=signup" class="desktop-auth__signup">Sign Up</a>
+      </div>
+      <button
+        type="button"
+        (click)="toggleMobileMenu()"
+        class="mobile-toggle"
+        aria-label="Toggle navigation menu"
+        aria-controls="mobile-navigation"
+        [attr.aria-expanded]="mobileOpen"
+      >
         <span class="material-icons" *ngIf="!mobileOpen">menu</span>
         <span class="material-icons" *ngIf="mobileOpen">close</span>
       </button>
@@ -33,8 +41,8 @@
   </nav>
 
   <!-- Mobile menu -->
-  <div class="mobile-menu" *ngIf="mobileOpen">
-    <ul>
+  <nav id="mobile-navigation" class="mobile-menu" aria-label="Mobile navigation" *ngIf="mobileOpen">
+    <ul class="mobile-menu__links">
       <li><a href="#about" (click)="scrollTo('about', $event)">About Us</a></li>
       <li><a href="#membership" (click)="scrollTo('membership', $event)">Membership</a></li>
       <li><a href="#benefits" (click)="scrollTo('benefits', $event)">Benefits</a></li>
@@ -42,7 +50,12 @@
       <li><a href="#faq" (click)="scrollTo('faq', $event)">FAQ</a></li>
       <li><a href="#contact" (click)="scrollTo('contact', $event)">Contact</a></li>
     </ul>
-  </div>
+
+    <div class="mobile-menu__actions" aria-label="Account actions">
+      <a href="/login-signup?mode=login" class="mobile-auth mobile-auth--login">Log In</a>
+      <a href="/login-signup?mode=signup" class="mobile-auth mobile-auth--signup">Sign Up</a>
+    </div>
+  </nav>
 </header>
 
 <!-- ===================== PAGE CONTENT (child route) ===================== -->
@@ -81,7 +94,7 @@
         <div>
           <h4>Legal</h4>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
           </ul>
         </div>

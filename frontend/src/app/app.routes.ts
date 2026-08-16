@@ -11,6 +11,13 @@ export const routes: Routes = [
         path: '',
         component: Home,
       },
+      {
+        path: 'privacy-policy',
+        loadComponent: () =>
+          import('./pages/marketing-site/privacy-policy/privacy-policy').then(
+            (m) => m.PrivacyPolicy,
+          ),
+      },
     ],
   },
   {

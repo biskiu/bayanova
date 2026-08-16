@@ -2134,3 +2134,404 @@ img { display: block; max-width: 100%; }
     width: 92%;
   }
 }
+
+// Mobile layout pass. Keep these overrides together so sections use the same
+// gutters and vertical rhythm instead of inheriting desktop-sized dimensions.
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding-inline: 18px;
+  }
+
+  .section {
+    padding-block: 56px;
+  }
+
+  .section-heading {
+    margin-bottom: 34px;
+  }
+
+  .hero {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-right {
+    position: relative;
+    order: 1;
+    width: 100%;
+    height: clamp(220px, 58vw, 360px);
+    flex: 0 0 auto;
+
+    img {
+      border-radius: 0;
+      object-position: center 22%;
+    }
+  }
+
+  .hero-fade {
+    inset: auto 0 0;
+    width: 100%;
+    height: 34%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff 96%);
+  }
+
+  .hero-left {
+    order: 2;
+    width: 100%;
+    padding: 22px 20px 34px;
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    max-width: 15ch;
+    font-size: clamp(1.85rem, 8vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+
+    br { display: none; }
+  }
+
+  .hero-desc {
+    max-width: 38rem;
+    margin-top: 18px;
+    font-size: .94rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    width: 100%;
+    min-height: 56px;
+    height: auto;
+    margin-top: 26px;
+    padding: 14px 22px;
+    font-size: 1rem;
+  }
+
+  .hero-tagline {
+    width: 100%;
+    margin: 14px 0 0;
+    text-align: center;
+  }
+
+  .hero-bar {
+    position: relative;
+    order: 3;
+    min-height: 64px;
+    padding: 10px 0;
+  }
+
+  .hero-bar-inner {
+    padding-inline: 20px;
+    justify-content: center;
+  }
+
+  .hero-bar-msg {
+    justify-content: center;
+    font-size: .75rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .community {
+    padding: 56px 18px 0;
+  }
+
+  .benefit-grid { gap: 14px; }
+
+  .card {
+    padding: 24px 22px;
+  }
+
+  .program-item {
+    min-height: 112px;
+    padding: 18px 8px;
+  }
+
+  .community-message {
+    margin: 48px -18px 0;
+    padding-inline: 20px;
+  }
+
+  .membership .container {
+    padding-inline: 18px;
+  }
+
+  .membership h2 {
+    max-width: none;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    letter-spacing: -.04em;
+  }
+
+  .membership-heading__line {
+    white-space: normal;
+  }
+
+  .membership-lead {
+    font-size: .94rem;
+    line-height: 1.65;
+  }
+
+  .membership-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .membership-card {
+    border-radius: 24px;
+    padding: 26px 20px;
+  }
+
+  .membership-card__list li {
+    align-items: flex-start;
+
+    strong {
+      white-space: normal;
+      text-align: right;
+    }
+  }
+
+  .benefits {
+    padding-block: 56px;
+  }
+
+  .benefit-tile {
+    padding-bottom: 20px;
+  }
+
+  .how {
+    padding-block: 50px;
+  }
+
+  .how .container {
+    margin-inline: 14px;
+  }
+
+  .how-text {
+    padding: 24px 8px 4px;
+  }
+
+  .how h2 {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  .how-img,
+  .how-img > img {
+    min-height: 350px;
+    height: 350px;
+  }
+
+  .how-img {
+    border-radius: 22px;
+  }
+
+  .how-img-overlay {
+    left: -12%;
+    min-height: 104px;
+    padding: 42px 20px 20px 19%;
+  }
+
+  .how-img-overlay-icon { font-size: 42px; }
+
+  .why {
+    padding-block: 54px;
+  }
+
+  .faq-card {
+    padding: 20px 18px;
+  }
+
+  .events-section {
+    padding-block: 56px 64px;
+  }
+
+  .carousel {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+  }
+
+  .slide-track {
+    grid-column: 1 / -1;
+    min-height: 310px;
+  }
+
+  .nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-btn.prev { justify-self: end; }
+  .nav-btn.next { justify-self: start; }
+
+  .subrule { margin-top: 22px; }
+
+  .cta-wrap {
+    padding: 48px 14px 0;
+  }
+
+  .cta-card {
+    min-height: 0;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .cta-left {
+    padding: 32px 22px 36px;
+  }
+
+  .cta-h {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+    letter-spacing: -.04em;
+  }
+
+  .cta-btn { width: 100%; }
+
+  .cta-right {
+    min-height: 270px;
+
+    img { clip-path: none; }
+  }
+
+  .about-section .about-visual {
+    height: clamp(300px, 82vw, 390px);
+  }
+
+  .about-section .about-content {
+    padding: 30px 18px 14px;
+  }
+
+  .about-section .about-story {
+    width: 100%;
+    padding: 26px 20px 20px;
+  }
+
+  .about-section .about-ribbon {
+    height: 122px;
+  }
+
+  .about-section .ribbon-content {
+    width: calc(100% - 36px);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section { padding-block: 48px; }
+
+  .hero-right {
+    height: 220px;
+  }
+
+  .hero-left {
+    padding-inline: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.75rem, 8.6vw, 2.1rem);
+  }
+
+  .section-rule {
+    margin-top: 28px;
+    gap: 10px;
+  }
+
+  .rule-label {
+    font-size: .9rem;
+  }
+
+  .membership-card__amount {
+    font-size: 3rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 12px;
+  }
+
+  .how-bottom {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .events-section {
+    padding-inline: 14px;
+  }
+
+  .events-section .header .rule {
+    display: none;
+  }
+
+  .events-section .header {
+    justify-content: center;
+  }
+
+  .slide-track {
+    min-height: 280px;
+  }
+
+  .slide[data-pos='0'] {
+    width: calc(100vw - 52px);
+    height: 220px;
+  }
+
+  .slide[data-pos='-1'] {
+    transform: translate(-50%, -50%) translateX(-104px) scale(.9);
+  }
+
+  .slide[data-pos='1'] {
+    transform: translate(-50%, -50%) translateX(104px) scale(.9);
+  }
+
+  .info-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .info-meta {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .cta-pills {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cta-pill { justify-content: center; }
+
+  .cta-strip-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .about-section {
+    padding-bottom: 138px;
+  }
+
+  .about-section .about-logo-mark {
+    right: 16px;
+    width: 90px;
+  }
+
+  .about-section .about-heading {
+    font-size: clamp(2rem, 10vw, 2.6rem);
+  }
+
+  .about-section .heart-divider {
+    width: min(230px, 82%);
+  }
+
+  .about-section .ribbon-content {
+    align-items: flex-start;
+    bottom: 18px;
+  }
+
+  .about-section .ribbon-icon {
+    flex: 0 0 36px;
+  }
+
+  .about-section .ribbon-text strong,
+  .about-section .ribbon-text span {
+    display: block;
+  }
+}

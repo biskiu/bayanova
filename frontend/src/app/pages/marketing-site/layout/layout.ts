@@ -20,6 +20,26 @@ export class Layout {
   scrollTo(id: string, event: Event): void {
     event.preventDefault();
     this.mobileOpen = false;
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (!document.getElementById(id)) {
+      window.location.assign(`/#${id}`);
+      return;
+    }
+
+    // Wait for the mobile menu to close before measuring the sticky header.
+    requestAnimationFrame(() => {
+      const target = document.getElementById(id);
+      const header = document.querySelector<HTMLElement>('.site-header');
+
+      if (!target) return;
+
+      const headerHeight = header?.offsetHeight ?? 0;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      });
+    });
   }
 }
