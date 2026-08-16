@@ -617,12 +617,6 @@
     </button>
   </div>
 
-  <div class="subrule">
-    <div class="rule"></div>
-    <div class="dot"></div>
-    <div class="rule"></div>
-  </div>
-
   <div class="info-card">
     <div class="info-main">
       <h2 class="info-title">{{ activeEvent.title }}</h2>
@@ -997,7 +991,17 @@
 
       <div class="faq-grid fade-up">
         @for (faq of faqs; track faq.q; let i = $index) {
-          <details class="faq-card">
+          <article class="faq-card faq-card--desktop">
+            <div class="faq-card__summary">
+              <span class="faq-card__icon" [class.red]="i % 2 === 0" [class.blue]="i % 2 !== 0">
+                <span class="material-icons-round">{{ faq.icon }}</span>
+              </span>
+              <h3>{{ faq.q }}</h3>
+            </div>
+            <p class="faq-card__answer">{{ faq.a }}</p>
+          </article>
+
+          <details class="faq-card faq-card--mobile">
             <summary class="faq-card__summary">
               <span class="faq-card__icon" [class.red]="i % 2 === 0" [class.blue]="i % 2 !== 0">
                 <span class="material-icons-round">{{ faq.icon }}</span>

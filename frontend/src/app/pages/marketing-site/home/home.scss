@@ -1105,6 +1105,8 @@ img { display: block; max-width: 100%; }
   min-height: 100px;
 }
 
+.faq-card--mobile { display: none; }
+
 .faq-card__summary {
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr);
@@ -1161,6 +1163,9 @@ img { display: block; max-width: 100%; }
 .faq-card__chevron { display: none; }
 
 @media (max-width: 620px) {
+  .faq-card--desktop { display: none; }
+  .faq-card--mobile { display: block; }
+
   .faq-card {
     min-height: 0;
     padding: 0;
@@ -1281,7 +1286,7 @@ img { display: block; max-width: 100%; }
 .slide-track {
   position: relative;
   flex: 1;
-  min-height: 460px;
+  min-height: 380px;
 }
 
 .slide {
@@ -1365,32 +1370,9 @@ img { display: block; max-width: 100%; }
   font-weight: 800;
 }
 
-.subrule {
-  max-width: 1120px;
-  margin: 28px auto 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  .rule {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(31, 91, 255, 0), rgba(31, 91, 255, .18), rgba(31, 91, 255, 0));
-  }
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 6px rgba(31, 91, 255, .10);
-  flex-shrink: 0;
-}
-
 .info-card {
   max-width: 1120px;
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   padding: 28px 32px;
   border-radius: 28px;
   background: #fff;
@@ -1477,7 +1459,7 @@ img { display: block; max-width: 100%; }
 
   .slide-track {
     width: 100%;
-    min-height: 460px;
+    min-height: 380px;
     order: 1;
   }
 
@@ -1512,7 +1494,7 @@ img { display: block; max-width: 100%; }
   }
 
   .slide-track {
-    min-height: 420px;
+    min-height: 320px;
   }
 
   .slide {
@@ -1534,6 +1516,11 @@ img { display: block; max-width: 100%; }
     width: 100%;
     justify-content: center;
   }
+}
+
+.cta.section {
+  padding: 0 0 clamp(40px, 5vw, 72px);
+  background: #fff;
 }
 
 .cta-wrap {
@@ -2421,8 +2408,6 @@ img { display: block; max-width: 100%; }
 
   .nav-btn.prev { justify-self: end; }
   .nav-btn.next { justify-self: start; }
-
-  .subrule { margin-top: 22px; }
 
   .cta-wrap {
     padding: 48px 14px 0;

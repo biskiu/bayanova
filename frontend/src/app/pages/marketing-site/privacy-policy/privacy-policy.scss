@@ -26,15 +26,31 @@ $soft-blue: #f3f6ff;
 
 .privacy-hero {
   position: relative;
-  min-height: 360px;
+  min-height: 390px;
   overflow: hidden;
-  background: linear-gradient(125deg, #f5f8ff 0%, #fff 54%, #fff5f5 100%);
+  background: linear-gradient(125deg, #e9f0ff 0%, #fff 52%, #ffeded 100%);
 }
 
 .privacy-hero__content {
   position: relative;
   z-index: 2;
-  padding-block: 36px 78px;
+  padding-block: 28px 96px;
+}
+
+.privacy-hero__utility {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba($dark-blue, 0.1);
+}
+
+.privacy-hero__copy {
+  max-width: 780px;
+  margin-inline: auto;
+  padding-top: 32px;
+  text-align: center;
 }
 
 .privacy-hero__glow {
@@ -63,22 +79,41 @@ $soft-blue: #f3f6ff;
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  margin-bottom: 30px;
+  gap: 10px;
   color: #334155;
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.86rem;
+  font-weight: 700;
   text-decoration: none;
   transition:
     color 0.2s ease,
     transform 0.2s ease;
 
-  span {
-    font-size: 19px;
+  &__icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid rgba($dark-blue, 0.12);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 5px 14px rgba(15, 23, 42, 0.05);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+
+    span {
+      font-size: 18px;
+    }
   }
+
   &:hover {
     color: $blue;
     transform: translateX(-3px);
+
+    .back-link__icon {
+      border-color: rgba($blue, 0.25);
+      background: #fff;
+    }
   }
   &:focus-visible {
     outline: 3px solid rgba($blue, 0.22);
@@ -87,31 +122,12 @@ $soft-blue: #f3f6ff;
   }
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border: 1px solid rgba($blue, 0.18);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
-  color: $dark-blue;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-
-  span {
-    color: $red;
-    font-size: 19px;
-  }
-}
-
 h1 {
   max-width: 780px;
-  margin: 16px 0 12px;
-  font-size: clamp(2.5rem, 4.5vw, 4rem);
-  line-height: 1;
+  margin: 0 0 14px;
+  color: $ink;
+  font-size: clamp(2.35rem, 4.2vw, 3.6rem);
+  line-height: 1.05;
   letter-spacing: -0.045em;
 
   span {
@@ -120,25 +136,46 @@ h1 {
 }
 
 .privacy-hero__lead {
-  max-width: 700px;
-  margin: 0;
+  max-width: 680px;
+  margin: 0 auto;
   color: $slate;
-  font-size: clamp(1rem, 1.5vw, 1.14rem);
-  line-height: 1.75;
+  font-size: clamp(0.92rem, 1.25vw, 1.04rem);
+  line-height: 1.65;
 }
 
 .effective-date {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  color: #64748b;
-  font-size: 0.82rem;
-  font-weight: 600;
+  gap: 11px;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 700;
 
-  span {
-    font-size: 18px;
+  &__icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba($blue, 0.09);
     color: $blue;
+
+    span {
+      font-size: 19px;
+    }
+  }
+
+  > span:last-child {
+    display: grid;
+    gap: 1px;
+  }
+
+  small {
+    color: #64748b;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 }
 
@@ -461,13 +498,35 @@ h1 {
     width: min(100% - 36px, 1180px);
   }
   .privacy-hero {
-    min-height: 370px;
+    min-height: 400px;
   }
   .privacy-hero__content {
-    padding-block: 28px 76px;
+    padding-block: 20px 80px;
   }
-  .back-link {
-    margin-bottom: 26px;
+  .privacy-hero__utility {
+    gap: 14px;
+    padding-bottom: 18px;
+  }
+  .privacy-hero__copy {
+    padding-top: 32px;
+  }
+  .back-link__icon {
+    width: 34px;
+    height: 34px;
+  }
+  .effective-date {
+    gap: 8px;
+    font-size: 0.75rem;
+  }
+  .effective-date__icon {
+    width: 34px;
+    height: 34px;
+  }
+  .effective-date small {
+    font-size: 0.6rem;
+  }
+  h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
   }
   .privacy-layout {
     padding-block: 28px 70px;
