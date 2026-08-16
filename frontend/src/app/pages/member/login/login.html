@@ -1,0 +1,104 @@
+<main class="card" aria-labelledby="login-heading">
+  <section class="left" aria-label="About BayaNova">
+    <div class="logo-row">
+      <img class="logo-img" src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova" />
+    </div>
+
+    <h1 class="headline">
+      Unity &amp; hope<br />
+      for every<br />
+      <span class="hl-blue">Baya</span><span class="hl-red">Nova</span><br />
+      community
+    </h1>
+
+    <p class="desc">
+      Together we build stronger communities through compassion, trust, and collective action.
+    </p>
+
+    <div class="word-cards" aria-label="The meaning of BayaNova">
+      <div class="word-card">
+        <span class="word-badge badge-blue">Bayan</span>
+        <span class="word-desc">
+          Community, unity, and the Filipino spirit of helping one another
+        </span>
+      </div>
+      <div class="word-card">
+        <span class="word-badge badge-red">Nova</span>
+        <span class="word-desc">A new beginning, hope, and transformation for all</span>
+      </div>
+    </div>
+
+    <p class="left-foot">© 2026 BayaNova · Bacolod City</p>
+  </section>
+
+  <section class="right" aria-label="Member sign in">
+    <div class="right-logo">
+      <img class="right-logo-img" src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova" />
+    </div>
+
+    <h2 id="login-heading" class="form-title">Welcome back</h2>
+    <p class="form-sub">Sign in to your BayaNova account</p>
+
+    <form (ngSubmit)="onSignIn()">
+      <div class="field">
+        <label class="field-label" for="username">Username</label>
+        <div class="input-wrap">
+          <input
+            pInputText
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            placeholder="Enter your username"
+            [(ngModel)]="username"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="password">Password</label>
+        <div class="input-wrap password-wrap">
+          <p-password
+            inputId="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            [feedback]="false"
+            [fluid]="true"
+            [(ngModel)]="password"
+          />
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <div class="remember">
+          <input
+            id="rememberMe"
+            name="rememberMe"
+            type="checkbox"
+            [(ngModel)]="rememberMe"
+          />
+          <label for="rememberMe">Keep me signed in</label>
+        </div>
+      </div>
+
+      <button pButton type="submit" class="btn">
+        <span pButtonLabel>Sign in</span>
+      </button>
+    </form>
+
+    <div class="divider" aria-hidden="true">
+      <span class="divider-line"></span>
+      <span class="divider-text">New to BayaNova</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <div class="membership">
+      <span class="membership-text">Not yet a member?</span>
+      <a routerLink="/member/signup" class="membership-link">
+        Apply for membership
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</main>

@@ -31,18 +31,13 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./pages/member/login/login-signup').then((m) => m.LoginSignup),
+          import('./pages/member/login/login').then((m) => m.Login),
       },
       {
         path: 'signup',
         loadComponent: () =>
-          import('./pages/member/signup/login-signup').then((m) => m.LoginSignup),
+          import('./pages/member/signup/signup').then((m) => m.Signup),
       },
     ],
-  },
-  {
-    path: 'login-signup',
-    pathMatch: 'full',
-    redirectTo: 'member/login',
   },
 ];
