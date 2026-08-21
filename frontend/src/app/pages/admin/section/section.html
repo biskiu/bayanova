@@ -1,0 +1,9 @@
+<section class="section">
+  <header><span class="material-symbols-rounded">{{ icon }}</span><div><p>Administration</p><h2>{{ title }}</h2><small>Manage and review {{ title.toLowerCase() }} across BayaNova.</small></div><button type="button"><span class="material-symbols-rounded">add</span>{{ config.action }}</button></header>
+  <div class="stats">@for (stat of config.stats; track stat.label) {<article><small>{{ stat.label }}</small><strong>{{ stat.value }}</strong><span>{{ stat.detail }}</span></article>}</div>
+  <article class="data-panel">
+    <div class="toolbar"><label><span class="material-symbols-rounded">search</span><input placeholder="Search {{ title.toLowerCase() }}"></label><div><button><span class="material-symbols-rounded">filter_list</span>Filter</button><button><span class="material-symbols-rounded">download</span>Export</button></div></div>
+    <div class="table-wrap"><div class="data-table" [style.--columns]="config.columns.length"><div class="table-row table-head">@for (column of config.columns; track column) {<span>{{ column }}</span>}</div>@for (row of config.rows; track $index) {<div class="table-row">@for (cell of row; track $index; let last = $last) {<span><span [class]="last ? 'status ' + statusClass(cell) : ''">{{ cell }}</span></span>}</div>}</div></div>
+    <footer><span>Showing {{ config.rows.length }} recent records</span><div><button disabled>Previous</button><button>Next</button></div></footer>
+  </article>
+</section>

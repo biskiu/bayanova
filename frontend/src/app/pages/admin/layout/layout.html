@@ -1,0 +1,46 @@
+<div class="admin-shell">
+  <button class="sidebar-backdrop" type="button" aria-label="Close navigation" [class.is-visible]="sidebarOpen" (click)="sidebarOpen = false"></button>
+  <aside class="sidebar" [class.is-open]="sidebarOpen" aria-label="Admin navigation">
+    <div class="sidebar__brand">
+      <a routerLink="/admin/dashboard"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"><span>ADMIN</span></a>
+      <button type="button" aria-label="Close menu" (click)="sidebarOpen = false"><span class="material-symbols-rounded">close</span></button>
+    </div>
+    <nav class="sidebar__nav">
+      @for (group of navigation; track group.label) {
+        <section class="nav-group">
+          <p>{{ group.label }}</p>
+          @for (item of group.items; track item.route) {
+            <a [routerLink]="item.route" routerLinkActive="is-active" ariaCurrentWhenActive="page" (click)="sidebarOpen = false">
+              <span class="material-symbols-rounded">{{ item.icon }}</span><span>{{ item.label }}</span>
+              @if (item.badge) { <small>{{ item.badge }}</small> }
+            </a>
+          }
+        </section>
+      }
+    </nav>
+    <div class="system-status"><span><i></i> Systems operational</span><small>Last checked just now</small></div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="topbar">
+      <div class="topbar__leading">
+        <button class="icon-button menu-button" type="button" aria-label="Open navigation" (click)="sidebarOpen = true"><span class="material-symbols-rounded">menu</span></button>
+        <div><p>Admin console</p><h1>BayaNova Operations</h1></div>
+      </div>
+      <div class="topbar__actions">
+        <label class="search"><span class="material-symbols-rounded">search</span><input type="search" placeholder="Search admin console" aria-label="Search admin console"><kbd>Ctrl K</kbd></label>
+        <button class="icon-button notification-button" type="button" aria-label="Notifications, 4 unread"><span class="material-symbols-rounded">notifications</span><i>4</i></button>
+        <div class="account">
+          <button type="button" aria-haspopup="menu" [attr.aria-expanded]="accountMenuOpen" (click)="toggleAccountMenu($event)"><span class="avatar">AD</span><span><strong>Admin User</strong><small>Super administrator</small></span><span class="material-symbols-rounded chevron">expand_more</span></button>
+          @if (accountMenuOpen) {
+            <div class="account-menu" role="menu" (click)="$event.stopPropagation()">
+              <a role="menuitem" routerLink="/admin/profile"><span class="material-symbols-rounded">person</span>Profile</a>
+              <a role="menuitem" routerLink="/"><span class="material-symbols-rounded">logout</span>Sign out</a>
+            </div>
+          }
+        </div>
+      </div>
+    </header>
+    <main class="admin-content"><router-outlet /></main>
+  </div>
+</div>
