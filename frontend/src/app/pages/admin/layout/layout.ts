@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 interface AdminNavGroup {
@@ -8,13 +9,27 @@ interface AdminNavGroup {
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [FormsModule, RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
+  host: {
+    '(document:click)': 'closeAccountMenu()',
+    '(document:keydown.escape)': 'closeOverlays()',
+  },
 })
 export class AdminLayout {
   sidebarOpen = false;
   accountMenuOpen = false;
+  searchQuery = '';
+  notificationsOpen = false;
+  unreadNotifications = 4;
+
+  readonly notifications = [
+    { icon: 'person_add', title: 'New member application', copy: 'Maria Santos submitted an application.', time: '2 minutes ago', tone: 'blue' },
+    { icon: 'description', title: 'Claim needs review', copy: 'Claim CLM-2026-0084 has new documents.', time: '18 minutes ago', tone: 'red' },
+    { icon: 'payments', title: 'Payment received', copy: 'A ₱500 contribution was posted.', time: '34 minutes ago', tone: 'green' },
+    { icon: 'task_alt', title: 'Approval queue updated', copy: 'Three requests are marked high priority.', time: '1 hour ago', tone: 'gold' },
+  ];
 
   readonly navigation: AdminNavGroup[] = [
     { label: 'Overview', items: [
@@ -26,6 +41,7 @@ export class AdminLayout {
       { label: 'Claims', icon: 'description', route: '/admin/claims' },
       { label: 'Payments', icon: 'payments', route: '/admin/payments' },
       { label: 'Approvals', icon: 'task_alt', route: '/admin/approvals', badge: '8' },
+      { label: 'Support Tickets', icon: 'support_agent', route: '/admin/support-tickets', badge: '14' },
     ]},
     { label: 'Finance & insights', items: [
       { label: 'Accounting', icon: 'account_balance', route: '/admin/accounting' },
@@ -42,14 +58,38 @@ export class AdminLayout {
     ]},
   ];
 
+  get searchResults(): { label: string; icon: string; route: string }[] {
+    const query = this.searchQuery.trim().toLowerCase();
+
+    if (!query) return [];
+
+    return this.navigation
+      .flatMap((group) => group.items)
+      .filter((item) => item.label.toLowerCase().includes(query));
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+  }
+
   toggleAccountMenu(event: MouseEvent): void {
     event.stopPropagation();
+    this.notificationsOpen = false;
     this.accountMenuOpen = !this.accountMenuOpen;
   }
 
-  @HostListener('document:click')
-  closeAccountMenu(): void { this.accountMenuOpen = false; }
+  toggleNotifications(event: MouseEvent): void {
+    event.stopPropagation();
+    this.accountMenuOpen = false;
+    this.notificationsOpen = !this.notificationsOpen;
+  }
 
-  @HostListener('document:keydown.escape')
-  closeOverlays(): void { this.sidebarOpen = false; this.accountMenuOpen = false; }
+  markAllRead(): void {
+    this.unreadNotifications = 0;
+    this.notificationsOpen = false;
+  }
+
+  closeAccountMenu(): void { this.accountMenuOpen = false; this.notificationsOpen = false; }
+
+  closeOverlays(): void { this.sidebarOpen = false; this.accountMenuOpen = false; this.notificationsOpen = false; }
 }

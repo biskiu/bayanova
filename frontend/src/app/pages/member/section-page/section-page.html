@@ -1,167 +1,115 @@
 <section class="section-page" [attr.data-page]="page">
-  <header class="page-heading">
-    <div class="page-heading__icon">
-      <span class="material-symbols-rounded" aria-hidden="true">{{ heading.icon }}</span>
-    </div>
-    <div>
-      <p>{{ heading.eyebrow }}</p>
-      <h2>{{ heading.title }}</h2>
-      <span>{{ heading.description }}</span>
-    </div>
-  </header>
+  <header class="page-heading"><div class="page-heading__icon"><span class="material-symbols-rounded" aria-hidden="true">{{ heading.icon }}</span></div><div><p>{{ heading.eyebrow }}</p><h2>{{ heading.title }}</h2><span>{{ heading.description }}</span></div></header>
 
   @if (page === 'profile' || page === 'edit-information' || page === 'upload-ids') {
-    <nav class="profile-tabs" aria-label="Profile sections">
-      <a routerLink="/member/profile" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
-        <span class="material-symbols-rounded" aria-hidden="true">person</span>
-        <span>Overview</span>
-      </a>
-      <a routerLink="/member/profile/information" routerLinkActive="is-active">
-        <span class="material-symbols-rounded" aria-hidden="true">manage_accounts</span>
-        <span>Personal information</span>
-      </a>
-      <a routerLink="/member/profile/documents" routerLinkActive="is-active">
-        <span class="material-symbols-rounded" aria-hidden="true">verified</span>
-        <span>Identity documents</span>
-      </a>
-    </nav>
+    <nav class="profile-tabs" aria-label="Profile sections"><a routerLink="/member/profile" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"><span class="material-symbols-rounded">person</span><span>Overview</span></a><a routerLink="/member/profile/information" routerLinkActive="is-active"><span class="material-symbols-rounded">manage_accounts</span><span>Personal information</span></a><a routerLink="/member/profile/documents" routerLinkActive="is-active"><span class="material-symbols-rounded">verified</span><span>Identity documents</span></a></nav>
   }
 
   @switch (page) {
     @case ('profile') {
-      <div class="profile-grid">
-        <article class="panel profile-summary">
-          <div class="large-avatar">JD</div>
-          <h3>Juan Dela Cruz</h3>
-          <p>Primary member</p>
-          <span class="pill pill--success"><i></i> Active membership</span>
-          <dl class="profile-meta">
-            <div><dt>Member ID</dt><dd>BN-2026-00482</dd></div>
-            <div><dt>Member since</dt><dd>March 18, 2024</dd></div>
-          </dl>
-        </article>
-        <article class="panel detail-panel">
-          <div class="panel-title"><div><h3>Personal Information</h3><p>Your verified account details</p></div><a class="text-button" routerLink="/member/profile/information">Edit information</a></div>
-          <div class="detail-grid">
-            <div><span>Full name</span><strong>Juan Dela Cruz</strong></div>
-            <div><span>Date of birth</span><strong>June 12, 1988</strong></div>
-            <div><span>Email address</span><strong>juan.delacruz@email.com</strong></div>
-            <div><span>Mobile number</span><strong>+63 917 123 4567</strong></div>
-            <div class="wide"><span>Home address</span><strong>28 Mabini Street, Barangay Villamonte, Bacolod City</strong></div>
-          </div>
-        </article>
-      </div>
+      <div class="profile-grid"><article class="panel profile-summary"><div class="large-avatar">JD</div><h3>Juan Dela Cruz</h3><p>Primary member</p><span class="pill pill--success"><i></i> Active membership</span><dl class="profile-meta"><div><dt>Member ID</dt><dd>BN-2026-00482</dd></div><div><dt>Member since</dt><dd>March 18, 2024</dd></div></dl></article><article class="panel detail-panel"><div class="panel-title"><div><h3>Personal Information</h3><p>Your verified account details</p></div><a class="text-button" routerLink="/member/profile/information">Edit information</a></div><div class="detail-grid"><div><span>Full name</span><strong>Juan Dela Cruz</strong></div><div><span>Date of birth</span><strong>June 12, 1988</strong></div><div><span>Email address</span><strong>juan.delacruz@email.com</strong></div><div><span>Mobile number</span><strong>+63 917 123 4567</strong></div><div class="wide"><span>Home address</span><strong>28 Mabini Street, Barangay Villamonte, Bacolod City</strong></div></div></article></div>
     }
-
     @case ('membership-status') {
-      <div class="status-banner">
-        <span class="status-banner__icon material-symbols-rounded" aria-hidden="true">verified</span>
-        <div><p>Current status</p><h3>Your membership is active</h3><span>You and your covered family members can access all plan benefits.</span></div>
-        <span class="pill pill--success"><i></i> In good standing</span>
-      </div>
-      <div class="three-grid">
-        <article class="metric-card"><span>Plan</span><strong>BayaNova Family</strong><small>4 covered members</small></article>
-        <article class="metric-card"><span>Coverage started</span><strong>Mar 18, 2026</strong><small>Current membership year</small></article>
-        <article class="metric-card"><span>Renewal date</span><strong>Mar 18, 2027</strong><small>209 days remaining</small></article>
-      </div>
-      <article class="panel progress-panel">
-        <div class="panel-title"><div><h3>Membership period</h3><p>March 18, 2026 — March 18, 2027</p></div><strong>43% complete</strong></div>
-        <div class="progress"><span></span></div>
-        <div class="progress-labels"><span>Activated</span><span>Today</span><span>Renewal</span></div>
-      </article>
+      <div class="status-banner"><span class="status-banner__icon material-symbols-rounded">verified</span><div><p>Current status</p><h3>Your membership is active</h3><span>You and your covered family members can access all plan benefits.</span></div><span class="pill pill--success"><i></i> In good standing</span></div>
+      <div class="three-grid"><article class="metric-card"><span>Plan</span><strong>BayaNova Family</strong><small>4 covered members</small></article><article class="metric-card"><span>Coverage started</span><strong>Mar 18, 2026</strong><small>Current membership year</small></article><article class="metric-card"><span>Renewal date</span><strong>Mar 18, 2027</strong><small>209 days remaining</small></article></div>
+      <article class="panel progress-panel"><div class="panel-title"><div><h3>Membership period</h3><p>March 18, 2026 — March 18, 2027</p></div><strong>43% complete</strong></div><div class="progress"><span></span></div><div class="progress-labels"><span>Activated</span><span>Today</span><span>Renewal</span></div></article>
     }
-
     @case ('fund-balance') {
-      <div class="balance-hero">
-        <div><p>Available subscription fund</p><h3>₱8,450.00</h3><span>Updated August 21, 2026</span></div>
-        <span class="material-symbols-rounded" aria-hidden="true">account_balance_wallet</span>
-      </div>
-      <div class="two-grid">
-        <article class="panel"><div class="panel-title"><div><h3>Fund summary</h3><p>Current membership year</p></div></div><div class="amount-row"><span>Total contributions</span><strong>₱9,000.00</strong></div><div class="amount-row"><span>Benefits used</span><strong class="red">− ₱550.00</strong></div><div class="amount-row amount-row--total"><span>Available balance</span><strong>₱8,450.00</strong></div></article>
-        <article class="panel"><div class="panel-title"><div><h3>Recent activity</h3><p>Latest fund movement</p></div><button class="text-button" type="button">View history</button></div><div class="mini-transaction"><span class="round-icon blue"><span class="material-symbols-rounded">add</span></span><div><strong>Monthly contribution</strong><small>August 18, 2026 · GCash</small></div><b>+ ₱500.00</b></div><div class="mini-transaction"><span class="round-icon red"><span class="material-symbols-rounded">medical_services</span></span><div><strong>Benefit claim</strong><small>August 5, 2026 · Clinic visit</small></div><b class="red">− ₱550.00</b></div></article>
-      </div>
+      <div class="balance-hero"><div><p>Available subscription fund</p><h3>₱8,450.00</h3><span>Updated August 21, 2026</span></div><span class="material-symbols-rounded">account_balance_wallet</span></div>
+      <div class="two-grid"><article class="panel"><div class="panel-title"><div><h3>Fund summary</h3><p>Current membership year</p></div></div><div class="amount-row"><span>Total contributions</span><strong>₱9,000.00</strong></div><div class="amount-row"><span>Benefits used</span><strong class="red">− ₱550.00</strong></div><div class="amount-row amount-row--total"><span>Available balance</span><strong>₱8,450.00</strong></div></article><article class="panel"><div class="panel-title"><div><h3>Recent activity</h3><p>Latest fund movement</p></div><a class="text-button" routerLink="/member/payment-history">View history</a></div><div class="mini-transaction"><span class="round-icon blue"><span class="material-symbols-rounded">add</span></span><div><strong>Monthly contribution</strong><small>August 18, 2026 · GCash</small></div><b>+ ₱500.00</b></div><div class="mini-transaction"><span class="round-icon red"><span class="material-symbols-rounded">medical_services</span></span><div><strong>Benefit claim</strong><small>August 5, 2026 · Clinic visit</small></div><b class="red">− ₱550.00</b></div></article></div>
     }
-
     @case ('family-members') {
-      <div class="toolbar"><div><strong>4 covered individuals</strong><span>All family members have active coverage.</span></div><button class="primary-button" type="button"><span class="material-symbols-rounded">person_add</span>Add family member</button></div>
-      <div class="member-grid">
-        @for (member of familyMembers; track member.id; let index = $index) {
-          <article class="panel member-tile">
-            <div class="member-tile__top"><span class="member-avatar" [class.red-avatar]="index % 2 === 1">{{ member.initials }}</span><span class="pill pill--success"><i></i> Active</span></div>
-            <h3>{{ member.name }}</h3><p>{{ member.relation }}</p>
-            <div class="member-id"><span>Member ID</span><strong>{{ member.id }}</strong></div>
-            <button class="secondary-button" type="button">View details</button>
-          </article>
-        }
-      </div>
+      <div class="toolbar"><div><strong>4 covered individuals</strong><span>All family members have active coverage.</span></div><button class="primary-button" type="button" (click)="openModal('family-add')"><span class="material-symbols-rounded">person_add</span>Add family member</button></div>
+      <div class="member-grid">@for (member of familyMembers; track member.id; let index = $index) {<article class="panel member-tile"><div class="member-tile__top"><span class="member-avatar" [class.red-avatar]="index % 2 === 1">{{ member.initials }}</span><span class="pill pill--success"><i></i> Active</span></div><h3>{{ member.name }}</h3><p>{{ member.relation }}</p><div class="member-id"><span>Member ID</span><strong>{{ member.id }}</strong></div><button class="secondary-button" type="button" (click)="openModal('family-edit', member)">View / edit</button></article>}</div>
     }
-
     @case ('qr-member-id') {
-      <div class="id-layout">
-        <article class="panel qr-panel">
-          <div class="qr-code" aria-label="Sample member QR code"><span class="material-symbols-rounded">qr_code_2</span></div>
-          <h3>Juan Dela Cruz</h3><p>BN-2026-00482</p><span class="pill pill--success"><i></i> Active member</span>
-          <div class="inline-actions"><button class="primary-button" type="button"><span class="material-symbols-rounded">download</span>Save QR</button><button class="secondary-button compact" type="button"><span class="material-symbols-rounded">share</span>Share</button></div>
-        </article>
-        <article class="panel instructions"><span class="round-icon blue"><span class="material-symbols-rounded">info</span></span><h3>How to use your QR ID</h3><ol><li>Open this page before visiting a partner.</li><li>Present your QR code to authorized staff.</li><li>Wait for your membership to be verified.</li></ol><div class="note"><span class="material-symbols-rounded">security</span><p>Do not share your QR code publicly. It contains your unique membership reference.</p></div></article>
-      </div>
+      <div class="id-layout"><article class="panel qr-panel"><div class="qr-code" aria-label="Member QR code"><span class="material-symbols-rounded">qr_code_2</span></div><h3>Juan Dela Cruz</h3><p>BN-2026-00482</p><span class="pill pill--success"><i></i> Active member</span><div class="inline-actions"><button class="primary-button" type="button" (click)="completeAction('Member QR saved in this UI prototype.')"><span class="material-symbols-rounded">download</span>Save QR</button><button class="secondary-button compact" type="button" (click)="shareQr()"><span class="material-symbols-rounded">share</span>Share</button></div></article><article class="panel instructions"><span class="round-icon blue"><span class="material-symbols-rounded">info</span></span><h3>How to use your QR ID</h3><ol><li>Open this page before visiting a partner.</li><li>Present your QR code to authorized staff.</li><li>Wait for your membership to be verified.</li></ol><div class="note"><span class="material-symbols-rounded">security</span><p>Do not share your QR code publicly. It contains your unique membership reference.</p></div></article></div>
     }
-
     @case ('membership-card') {
-      <div class="card-stage">
-        <article class="digital-card">
-          <div class="digital-card__brand"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"><span>MEMBER</span></div>
-          <div class="digital-card__body"><div class="card-avatar">JD</div><div><small>MEMBER NAME</small><h3>JUAN DELA CRUZ</h3><small>MEMBER NUMBER</small><strong>BN-2026-00482</strong></div><span class="material-symbols-rounded card-qr">qr_code_2</span></div>
-          <div class="digital-card__foot"><span>Family Membership</span><span>Valid until 03/18/2027</span></div>
-        </article>
-        <div class="inline-actions"><button class="primary-button" type="button" (click)="downloadMembershipCard()"><span class="material-symbols-rounded">download</span>Download card</button><button class="secondary-button compact" type="button" (click)="printMembershipCard()"><span class="material-symbols-rounded">print</span>Print</button></div>
-      </div>
+      <div class="card-stage"><article class="digital-card"><div class="digital-card__brand"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"><span>MEMBER</span></div><div class="digital-card__body"><div class="card-avatar">JD</div><div><small>MEMBER NAME</small><h3>JUAN DELA CRUZ</h3><small>MEMBER NUMBER</small><strong>BN-2026-00482</strong></div><span class="material-symbols-rounded card-qr">qr_code_2</span></div><div class="digital-card__foot"><span>Family Membership</span><span>Valid until 03/18/2027</span></div></article><div class="inline-actions"><button class="primary-button" type="button" (click)="downloadMembershipCard()"><span class="material-symbols-rounded">download</span>Download card</button><button class="secondary-button compact" type="button" (click)="printMembershipCard()"><span class="material-symbols-rounded">print</span>Print</button></div></div>
     }
-
     @case ('renew-subscription') {
-      <div class="renew-grid">
-        <article class="panel renewal-plan"><span class="pill pill--notice">Current plan</span><h3>BayaNova Family</h3><p>Coverage for you and up to four qualified dependents.</p><div class="price"><strong>₱500</strong><span>/ month</span></div><ul class="check-list"><li><span class="material-symbols-rounded">check_circle</span>Community healthcare benefits</li><li><span class="material-symbols-rounded">check_circle</span>Four covered family members</li><li><span class="material-symbols-rounded">check_circle</span>Digital member IDs</li></ul></article>
-        <article class="panel checkout"><div class="panel-title"><div><h3>Renewal summary</h3><p>Coverage begins March 18, 2027</p></div></div><label class="option selected"><input type="radio" name="period" checked><span><strong>12 months</strong><small>Best value · Save ₱500</small></span><b>₱5,500</b></label><label class="option"><input type="radio" name="period"><span><strong>6 months</strong><small>Standard renewal</small></span><b>₱3,000</b></label><div class="amount-row amount-row--total"><span>Total due</span><strong>₱5,500.00</strong></div><button class="primary-button full" type="button">Continue to payment</button></article>
+      <div class="renew-grid"><article class="panel renewal-plan"><span class="pill pill--notice">Current plan</span><h3>BayaNova Family</h3><p>Coverage for you and up to four qualified dependents.</p><div class="price"><strong>₱500</strong><span>/ month</span></div><ul class="check-list"><li><span class="material-symbols-rounded">check_circle</span>Community healthcare benefits</li><li><span class="material-symbols-rounded">check_circle</span>Four covered family members</li><li><span class="material-symbols-rounded">check_circle</span>Digital member IDs</li></ul></article><article class="panel checkout"><div class="panel-title"><div><h3>Renewal summary</h3><p>Coverage begins March 18, 2027</p></div></div><label class="option selected"><input type="radio" name="period" checked><span><strong>12 months</strong><small>Best value · Save ₱500</small></span><b>₱5,500</b></label><label class="option"><input type="radio" name="period"><span><strong>6 months</strong><small>Standard renewal</small></span><b>₱3,000</b></label><div class="amount-row amount-row--total"><span>Total due</span><strong>₱5,500.00</strong></div><button class="primary-button full" type="button" (click)="openModal('renewal')">Continue to payment</button></article></div>
+    }
+    @case ('claims') {
+      <div class="toolbar"><div><strong>Claims overview</strong><span>Track all benefit requests in one place.</span></div><button class="primary-button" type="button" (click)="openModal('claim')"><span class="material-symbols-rounded">add</span>New claim</button></div>
+      <div class="three-grid compact-metrics"><article class="metric-card"><span>Total claims</span><strong>3</strong><small>This membership year</small></article><article class="metric-card"><span>Approved</span><strong class="green">2</strong><small>₱1,250 reimbursed</small></article><article class="metric-card"><span>In review</span><strong class="gold">1</strong><small>Submitted Aug 19</small></article></div>
+      <article class="panel table-panel"><div class="panel-title"><div><h3>Recent claims</h3><p>Your latest benefit requests</p></div></div><div class="data-table"><div class="table-row table-head"><span>Claim</span><span>Date</span><span>Amount</span><span>Status</span></div><button class="table-row clickable-row" type="button" (click)="openModal('claim-detail', { name: 'Medical consultation', id: 'CLM-2026-0084', date: 'Aug 19, 2026', amount: '₱750.00', status: 'Under review' })"><span><strong>Medical consultation</strong><small>CLM-2026-0084</small></span><span>Aug 19, 2026</span><span>₱750.00</span><span><b class="pill pill--notice">Under review</b></span></button><button class="table-row clickable-row" type="button" (click)="openModal('claim-detail', { name: 'Laboratory tests', id: 'CLM-2026-0059', date: 'Jul 4, 2026', amount: '₱900.00', status: 'Approved' })"><span><strong>Laboratory tests</strong><small>CLM-2026-0059</small></span><span>Jul 4, 2026</span><span>₱900.00</span><span><b class="pill pill--success">Approved</b></span></button></div></article>
+    }
+    @case ('payments') {
+      <div class="payment-grid"><article class="panel"><div class="panel-title"><div><h3>Payment amount</h3><p>Add funds to your membership</p></div></div><label class="field-label">Choose amount</label><div class="amount-options"><button type="button" [class.selected]="selectedPaymentAmount === 500" (click)="selectPaymentAmount(500)">₱500</button><button type="button" [class.selected]="selectedPaymentAmount === 1000" (click)="selectPaymentAmount(1000)">₱1,000</button><button type="button" [class.selected]="selectedPaymentAmount === 2000" (click)="selectPaymentAmount(2000)">₱2,000</button></div><label class="field-label" for="customAmount">Custom amount</label><div class="currency-input"><span>₱</span><input id="customAmount" type="number" placeholder="0.00"></div><label class="field-label">Payment method</label><label class="option selected"><input type="radio" name="method" checked><span class="round-icon blue"><span class="material-symbols-rounded">account_balance_wallet</span></span><span><strong>GCash</strong><small>Pay using your GCash wallet</small></span></label><label class="option"><input type="radio" name="method"><span class="round-icon blue"><span class="material-symbols-rounded">credit_card</span></span><span><strong>Debit or credit card</strong><small>Visa and Mastercard</small></span></label></article><article class="panel payment-summary"><h3>Payment summary</h3><div class="amount-row"><span>Contribution</span><strong>₱{{ selectedPaymentAmount.toLocaleString() }}.00</strong></div><div class="amount-row"><span>Processing fee</span><strong>₱0.00</strong></div><div class="amount-row amount-row--total"><span>Total</span><strong>₱{{ selectedPaymentAmount.toLocaleString() }}.00</strong></div><button class="primary-button full" type="button" (click)="openModal('payment')">Proceed to payment</button><small><span class="material-symbols-rounded">lock</span>Your payment information is secure.</small></article></div>
+    }
+    @case ('payment-history') {
+      <div class="toolbar"><div><strong>₱9,000.00 contributed</strong><span>Across 18 successful payments</span></div><button class="secondary-button compact" type="button" (click)="openModal('payment-filter')"><span class="material-symbols-rounded">filter_list</span>Filter</button></div><article class="panel table-panel"><div class="data-table"><div class="table-row table-head"><span>Date</span><span>Reference</span><span>Method</span><span>Amount</span></div>@for (item of transactions; track item.reference) {<div class="table-row"><span>{{ item.date }}</span><span><strong>{{ item.reference }}</strong></span><span>{{ item.method }}</span><span><strong>{{ item.amount }}</strong><small class="green">Successful</small></span></div>}</div></article>
+    }
+    @case ('receipts') {
+      <article class="panel receipt-list"><div class="panel-title"><div><h3>Available receipts</h3><p>Receipts are generated after every successful payment.</p></div><button class="secondary-button compact" type="button" (click)="openModal('receipt-all')"><span class="material-symbols-rounded">download</span>Download all</button></div>@for (item of transactions; track item.reference) {<div class="receipt-row"><span class="round-icon blue"><span class="material-symbols-rounded">receipt_long</span></span><div><strong>Official Receipt</strong><small>{{ item.reference }} · {{ item.date }}</small></div><b>{{ item.amount }}</b><button type="button" aria-label="Download receipt" (click)="openModal('receipt', item)"><span class="material-symbols-rounded">download</span></button></div>}</article>
+    }
+    @case ('edit-information') {
+      <form class="panel form-panel"><div class="form-section"><div class="form-section__heading"><span class="round-icon blue"><span class="material-symbols-rounded">person</span></span><div><h3>Personal details</h3><p>Use your name exactly as it appears on your valid ID.</p></div></div><div class="form-grid"><label><span>First name</span><input value="Juan"></label><label><span>Last name</span><input value="Dela Cruz"></label><label><span>Date of birth</span><input type="date" value="1988-06-12"></label><label><span>Civil status</span><select><option>Married</option><option>Single</option></select></label></div></div><div class="form-section"><div class="form-section__heading"><span class="round-icon blue"><span class="material-symbols-rounded">contact_mail</span></span><div><h3>Contact information</h3><p>We use these details for important membership updates.</p></div></div><div class="form-grid"><label><span>Email address</span><input type="email" value="juan.delacruz@email.com"></label><label><span>Mobile number</span><input value="+63 917 123 4567"></label><label class="wide"><span>Home address</span><input value="28 Mabini Street, Barangay Villamonte, Bacolod City"></label></div></div><div class="form-actions"><button class="secondary-button compact" type="button" (click)="completeAction('No profile changes were saved.')">Cancel</button><button class="primary-button" type="button" (click)="completeAction('Profile information saved in this UI prototype.')">Save changes</button></div></form>
+    }
+    @case ('upload-ids') {
+      <div class="upload-grid"><article class="panel upload-panel"><div class="drop-zone"><span class="material-symbols-rounded">cloud_upload</span><h3>Upload a valid ID</h3><p>Choose a file from your device</p><input #documentInput class="visually-hidden" type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="handleFile($event)"><button class="secondary-button compact" type="button" (click)="documentInput.click()">Choose file</button><small>JPG, PNG, or PDF · Maximum 10 MB</small></div><div class="note"><span class="material-symbols-rounded">info</span><p>Make sure all details are clear, readable, and not covered by glare.</p></div></article><article class="panel"><div class="panel-title"><div><h3>Submitted documents</h3><p>Your identity verification files</p></div></div><div class="document-row"><span class="round-icon blue"><span class="material-symbols-rounded">badge</span></span><div><strong>Philippine National ID</strong><small>Uploaded March 16, 2026</small></div><span class="pill pill--success">Verified</span></div><div class="document-row"><span class="round-icon red"><span class="material-symbols-rounded">description</span></span><div><strong>Proof of address</strong><small>No document uploaded</small></div><span class="pill pill--muted">Required</span></div></article></div>
+    }
+    @case ('referral') {
+      <div class="referral-hero"><span class="material-symbols-rounded">diversity_3</span><h3>Grow the community together</h3><p>Share your personal link. Every successful referral helps BayaNova reach another Filipino family.</p><div class="referral-link"><span>bayanova.ph/register?ref=BN-2026-00482</span><button type="button" (click)="copyReferral()"><span class="material-symbols-rounded">content_copy</span>Copy link</button></div></div><div class="three-grid compact-metrics"><article class="metric-card"><span>Link visits</span><strong>24</strong><small>All time</small></article><article class="metric-card"><span>Applications</span><strong>6</strong><small>From your referrals</small></article><article class="metric-card"><span>New members</span><strong class="green">3</strong><small>Successfully joined</small></article></div>
+    }
+    @case ('support') {
+      <div class="support-grid">
+        <article class="panel support-form">
+          <div class="panel-title"><div><h3>Create a support ticket</h3><p>Submit your concern for an administrator to review.</p></div></div>
+          <div class="form-grid single"><label><span>Topic</span><select><option>Select a concern</option><option>Membership</option><option>Payment</option><option>Claim</option></select></label><label><span>Subject</span><input placeholder="Briefly describe your concern"></label><label><span>Details</span><textarea rows="5" placeholder="Provide the information the administrator needs..."></textarea></label></div>
+          <button class="primary-button" type="button" (click)="openModal('support-confirm')">Submit ticket</button>
+        </article>
+        <article class="panel ticket-progress">
+          <div class="panel-title"><div><h3>Ticket progress</h3><p>Track the review status of your latest request.</p></div><span class="pill pill--notice">In review</span></div>
+          <div class="ticket-summary"><div><span>Ticket</span><strong>SUP-0821</strong></div><div><span>Subject</span><strong>Payment not reflected</strong></div></div>
+          <ol class="ticket-timeline" aria-label="Support ticket status timeline">
+            <li class="is-complete"><span class="timeline-marker"><span class="material-symbols-rounded">check</span></span><div><time>Aug 20, 2026 · 9:14 AM</time><strong>Ticket submitted</strong><p>Your payment concern was sent to BayaNova support.</p></div></li>
+            <li class="is-current"><span class="timeline-marker"><span class="material-symbols-rounded">search</span></span><div><time>Aug 21, 2026 · 10:30 AM</time><strong>Under administrator review</strong><p>An administrator is verifying the payment reference and account record.</p></div></li>
+            <li><span class="timeline-marker"><span class="material-symbols-rounded">task_alt</span></span><div><time>Next step</time><strong>Resolution</strong><p>The result will appear here after the review is completed.</p></div></li>
+          </ol>
+        </article>
       </div>
     }
-
-    @case ('claims') {
-      <div class="toolbar"><div><strong>Claims overview</strong><span>Track all benefit requests in one place.</span></div><button class="primary-button" type="button"><span class="material-symbols-rounded">add</span>New claim</button></div>
-      <div class="three-grid compact-metrics"><article class="metric-card"><span>Total claims</span><strong>3</strong><small>This membership year</small></article><article class="metric-card"><span>Approved</span><strong class="green">2</strong><small>₱1,250 reimbursed</small></article><article class="metric-card"><span>In review</span><strong class="gold">1</strong><small>Submitted Aug 19</small></article></div>
-      <article class="panel table-panel"><div class="panel-title"><div><h3>Recent claims</h3><p>Your latest benefit requests</p></div></div><div class="data-table"><div class="table-row table-head"><span>Claim</span><span>Date</span><span>Amount</span><span>Status</span></div><div class="table-row"><span><strong>Medical consultation</strong><small>CLM-2026-0084</small></span><span>Aug 19, 2026</span><span>₱750.00</span><span><b class="pill pill--notice">In review</b></span></div><div class="table-row"><span><strong>Laboratory tests</strong><small>CLM-2026-0059</small></span><span>Jul 4, 2026</span><span>₱900.00</span><span><b class="pill pill--success">Approved</b></span></div></div></article>
-    }
-
-    @case ('payments') {
-      <div class="payment-grid"><article class="panel"><div class="panel-title"><div><h3>Payment amount</h3><p>Add funds to your membership</p></div></div><label class="field-label">Choose amount</label><div class="amount-options"><button type="button">₱500</button><button type="button" class="selected">₱1,000</button><button type="button">₱2,000</button></div><label class="field-label" for="customAmount">Custom amount</label><div class="currency-input"><span>₱</span><input id="customAmount" type="text" placeholder="0.00"></div><label class="field-label">Payment method</label><label class="option selected"><input type="radio" name="method" checked><span class="round-icon blue"><span class="material-symbols-rounded">account_balance_wallet</span></span><span><strong>GCash</strong><small>Pay using your GCash wallet</small></span></label><label class="option"><input type="radio" name="method"><span class="round-icon blue"><span class="material-symbols-rounded">credit_card</span></span><span><strong>Debit or credit card</strong><small>Visa and Mastercard</small></span></label></article><article class="panel payment-summary"><h3>Payment summary</h3><div class="amount-row"><span>Contribution</span><strong>₱1,000.00</strong></div><div class="amount-row"><span>Processing fee</span><strong>₱0.00</strong></div><div class="amount-row amount-row--total"><span>Total</span><strong>₱1,000.00</strong></div><button class="primary-button full" type="button">Proceed to payment</button><small><span class="material-symbols-rounded">lock</span>Your payment information is secure.</small></article></div>
-    }
-
-    @case ('payment-history') {
-      <div class="toolbar"><div><strong>₱9,000.00 contributed</strong><span>Across 18 successful payments</span></div><button class="secondary-button compact" type="button"><span class="material-symbols-rounded">filter_list</span>Filter</button></div>
-      <article class="panel table-panel"><div class="data-table"><div class="table-row table-head"><span>Date</span><span>Reference</span><span>Method</span><span>Amount</span></div>@for (item of transactions; track item.reference) {<div class="table-row"><span>{{ item.date }}</span><span><strong>{{ item.reference }}</strong></span><span>{{ item.method }}</span><span><strong>{{ item.amount }}</strong><small class="green">Successful</small></span></div>}</div></article>
-    }
-
-    @case ('receipts') {
-      <article class="panel receipt-list"><div class="panel-title"><div><h3>Available receipts</h3><p>Receipts are generated after every successful payment.</p></div><button class="secondary-button compact" type="button"><span class="material-symbols-rounded">download</span>Download all</button></div>@for (item of transactions; track item.reference) {<div class="receipt-row"><span class="round-icon blue"><span class="material-symbols-rounded">receipt_long</span></span><div><strong>Official Receipt</strong><small>{{ item.reference }} · {{ item.date }}</small></div><b>{{ item.amount }}</b><button type="button" aria-label="Download receipt"><span class="material-symbols-rounded">download</span></button></div>}</article>
-    }
-
-    @case ('edit-information') {
-      <form class="panel form-panel"><div class="form-section"><div class="form-section__heading"><span class="round-icon blue"><span class="material-symbols-rounded">person</span></span><div><h3>Personal details</h3><p>Use your name exactly as it appears on your valid ID.</p></div></div><div class="form-grid"><label><span>First name</span><input value="Juan"></label><label><span>Last name</span><input value="Dela Cruz"></label><label><span>Date of birth</span><input type="date" value="1988-06-12"></label><label><span>Civil status</span><select><option>Married</option><option>Single</option></select></label></div></div><div class="form-section"><div class="form-section__heading"><span class="round-icon blue"><span class="material-symbols-rounded">contact_mail</span></span><div><h3>Contact information</h3><p>We use these details for important membership updates.</p></div></div><div class="form-grid"><label><span>Email address</span><input type="email" value="juan.delacruz@email.com"></label><label><span>Mobile number</span><input value="+63 917 123 4567"></label><label class="wide"><span>Home address</span><input value="28 Mabini Street, Barangay Villamonte, Bacolod City"></label></div></div><div class="form-actions"><button class="secondary-button compact" type="button">Cancel</button><button class="primary-button" type="button">Save changes</button></div></form>
-    }
-
-    @case ('upload-ids') {
-      <div class="upload-grid"><article class="panel upload-panel"><div class="drop-zone"><span class="material-symbols-rounded">cloud_upload</span><h3>Drop your ID here</h3><p>or click to browse from your device</p><button class="secondary-button compact" type="button">Choose file</button><small>JPG, PNG, or PDF · Maximum 10 MB</small></div><div class="note"><span class="material-symbols-rounded">info</span><p>Make sure all details are clear, readable, and not covered by glare.</p></div></article><article class="panel"><div class="panel-title"><div><h3>Submitted documents</h3><p>Your identity verification files</p></div></div><div class="document-row"><span class="round-icon blue"><span class="material-symbols-rounded">badge</span></span><div><strong>Philippine National ID</strong><small>Uploaded March 16, 2026</small></div><span class="pill pill--success">Verified</span></div><div class="document-row"><span class="round-icon red"><span class="material-symbols-rounded">description</span></span><div><strong>Proof of address</strong><small>No document uploaded</small></div><span class="pill pill--muted">Required</span></div></article></div>
-    }
-
-    @case ('referral') {
-      <div class="referral-hero"><span class="material-symbols-rounded">diversity_3</span><h3>Grow the community together</h3><p>Share your personal link. Every successful referral helps BayaNova reach another Filipino family.</p><div class="referral-link"><span>bayanova.ph/join/JUAN482</span><button type="button"><span class="material-symbols-rounded">content_copy</span>Copy link</button></div></div><div class="three-grid compact-metrics"><article class="metric-card"><span>Link visits</span><strong>24</strong><small>All time</small></article><article class="metric-card"><span>Applications</span><strong>6</strong><small>From your referrals</small></article><article class="metric-card"><span>New members</span><strong class="green">3</strong><small>Successfully joined</small></article></div>
-    }
-
-    @case ('support') {
-      <div class="support-grid"><article class="panel"><div class="panel-title"><div><h3>Create a support ticket</h3><p>Tell us how we can help.</p></div></div><div class="form-grid single"><label><span>Topic</span><select><option>Select a concern</option><option>Membership</option><option>Payment</option><option>Claim</option></select></label><label><span>Subject</span><input placeholder="Briefly describe your concern"></label><label><span>Message</span><textarea rows="5" placeholder="Provide any useful details..."></textarea></label></div><button class="primary-button" type="button">Submit ticket</button></article><article class="panel"><div class="panel-title"><div><h3>My tickets</h3><p>Recent support requests</p></div></div><div class="ticket"><div><strong>Payment not reflected</strong><small>#SUP-0821 · Aug 20, 2026</small></div><span class="pill pill--notice">In progress</span><p>Our support team is reviewing your payment reference.</p></div><div class="empty-compact"><span class="material-symbols-rounded">task_alt</span><p>No other open requests</p></div></article></div>
-    }
-
     @case ('announcements') {
-      <div class="announcement-list">@for (item of announcements; track item.title) {<article class="panel announcement"><span class="announcement__icon" [class]="'announcement__icon ' + item.tone"><span class="material-symbols-rounded">campaign</span></span><div><small>{{ item.date }}</small><h3>{{ item.title }}</h3><p>{{ item.copy }}</p><button class="text-button" type="button">Read more <span aria-hidden="true">→</span></button></div></article>}</div>
+      <div class="announcement-list">@for (item of announcements; track item.title) {<article class="panel announcement"><span [class]="'announcement__icon ' + item.tone"><span class="material-symbols-rounded">campaign</span></span><div><small>{{ item.date }}</small><h3>{{ item.title }}</h3><p>{{ item.copy }}</p><button class="text-button" type="button" (click)="openModal('announcement', item)">Read more <span aria-hidden="true">→</span></button></div></article>}</div>
     }
   }
 </section>
+
+@if (modal) {
+  <div class="member-modal-backdrop" role="presentation" (click)="closeModal()">
+    <section class="member-modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <header><div><span class="material-symbols-rounded">{{ modal === 'claim' ? 'description' : modal.includes('family') ? 'group' : modal.includes('payment') || modal.includes('renewal') || modal.includes('receipt') ? 'payments' : modal === 'announcement' ? 'campaign' : modal === 'upload-document' ? 'upload_file' : 'info' }}</span><div><small>Member portal</small><h2>{{ modal === 'family-add' ? 'Add family member' : modal === 'family-edit' ? 'Family member details' : modal === 'claim' ? 'Submit a new claim' : modal === 'claim-detail' ? 'Claim details' : modal === 'payment' ? 'Confirm payment' : modal === 'renewal' ? 'Confirm renewal' : modal === 'payment-filter' ? 'Filter payment history' : modal === 'receipt' || modal === 'receipt-all' ? 'Receipt preview' : modal === 'upload-document' ? 'Confirm document upload' : modal === 'support-confirm' ? 'Submit support ticket' : modal === 'announcement' ? selectedItem.title : 'Share member QR' }}</h2></div></div><button type="button" aria-label="Close dialog" (click)="closeModal()"><span class="material-symbols-rounded">close</span></button></header>
+      <div class="member-modal__body">
+        @if (modal === 'family-add' || modal === 'family-edit') {
+          <div class="modal-form"><label><span>Full name</span><input [value]="selectedItem?.name || ''" placeholder="Family member name"></label><label><span>Relationship</span><select><option>{{ selectedItem?.relation || 'Spouse' }}</option><option>Child</option><option>Parent</option><option>Sibling</option></select></label><label><span>Date of birth</span><input type="date"></label><label><span>Contact number</span><input placeholder="Optional"></label><label class="wide"><span>Address</span><input placeholder="Same as primary member"></label></div><div class="modal-note"><span class="material-symbols-rounded">info</span><p>This membership currently shows 4 covered individuals. This frontend form demonstrates the add/edit flow only.</p></div>
+        } @else if (modal === 'claim') {
+          <div class="modal-form"><label><span>Claim type</span><select><option>Medical consultation</option><option>Laboratory tests</option><option>Medicine</option><option>Dental care</option><option>Other</option></select></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label class="wide"><span>Description</span><textarea placeholder="Describe the assistance request"></textarea></label><label class="wide"><span>Supporting documents</span><input type="file" multiple></label></div>
+        } @else if (modal === 'claim-detail') {
+          <div class="modal-summary"><div><span>Claim</span><strong>{{ selectedItem.name }}</strong></div><div><span>Reference</span><strong>{{ selectedItem.id }}</strong></div><div><span>Date</span><strong>{{ selectedItem.date }}</strong></div><div><span>Amount</span><strong>{{ selectedItem.amount }}</strong></div><div><span>Status</span><strong>{{ selectedItem.status }}</strong></div><div><span>Documents</span><strong>2 supporting files</strong></div></div>
+        } @else if (modal === 'payment') {
+          <div class="payment-confirm"><span class="material-symbols-rounded">account_balance_wallet</span><p>You are contributing</p><strong>₱{{ selectedPaymentAmount.toLocaleString() }}.00</strong><small>via GCash · Processing fee ₱0.00</small></div>
+        } @else if (modal === 'renewal') {
+          <div class="payment-confirm"><span class="material-symbols-rounded">autorenew</span><p>12-month BayaNova Family renewal</p><strong>₱5,500.00</strong><small>New coverage period begins March 18, 2027.</small></div>
+        } @else if (modal === 'payment-filter') {
+          <div class="modal-form"><label><span>Payment method</span><select><option>All methods</option><option>GCash</option><option>Maya</option><option>Card</option></select></label><label><span>Status</span><select><option>All statuses</option><option>Successful</option><option>Pending</option><option>Failed</option></select></label><label><span>Date from</span><input type="date"></label><label><span>Date to</span><input type="date"></label></div>
+        } @else if (modal === 'receipt' || modal === 'receipt-all') {
+          <div class="receipt-preview"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"><small>OFFICIAL RECEIPT</small><h3>{{ modal === 'receipt' ? selectedItem.reference : 'All 2026 receipts' }}</h3><div><span>Member</span><strong>Juan Dela Cruz</strong></div><div><span>Date</span><strong>{{ modal === 'receipt' ? selectedItem.date : 'January–August 2026' }}</strong></div><div><span>Amount</span><strong>{{ modal === 'receipt' ? selectedItem.amount : '₱9,000.00' }}</strong></div></div>
+        } @else if (modal === 'upload-document') {
+          <div class="upload-confirm"><span class="material-symbols-rounded">description</span><div><strong>{{ selectedFileName }}</strong><small>Ready to submit for verification</small></div></div><div class="modal-form"><label><span>Document type</span><select><option>Valid ID</option><option>Proof of Address</option><option>Other Document</option></select></label></div>
+        } @else if (modal === 'support-confirm') {
+          <div class="modal-summary"><div><span>Ticket type</span><strong>Member support request</strong></div><div><span>Initial status</span><strong>Open</strong></div><div class="wide"><span>What happens next</span><strong>An administrator will review the concern. Status changes will appear in your ticket timeline.</strong></div></div>
+        } @else if (modal === 'announcement') {
+          <div class="announcement-detail"><span class="material-symbols-rounded">campaign</span><small>{{ selectedItem.date }}</small><p>{{ selectedItem.copy }}</p><p>Please check the member portal regularly for any follow-up schedules or requirements.</p></div>
+        } @else {
+          <div class="share-link"><span>Member ID: BN-2026-00482</span><button type="button" (click)="completeAction('Member ID copied for sharing.')"><span class="material-symbols-rounded">content_copy</span>Copy</button></div>
+        }
+      </div>
+      <footer><button class="secondary-button compact" type="button" (click)="closeModal()">Cancel</button>@if (modal !== 'claim-detail' && modal !== 'announcement') {<button class="primary-button" type="button" (click)="completeAction(modal === 'family-add' ? 'Family member form saved in this UI prototype.' : modal === 'family-edit' ? 'Family member changes saved in this UI prototype.' : modal === 'claim' ? 'Claim submitted with Pending status in this UI prototype.' : modal === 'payment' ? 'Payment record created in this UI prototype.' : modal === 'renewal' ? 'Renewal payment record created in this UI prototype.' : modal === 'payment-filter' ? 'Payment filters applied.' : modal === 'receipt' || modal === 'receipt-all' ? 'Receipt download prepared in this UI prototype.' : modal === 'upload-document' ? 'Document added with Pending verification status.' : modal === 'support-confirm' ? 'Support ticket created with Open status.' : 'Done')">{{ modal === 'claim' ? 'Submit claim' : modal === 'payment' ? 'Confirm payment' : modal === 'renewal' ? 'Create renewal record' : modal === 'payment-filter' ? 'Apply filters' : modal === 'receipt' || modal === 'receipt-all' ? 'Download PDF' : modal === 'upload-document' ? 'Upload document' : modal === 'support-confirm' ? 'Submit ticket' : 'Save' }}</button>}</footer>
+    </section>
+  </div>
+}
+
+@if (toastMessage) { <div class="member-toast" role="status"><span class="material-symbols-rounded">check_circle</span>{{ toastMessage }}</div> }

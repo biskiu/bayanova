@@ -61,10 +61,30 @@
       </div>
 
       <div class="topbar__actions">
-        <button class="icon-button notification-button" type="button" aria-label="View notifications, 3 unread">
-          <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
-          <span class="notification-count" aria-hidden="true">3</span>
-        </button>
+        <div class="notification-menu-wrapper">
+          <button class="icon-button notification-button" type="button" [attr.aria-label]="'View notifications, ' + unreadNotifications + ' unread'" aria-haspopup="dialog" aria-controls="member-notifications" [attr.aria-expanded]="notificationsOpen" (click)="$event.stopPropagation(); toggleNotifications()">
+            <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
+            @if (unreadNotifications) { <span class="notification-count" aria-hidden="true">{{ unreadNotifications }}</span> }
+          </button>
+
+          @if (notificationsOpen) {
+            <section id="member-notifications" class="notification-menu" role="dialog" aria-label="Notifications" (click)="$event.stopPropagation()">
+              <div class="notification-menu__header">
+                <div><strong>Notifications</strong><span>{{ unreadNotifications }} unread updates</span></div>
+                <button type="button" (click)="closeNotifications()" aria-label="Close notifications"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
+              </div>
+              <div class="notification-list">
+                @for (notification of notifications; track notification.title) {
+                  <article class="notification-item">
+                    <span class="notification-item__icon" [class]="'notification-item__icon notification-item__icon--' + notification.tone"><span class="material-symbols-rounded" aria-hidden="true">{{ notification.icon }}</span></span>
+                    <div><strong>{{ notification.title }}</strong><p>{{ notification.message }}</p><small>{{ notification.time }}</small></div>
+                  </article>
+                }
+              </div>
+              <button class="notification-menu__footer" type="button" (click)="markAllNotificationsRead()">Mark all as read</button>
+            </section>
+          }
+        </div>
         <div class="profile-menu-wrapper">
           <button
             class="profile-button"

@@ -31,9 +31,15 @@ interface PageHeading {
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './section-page.html',
   styleUrl: './section-page.scss',
+  host: { '(document:keydown.escape)': 'handleEscape()' },
 })
 export class SectionPage {
   readonly page: SectionKey;
+  modal: string | null = null;
+  selectedItem: Record<string, string> = {};
+  toastMessage = '';
+  selectedPaymentAmount = 1000;
+  selectedFileName = '';
 
   readonly headings: Record<SectionKey, PageHeading> = {
     profile: { eyebrow: 'Account', title: 'My Profile', description: 'View your personal and membership information.', icon: 'person' },
@@ -81,6 +87,41 @@ export class SectionPage {
     return this.headings[this.page];
   }
 
+  openModal(kind: string, item: Record<string, string> = {}): void {
+    this.modal = kind;
+    this.selectedItem = item;
+  }
+
+  closeModal(): void { this.modal = null; }
+
+  completeAction(message: string): void {
+    this.closeModal();
+    this.toastMessage = message;
+    window.setTimeout(() => this.toastMessage = '', 2800);
+  }
+
+  selectPaymentAmount(amount: number): void { this.selectedPaymentAmount = amount; }
+
+  handleFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.selectedFileName = input.files?.[0]?.name ?? '';
+    if (this.selectedFileName) this.openModal('upload-document');
+  }
+
+  async copyReferral(): Promise<void> {
+    await navigator.clipboard?.writeText('https://bayanova.ph/register?ref=BN-2026-00482').catch(() => undefined);
+    this.toastMessage = 'Referral link copied.';
+    window.setTimeout(() => this.toastMessage = '', 2400);
+  }
+
+  async shareQr(): Promise<void> {
+    const shareData = { title: 'BayaNova Member ID', text: 'Juan Dela Cruz · BN-2026-00482' };
+    if (navigator.share) await navigator.share(shareData).catch(() => undefined);
+    else this.openModal('share-qr');
+  }
+
+  handleEscape(): void { this.closeModal(); }
+
   async downloadMembershipCard(): Promise<void> {
     const canvas = await this.renderMembershipCard();
     const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png', 1));
@@ -98,7 +139,7 @@ export class SectionPage {
     const printWindow = window.open('', '_blank', 'width=1100,height=760');
     if (!printWindow) return;
 
-    printWindow.document.body.innerHTML = '<p style="font-family:sans-serif;padding:24px">Preparing membership card…</p>';
+    printWindow.document.body.innerHTML = '<p style="font-family:Inter,sans-serif;padding:24px">Preparing membership card…</p>';
 
     try {
       const canvas = await this.renderMembershipCard();
@@ -165,12 +206,12 @@ export class SectionPage {
       context.restore();
     } else {
       context.fillStyle = '#ffffff';
-      context.font = '800 36px Poppins, sans-serif';
+      context.font = '800 36px Inter, sans-serif';
       context.fillText('BayaNova', 60, 96);
     }
 
     context.fillStyle = 'rgba(255,255,255,.9)';
-    context.font = '700 18px Poppins, sans-serif';
+    context.font = '700 18px Inter, sans-serif';
     context.textAlign = 'right';
     context.fillText('MEMBER', 938, 82);
     context.textAlign = 'left';
@@ -182,19 +223,19 @@ export class SectionPage {
     context.lineWidth = 3;
     context.stroke();
     context.fillStyle = '#ffffff';
-    context.font = '800 34px Poppins, sans-serif';
+    context.font = '800 34px Inter, sans-serif';
     context.textAlign = 'center';
     context.fillText('JD', 116, 254);
     context.textAlign = 'left';
 
     context.fillStyle = 'rgba(255,255,255,.66)';
-    context.font = '700 13px Poppins, sans-serif';
+    context.font = '700 13px Inter, sans-serif';
     context.fillText('MEMBER NAME', 205, 204);
     context.fillText('MEMBER NUMBER', 205, 276);
     context.fillStyle = '#ffffff';
-    context.font = '800 32px Poppins, sans-serif';
+    context.font = '800 32px Inter, sans-serif';
     context.fillText('JUAN DELA CRUZ', 205, 246);
-    context.font = '700 20px Poppins, sans-serif';
+    context.font = '700 20px Inter, sans-serif';
     context.fillText('BN-2026-00482', 205, 310);
 
     this.drawQrPattern(context, 726, 156, 190);
@@ -202,7 +243,7 @@ export class SectionPage {
     context.fillStyle = 'rgba(5,19,54,.24)';
     context.fillRect(0, 510, canvas.width, 90);
     context.fillStyle = 'rgba(255,255,255,.86)';
-    context.font = '600 16px Poppins, sans-serif';
+    context.font = '600 16px Inter, sans-serif';
     context.fillText('Family Membership', 58, 562);
     context.textAlign = 'right';
     context.fillText('Valid until 03/18/2027', 942, 562);

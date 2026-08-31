@@ -1,9 +1,116 @@
 <section class="section">
-  <header><span class="material-symbols-rounded">{{ icon }}</span><div><p>Administration</p><h2>{{ title }}</h2><small>Manage and review {{ title.toLowerCase() }} across BayaNova.</small></div><button type="button"><span class="material-symbols-rounded">add</span>{{ config.action }}</button></header>
-  <div class="stats">@for (stat of config.stats; track stat.label) {<article><small>{{ stat.label }}</small><strong>{{ stat.value }}</strong><span>{{ stat.detail }}</span></article>}</div>
+  <header>
+    <span class="material-symbols-rounded">{{ icon }}</span>
+    <div><p>Administration</p><h2>{{ title }}</h2><small>Manage and review {{ title.toLowerCase() }} across BayaNova.</small></div>
+    @if (title !== 'Analytics' && title !== 'Support Tickets' && title !== 'Audit Logs') { <button type="button" (click)="openModal('action')"><span class="material-symbols-rounded">add</span>{{ config.action }}</button> }
+  </header>
+
+  @if (title !== 'Audit Logs') {
+    <div class="stats">
+      @for (stat of config.stats; track stat.label) { <article><small>{{ stat.label }}</small><strong>{{ stat.value }}</strong><span>{{ stat.detail }}</span></article> }
+    </div>
+  }
+
+  @if (title === 'Analytics') {
+    <article class="insight-panel">
+      <div class="insight-heading"><div><h3>Membership trend</h3><p>Active members over the last six months</p></div><span>+18.4% YoY</span></div>
+      <div class="chart-container" aria-label="Membership trend chart"><p-chart type="bar" [data]="chartData" [options]="chartOptions" /></div>
+    </article>
+  }
+
+  @if (title === 'Reports') {
+    <section class="report-overview" aria-labelledby="report-overview-title">
+      <article class="report-chart report-chart--wide">
+        <div class="insight-heading">
+          <div><p class="chart-eyebrow">Financial performance</p><h3 id="report-overview-title">Contributions and claims</h3><p>Monthly totals in millions of pesos</p></div>
+          <span>+8.1% collected</span>
+        </div>
+        <div class="report-chart__canvas" aria-label="Line chart comparing contributions and claims paid from March to August"><p-chart type="line" [data]="reportsTrendData" [options]="reportsTrendOptions" /></div>
+      </article>
+      <article class="report-chart">
+        <div class="insight-heading"><div><p class="chart-eyebrow">Claims distribution</p><h3>Claims by category</h3><p>Share of August submissions</p></div></div>
+        <div class="report-chart__canvas report-chart__canvas--donut" aria-label="Doughnut chart showing claims by category"><p-chart type="doughnut" [data]="claimsMixData" [options]="claimsMixOptions" /></div>
+      </article>
+    </section>
+  }
+
+  @if (title === 'CRM') {
+    <article class="history-preview">
+      <div><span class="material-symbols-rounded">history</span><div><strong>Juan Dela Cruz — recent history</strong><small>Member BN-00482</small></div></div>
+      <ol><li><span>Aug 20</span> Called about renewal</li><li><span>Aug 18</span> Submitted valid ID</li><li><span>Aug 15</span> Asked about claim requirements</li></ol>
+      <button type="button" (click)="openModal('action')">Add note</button>
+    </article>
+  }
+
   <article class="data-panel">
-    <div class="toolbar"><label><span class="material-symbols-rounded">search</span><input placeholder="Search {{ title.toLowerCase() }}"></label><div><button><span class="material-symbols-rounded">filter_list</span>Filter</button><button><span class="material-symbols-rounded">download</span>Export</button></div></div>
-    <div class="table-wrap"><div class="data-table" [style.--columns]="config.columns.length"><div class="table-row table-head">@for (column of config.columns; track column) {<span>{{ column }}</span>}</div>@for (row of config.rows; track $index) {<div class="table-row">@for (cell of row; track $index; let last = $last) {<span><span [class]="last ? 'status ' + statusClass(cell) : ''">{{ cell }}</span></span>}</div>}</div></div>
-    <footer><span>Showing {{ config.rows.length }} recent records</span><div><button disabled>Previous</button><button>Next</button></div></footer>
+    <div class="toolbar">
+      <label><span class="material-symbols-rounded">search</span><input [value]="searchQuery" (input)="updateSearch($event)" placeholder="Search {{ title.toLowerCase() }}"></label>
+      <div><button type="button" (click)="openModal('filter')"><span class="material-symbols-rounded">filter_list</span>Filter</button><button type="button" (click)="openModal('export')"><span class="material-symbols-rounded">download</span>Export</button></div>
+    </div>
+    <div class="table-wrap">
+      <div class="data-table" [style.--columns]="config.columns.length + 1">
+        <div class="table-row table-head">@for (column of config.columns; track column) {<span>{{ column }}</span>}<span>Action</span></div>
+        @for (row of filteredRows; track $index) {
+          <div class="table-row">@for (cell of row; track $index; let last = $last) {<span><span [class]="last && title !== 'Audit Logs' ? 'status ' + statusClass(cell) : ''">{{ cell }}</span></span>}<span>@if (title === 'Members') {<button class="row-action" type="button" (click)="signInMember()">Sign in</button>} @else {<button class="row-action" type="button" (click)="openModal('record', row)">View</button>}</span></div>
+        } @empty {
+          <div class="no-results"><span class="material-symbols-rounded">search_off</span><strong>No matching records</strong><small>Try a different search term.</small></div>
+        }
+      </div>
+    </div>
+    <footer><span>Showing {{ filteredRows.length }} recent records</span><div><button disabled>Previous</button><button type="button" (click)="completeAction('You are already viewing the latest prototype records.')">Next</button></div></footer>
   </article>
 </section>
+
+@if (modalKind) {
+  <div class="modal-backdrop" role="presentation" (click)="closeModal()">
+    <section class="admin-modal" role="dialog" aria-modal="true" [attr.aria-label]="modalTitle" (click)="$event.stopPropagation()">
+      <header><div><span class="material-symbols-rounded">{{ modalKind === 'export' ? 'download' : modalKind === 'filter' ? 'filter_list' : icon }}</span><div><small>Admin action</small><h2>{{ modalTitle }}</h2></div></div><button type="button" aria-label="Close dialog" (click)="closeModal()"><span class="material-symbols-rounded">close</span></button></header>
+      <div class="admin-modal__body">
+        @if (modalKind === 'record') { <div class="record-summary">@for (cell of selectedRow; track $index; let index = $index) {<div><span>{{ config.columns[index] }}</span><strong>{{ cell }}</strong></div>}</div> }
+
+        @if (modalKind === 'filter') {
+          <div class="modal-form"><label><span>Status</span><select><option>All statuses</option><option>Active / Approved</option><option>Pending / Under review</option><option>Rejected / Failed</option></select></label><label><span>Date range</span><select><option>All time</option><option>Today</option><option>This month</option><option>This year</option></select></label></div>
+        } @else if (modalKind === 'export') {
+          <div class="export-options"><label><input type="radio" name="format" value="csv" [(ngModel)]="exportFormat"><span class="material-symbols-rounded">table_view</span><div><strong>CSV spreadsheet</strong><small>Best for sorting and analysis</small></div></label><label><input type="radio" name="format" value="pdf" [(ngModel)]="exportFormat"><span class="material-symbols-rounded">picture_as_pdf</span><div><strong>PDF / Print</strong><small>Open a print-ready report</small></div></label></div>
+        } @else if (title === 'Members') {
+          <div class="modal-form"><label><span>Full name</span><input [value]="modalKind === 'record' ? selectedRow[0] : ''" placeholder="Member full name"></label><label><span>Email address</span><input type="email" placeholder="member@email.com"></label><label><span>Mobile number</span><input placeholder="+63 9XX XXX XXXX"></label><label><span>Home address</span><input placeholder="Complete address"></label><label><span>Membership</span><select><option>Family Plan</option><option>Individual Plan</option></select></label><label><span>Status</span><select><option>Pending</option><option>Active</option><option>Expired</option></select></label></div>
+        } @else if (title === 'Claims') {
+          <div class="modal-form"><label><span>Member</span><input placeholder="Search member"></label><label><span>Claim type</span><select><option>Medical consultation</option><option>Laboratory</option><option>Medicine</option><option>Other</option></select></label><label class="full-field"><span>Description</span><textarea placeholder="Describe the claim"></textarea></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Supporting documents</span><input type="file" multiple></label><label><span>Status</span><select><option>Pending</option><option>Under review</option><option>Approved</option><option>Rejected</option><option>Paid</option></select></label></div>
+        } @else if (title === 'Payments') {
+          <div class="modal-form"><label><span>Date</span><input type="date" value="2026-08-31"></label><label><span>Member</span><input placeholder="Search member"></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Method</span><select><option>GCash</option><option>Maya</option><option>Card</option><option>Cash</option></select></label><label><span>Reference</span><input placeholder="Payment reference"></label><label><span>Status</span><select><option>Successful</option><option>Pending</option><option>Failed</option></select></label></div>
+        } @else if (title === 'Accounting') {
+          <div class="modal-form"><label><span>Date</span><input type="date" value="2026-08-31"></label><label><span>Type</span><select><option>Income</option><option>Expense</option></select></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Reference</span><input placeholder="PAY-, CLM-, or EXP-"></label><label class="full-field"><span>Description</span><textarea placeholder="Transaction description"></textarea></label></div>
+        } @else if (title === 'Reports') {
+          <div class="modal-form"><label><span>Report type</span><select><option>Membership summary</option><option>Claims report</option><option>Payment report</option><option>Accounting summary</option></select></label><label><span>Period</span><select><option>August 2026</option><option>Q3 2026</option><option>Year 2026</option></select></label><label><span>Format</span><select><option>CSV</option><option>PDF</option></select></label></div>
+        } @else if (title === 'Notifications') {
+          <div class="modal-form"><label><span>Title</span><input placeholder="Notification title"></label><label><span>Audience</span><select><option>All members</option><option>Active members</option><option>Pending members</option><option>Expired members</option></select></label><label class="full-field"><span>Message</span><textarea placeholder="Write the in-app notification"></textarea></label></div>
+        } @else if (title === 'Approvals') {
+          <div class="approval-card"><span class="status warning">Pending</span><h3>{{ selectedRow[0] || 'Next pending request' }}</h3><p>Review the submitted information and supporting documents before making a decision.</p><label><span>Rejection reason (optional)</span><textarea placeholder="Required when rejecting"></textarea></label></div>
+        } @else if (title === 'CRM') {
+          <div class="member-note"><div><strong>Juan Dela Cruz</strong><small>BN-00482 · Active member</small></div><ol><li><b>Aug 20</b><span>Called about renewal</span></li><li><b>Aug 18</b><span>Submitted valid ID</span></li><li><b>Aug 15</b><span>Asked about claim requirements</span></li></ol><label><span>New note</span><textarea placeholder="Add an interaction note..."></textarea></label></div>
+        } @else if (title === 'Roles & Permissions') {
+          <div class="modal-form"><label><span>Email address</span><input type="email" placeholder="admin@bayanova.ph"></label><label><span>Fixed role</span><select><option>Super Admin</option><option>Admin</option><option>Claims Officer</option><option>Finance</option></select></label><fieldset class="full-field"><legend>Role access preview</legend><label><input type="checkbox" checked disabled> Members and profile records</label><label><input type="checkbox" checked disabled> Claims and documents</label><label><input type="checkbox" disabled> Finance and accounting</label></fieldset></div>
+        } @else if (title === 'Document Management') {
+          <div class="modal-form"><label><span>Attach to</span><select><option>Member</option><option>Claim</option></select></label><label><span>Member or claim</span><input placeholder="Search by name or ID"></label><label><span>Document type</span><select><option>Valid ID</option><option>Proof of Address</option><option>Medical Receipt</option><option>Claim Form</option><option>Supporting Document</option></select></label><label><span>File</span><input type="file"></label></div>
+        } @else if (title === 'Support Tickets') {
+          <div class="support-review">
+            <div class="support-review__message"><span class="material-symbols-rounded">description</span><div><small>Member concern</small><p>My payment was completed, but the contribution is not yet reflected in my subscription fund balance.</p></div></div>
+            <div class="modal-form"><label><span>Status</span><select><option>Open</option><option selected>In review</option><option>Resolved</option><option>Closed</option></select></label><label><span>Priority</span><select><option>Normal</option><option>High</option><option>Urgent</option></select></label><label><span>Assigned administrator</span><select><option>Admin User</option><option>Liza Ramos</option><option>Marco Lim</option></select></label><label class="full-field"><span>Resolution summary</span><textarea placeholder="Record the action taken. This appears in the member's ticket timeline when resolved."></textarea></label></div>
+          </div>
+        } @else if (title === 'Audit Logs') {
+          <div class="audit-detail"><span class="material-symbols-rounded">compare_arrows</span><p>Review the before-and-after values for every created, updated, or deleted record.</p></div>
+        }
+      </div>
+      <footer>
+        <button class="secondary" type="button" (click)="closeModal()">Cancel</button>
+        @if (title === 'Approvals' && modalKind !== 'filter' && modalKind !== 'export') {
+          <button class="danger-button" type="button" (click)="completeAction('Request rejected in the UI prototype.')">Reject</button><button class="primary" type="button" (click)="completeAction('Request approved in the UI prototype.')">Approve</button>
+        } @else {
+          <button class="primary" type="button" (click)="modalKind === 'export' ? exportData() : completeAction(modalKind === 'filter' ? 'Filters applied.' : undefined)">{{ modalKind === 'export' ? (exportFormat === 'pdf' ? 'Print' : 'Export') : modalKind === 'filter' ? 'Apply filters' : modalKind === 'record' ? 'Save changes' : config.action }}</button>
+        }
+      </footer>
+    </section>
+  </div>
+}
+
+@if (toastMessage) { <div class="admin-toast" role="status"><span class="material-symbols-rounded">check_circle</span>{{ toastMessage }}</div> }

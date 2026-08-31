@@ -122,6 +122,11 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./pages/admin/login/login').then((m) => m.AdminLogin),
+  },
+  {
     path: 'admin',
     loadComponent: () =>
       import('./pages/admin/layout/layout').then((m) => m.AdminLayout),
@@ -144,6 +149,7 @@ export const routes: Routes = [
       { path: 'reports', loadComponent: loadAdminSection, data: { title: 'Reports', icon: 'assessment' } },
       { path: 'notifications', loadComponent: loadAdminSection, data: { title: 'Notifications', icon: 'notifications' } },
       { path: 'approvals', loadComponent: loadAdminSection, data: { title: 'Approvals', icon: 'task_alt' } },
+      { path: 'support-tickets', loadComponent: loadAdminSection, data: { title: 'Support Tickets', icon: 'support_agent' } },
       { path: 'crm', loadComponent: loadAdminSection, data: { title: 'CRM', icon: 'contacts' } },
       { path: 'audit-logs', loadComponent: loadAdminSection, data: { title: 'Audit Logs', icon: 'history' } },
       { path: 'analytics', loadComponent: loadAdminSection, data: { title: 'Analytics', icon: 'monitoring' } },

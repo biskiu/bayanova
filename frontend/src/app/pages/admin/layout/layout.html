@@ -2,7 +2,7 @@
   <button class="sidebar-backdrop" type="button" aria-label="Close navigation" [class.is-visible]="sidebarOpen" (click)="sidebarOpen = false"></button>
   <aside class="sidebar" [class.is-open]="sidebarOpen" aria-label="Admin navigation">
     <div class="sidebar__brand">
-      <a routerLink="/admin/dashboard"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"><span>ADMIN</span></a>
+      <a routerLink="/admin/dashboard"><img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova"></a>
       <button type="button" aria-label="Close menu" (click)="sidebarOpen = false"><span class="material-symbols-rounded">close</span></button>
     </div>
     <nav class="sidebar__nav">
@@ -28,8 +28,31 @@
         <div><p>Admin console</p><h1>BayaNova Operations</h1></div>
       </div>
       <div class="topbar__actions">
-        <label class="search"><span class="material-symbols-rounded">search</span><input type="search" placeholder="Search admin console" aria-label="Search admin console"><kbd>Ctrl K</kbd></label>
-        <button class="icon-button notification-button" type="button" aria-label="Notifications, 4 unread"><span class="material-symbols-rounded">notifications</span><i>4</i></button>
+        <div class="search-wrapper">
+          <label class="search"><span class="material-symbols-rounded">search</span><input name="adminSearch" type="search" placeholder="Search admin console" aria-label="Search admin console" [(ngModel)]="searchQuery"><kbd>Ctrl K</kbd></label>
+          @if (searchQuery.trim()) {
+            <div class="search-results" role="listbox" aria-label="Navigation results">
+              @for (item of searchResults; track item.route) {
+                <a role="option" [routerLink]="item.route" (click)="clearSearch()">
+                  <span class="material-symbols-rounded">{{ item.icon }}</span>
+                  <span>{{ item.label }}</span>
+                </a>
+              } @empty {
+                <p>No navigation found</p>
+              }
+            </div>
+          }
+        </div>
+        <div class="notification-wrap">
+          <button class="icon-button notification-button" type="button" [attr.aria-label]="'Notifications, ' + unreadNotifications + ' unread'" aria-haspopup="dialog" [attr.aria-expanded]="notificationsOpen" (click)="toggleNotifications($event)"><span class="material-symbols-rounded">notifications</span>@if (unreadNotifications) {<i>{{ unreadNotifications }}</i>}</button>
+          @if (notificationsOpen) {
+            <section class="admin-notifications" role="dialog" aria-label="Admin notifications" (click)="$event.stopPropagation()">
+              <header><div><strong>Notifications</strong><small>{{ unreadNotifications }} unread updates</small></div><button type="button" aria-label="Close notifications" (click)="notificationsOpen = false"><span class="material-symbols-rounded">close</span></button></header>
+              <div class="admin-notification-list">@for (item of notifications; track item.title) {<article><span [class]="'notice-icon ' + item.tone"><span class="material-symbols-rounded">{{ item.icon }}</span></span><div><strong>{{ item.title }}</strong><p>{{ item.copy }}</p><small>{{ item.time }}</small></div></article>}</div>
+              <footer><button type="button" (click)="markAllRead()">Mark all as read</button><a routerLink="/admin/notifications" (click)="notificationsOpen = false">Manage notifications</a></footer>
+            </section>
+          }
+        </div>
         <div class="account">
           <button type="button" aria-haspopup="menu" [attr.aria-expanded]="accountMenuOpen" (click)="toggleAccountMenu($event)"><span class="avatar">AD</span><span><strong>Admin User</strong><small>Super administrator</small></span><span class="material-symbols-rounded chevron">expand_more</span></button>
           @if (accountMenuOpen) {

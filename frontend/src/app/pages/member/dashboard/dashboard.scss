@@ -116,6 +116,8 @@ button { font: inherit; }
 .activity-card p { margin: 0; color: $muted; font-size: 10px; line-height: 1.5; }
 .activity-card button { display: grid; width: 32px; height: 32px; flex: 0 0 auto; place-items: center; border: 0; border-radius: 9px; background: #f6f8fb; color: #7f8ba0; cursor: pointer; }
 .activity-card button:hover { background: #edf3ff; color: $blue; }
+.dashboard-toast { position: fixed; right: 22px; bottom: 22px; z-index: 80; display: flex; align-items: center; gap: 8px; padding: 12px 15px; border: 1px solid #d3def2; border-radius: 11px; background: #f2f6ff; box-shadow: 0 14px 38px rgba(20,52,112,.15); color: $blue; font-size: 9px; font-weight: 750; }
+.dashboard-toast span { font-size: 18px; }
 
 @media (max-width: 1100px) {
   .content-grid { grid-template-columns: 1fr; }
@@ -139,3 +141,30 @@ button { font: inherit; }
   .member-id-modal__brand img { width: 112px; }
   .member-id-modal__actions { display: grid; grid-template-columns: 1fr 1.4fr; padding-inline: 16px; }
 }
+
+/* Dashboard hierarchy and accessible reading scale. */
+.member-id-dialog { background: #fff; }
+.member-id-dialog::backdrop { background: rgba(8,18,40,.72); backdrop-filter: blur(6px); }
+.member-id-modal__header > div > span { font-size: .6875rem; }
+.member-id-modal__body > p { font-size: .8125rem; }
+.member-id-modal__brand > span { font-size: .7rem; }
+.member-id-modal__details dt { font-size: .6875rem; }
+.member-id-modal__details dd { font-size: .8125rem; }
+.modal-button { min-height: 42px; padding: 9px 15px; font-size: .8125rem; }
+.summary-card { min-height: 118px; padding: 22px; border-radius: 16px; }
+.summary-card span, .summary-card small { font-size: .75rem; line-height: 1.4; }
+.summary-card strong { font-size: 1.375rem; }
+.panel, .activity-card { border-radius: 16px; }
+.panel { padding: 24px; }
+.panel__header h3, .activity-card h3 { font-size: 1rem; }
+.panel__header button { min-height: 36px; font-size: .75rem; }
+.family-member { min-height: 66px; padding: 14px; }
+.family-member strong { font-size: .8125rem; }
+.family-member small { font-size: .75rem; }
+.status { padding: 5px 8px; font-size: .6875rem; }
+.activity-card { min-height: 88px; padding: 18px; }
+.activity-card p { font-size: .75rem; }
+.dashboard-toast { padding: 14px 17px; background: #f2f6ff; font-size: .8125rem; }
+.primary-action { font-size: .8125rem; transition: background .16s ease, transform .16s ease, box-shadow .16s ease; }
+.primary-action:hover { background: #0f3b9c; transform: translateY(-1px); }
+button:focus-visible { outline: 3px solid rgba(40,100,223,.25); outline-offset: 2px; }

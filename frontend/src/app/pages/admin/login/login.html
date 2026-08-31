@@ -1,0 +1,59 @@
+<main class="admin-login" aria-labelledby="admin-login-heading">
+  <section class="admin-login__card">
+    <div class="admin-login__brand">
+      <img src="/images/BAYANOVA_LOGO_TRANSPARENT.png" alt="BayaNova" />
+      <span>ADMIN PORTAL</span>
+    </div>
+
+    <div class="admin-login__intro">
+      <span class="admin-login__icon material-symbols-rounded" aria-hidden="true">admin_panel_settings</span>
+      <p class="admin-login__eyebrow">Secure access</p>
+      <h1 id="admin-login-heading">Welcome back</h1>
+      <p>Sign in to manage BayaNova operations.</p>
+    </div>
+
+    <form class="admin-login__form" (ngSubmit)="onSignIn()">
+      <label class="admin-login__field">
+        <span>Username</span>
+        <input
+          id="admin-username"
+          name="username"
+          type="text"
+          autocomplete="username"
+          placeholder="Enter your username"
+          [(ngModel)]="username"
+          required
+        />
+      </label>
+
+      <label class="admin-login__field">
+        <span>Password</span>
+        <input
+          id="admin-password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          required
+        />
+      </label>
+
+      <div class="admin-login__meta">
+        <label class="admin-login__remember">
+          <input name="rememberMe" type="checkbox" [(ngModel)]="rememberMe" />
+          <span>Keep me signed in</span>
+        </label>
+      </div>
+
+      <button class="admin-login__submit" type="submit">Sign in to admin portal</button>
+    </form>
+
+    <a class="admin-login__back" routerLink="/member/login">
+      <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+      Member sign in
+    </a>
+  </section>
+
+  <p class="admin-login__copyright">© 2026 BayaNova · Authorized personnel only</p>
+</main>

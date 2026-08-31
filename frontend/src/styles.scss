@@ -2,6 +2,13 @@
 // third-party components from following the operating system's dark theme.
 :root {
   color-scheme: light;
+  --portal-font-family: 'Inter', sans-serif;
+  --portal-input-height: 46px;
+  --portal-input-radius: 11px;
+  --portal-input-font-size: 13px;
+  --portal-input-border: #dce2ec;
+  --portal-input-background: #f8faff;
+  --portal-input-placeholder: #aeb8c8;
 }
 
 html, body {
@@ -14,6 +21,22 @@ html, body {
 body {
   margin: 0;
   overflow-x: clip;
+}
+
+app-admin-layout,
+app-member-layout {
+  font-family: var(--portal-font-family);
+}
+
+app-admin-layout button,
+app-admin-layout input,
+app-admin-layout select,
+app-admin-layout textarea,
+app-member-layout button,
+app-member-layout input,
+app-member-layout select,
+app-member-layout textarea {
+  font-family: inherit;
 }
 
 img,

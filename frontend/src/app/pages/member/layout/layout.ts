@@ -26,7 +26,15 @@ export class Layout {
 
   sidebarOpen = false;
   profileMenuOpen = false;
+  notificationsOpen = false;
+  unreadNotifications = 3;
   pageTitle = 'Dashboard';
+
+  readonly notifications = [
+    { title: 'Your claim was approved', message: 'Claim #1023 is ready for the next step.', time: '10 minutes ago', icon: 'task_alt', tone: 'green' },
+    { title: 'Payment received', message: 'Your August subscription contribution was posted.', time: '2 hours ago', icon: 'payments', tone: 'blue' },
+    { title: 'Membership reminder', message: 'Your subscription renews on September 18, 2026.', time: 'Yesterday', icon: 'event', tone: 'gold' },
+  ];
 
   private readonly pageTitles: Record<string, string> = {
     '/member/dashboard': 'Dashboard',
@@ -114,6 +122,19 @@ export class Layout {
     this.profileMenuOpen = false;
   }
 
+  toggleNotifications(): void {
+    this.notificationsOpen = !this.notificationsOpen;
+  }
+
+  closeNotifications(): void {
+    this.notificationsOpen = false;
+  }
+
+  markAllNotificationsRead(): void {
+    this.unreadNotifications = 0;
+    this.closeNotifications();
+  }
+
   private updatePageTitle(url: string): void {
     const path = url.split('?')[0].split('#')[0];
     this.pageTitle = this.pageTitles[path] ?? 'Member portal';
@@ -122,11 +143,13 @@ export class Layout {
   @HostListener('document:click')
   handleDocumentClick(): void {
     this.closeProfileMenu();
+    this.closeNotifications();
   }
 
   @HostListener('document:keydown.escape')
   handleEscapeKey(): void {
     this.closeProfileMenu();
+    this.closeNotifications();
     this.closeSidebar();
   }
 }

@@ -7,6 +7,16 @@ describe('Home', () => {
   let fixture: ComponentFixture<Home>;
 
   beforeEach(async () => {
+    globalThis.IntersectionObserver = class IntersectionObserverStub {
+      readonly root = null;
+      readonly rootMargin = '';
+      readonly thresholds = [];
+      disconnect(): void {}
+      observe(): void {}
+      takeRecords(): IntersectionObserverEntry[] { return []; }
+      unobserve(): void {}
+    };
+
     await TestBed.configureTestingModule({
       imports: [Home],
     }).compileComponents();

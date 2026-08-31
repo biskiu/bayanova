@@ -26,7 +26,7 @@ $soft-red: #ffe0e5;
     radial-gradient(circle at 88% 88%, rgba(40, 100, 223, 0.11), transparent 28rem),
     #fbfdff;
   color: $ink;
-  font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
@@ -245,18 +245,18 @@ $soft-red: #ffe0e5;
 
 .input-wrap > input {
   width: 100%;
-  height: 46px;
+  height: var(--portal-input-height);
   padding-inline: 14px;
-  border: 1.5px solid #dce2ec;
-  border-radius: 11px;
-  background: #f8faff;
+  border: 1.5px solid var(--portal-input-border);
+  border-radius: var(--portal-input-radius);
+  background: var(--portal-input-background);
   color: $ink;
   font-family: inherit;
-  font-size: 14px;
+  font-size: var(--portal-input-font-size);
 }
 
 .input-wrap > input::placeholder {
-  color: #aeb8c8;
+  color: var(--portal-input-placeholder);
 }
 
 .input-wrap > input:focus {
@@ -267,18 +267,52 @@ $soft-red: #ffe0e5;
 
 .password-wrap {
   --p-inputtext-padding-x: 14px;
-  --p-inputtext-padding-y: 0.82rem;
-  --p-inputtext-background: #f8faff;
-  --p-inputtext-border-color: #dce2ec;
+  --p-inputtext-padding-y: 0;
+  --p-inputtext-background: var(--portal-input-background);
+  --p-inputtext-border-color: var(--portal-input-border);
   --p-inputtext-hover-border-color: #aebbd0;
   --p-inputtext-focus-border-color: #{$blue-bright};
-  --p-inputtext-border-radius: 11px;
+  --p-inputtext-border-radius: var(--portal-input-radius);
   --p-inputtext-color: #{$ink};
-  --p-inputtext-placeholder-color: #aeb8c8;
+  --p-inputtext-placeholder-color: var(--portal-input-placeholder);
 }
 
 .password-wrap p-password {
   display: block;
+  width: 100%;
+}
+
+// PrimeNG renders the password input inside its own child component, so the
+// shared input rules above do not reach it with Angular's emulated styles.
+:host ::ng-deep .password-wrap .p-password {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep .password-wrap .p-password-input,
+:host ::ng-deep .password-wrap input.p-inputtext {
+  width: 100%;
+  height: var(--portal-input-height);
+  min-height: var(--portal-input-height);
+  padding: 0 14px;
+  border: 1.5px solid var(--portal-input-border);
+  border-radius: var(--portal-input-radius);
+  background: var(--portal-input-background);
+  color: $ink;
+  font-family: inherit;
+  font-size: var(--portal-input-font-size);
+}
+
+:host ::ng-deep .password-wrap .p-password-input::placeholder,
+:host ::ng-deep .password-wrap input.p-inputtext::placeholder {
+  color: var(--portal-input-placeholder);
+}
+
+:host ::ng-deep .password-wrap .p-password-input:focus,
+:host ::ng-deep .password-wrap input.p-inputtext:focus {
+  border-color: $blue-bright;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(40, 100, 223, 0.12);
 }
 
 .meta-row {
@@ -316,6 +350,12 @@ $soft-red: #ffe0e5;
 
 .btn {
   --p-button-border-radius: 11px;
+  --p-button-primary-background: #{$blue};
+  --p-button-primary-border-color: #{$blue};
+  --p-button-primary-hover-background: #{$blue-dark};
+  --p-button-primary-hover-border-color: #{$blue-dark};
+  --p-button-primary-active-background: #09296f;
+  --p-button-primary-active-border-color: #09296f;
   display: flex;
   width: 100%;
   min-height: 48px;
@@ -330,9 +370,19 @@ $soft-red: #ffe0e5;
   font-weight: 750;
 }
 
-.btn:hover {
+.btn.p-button {
+  border-color: $blue;
+  background: $blue;
+}
+
+.btn.p-button:not(:disabled):hover {
   border-color: $blue-dark;
   background: $blue-dark;
+}
+
+.btn.p-button:not(:disabled):active {
+  border-color: #09296f;
+  background: #09296f;
 }
 
 .btn:focus-visible {

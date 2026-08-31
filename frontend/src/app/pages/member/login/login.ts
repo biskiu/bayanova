@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -16,8 +16,10 @@ export class Login {
   password = '';
   rememberMe = false;
 
+  constructor(private readonly router: Router) {}
+
   onSignIn(): void {
-    // Handle sign-in logic here
-    console.log('Signing in:', { username: this.username, rememberMe: this.rememberMe });
+    // Authentication will be added later. For now, continue to the member dashboard.
+    this.router.navigate(['/member/dashboard']);
   }
 }

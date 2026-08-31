@@ -50,7 +50,7 @@
 
       <div class="member-id-modal__actions">
         <button class="modal-button modal-button--secondary" type="button" (click)="closeMemberId()">Close</button>
-        <button class="modal-button modal-button--primary" type="button">
+        <button class="modal-button modal-button--primary" type="button" (click)="saveQr()">
           <span class="material-symbols-rounded" aria-hidden="true">download</span>
           Save QR code
         </button>
@@ -77,7 +77,7 @@
     <article class="panel family-panel">
       <div class="panel__header">
         <div><h3>Family Members</h3><p>View all four covered individuals.</p></div>
-        <button type="button">View all <span aria-hidden="true">→</span></button>
+        <button type="button" routerLink="/member/family-members">View all <span aria-hidden="true">→</span></button>
       </div>
       <div class="family-list">
         @for (member of ['Juan Dela Cruz', 'Maria Dela Cruz', 'Sofia Dela Cruz', 'Miguel Dela Cruz']; track member; let index = $index) {
@@ -94,18 +94,20 @@
       <article class="activity-card">
         <span class="activity-card__icon activity-card__icon--blue"><span class="material-symbols-rounded" aria-hidden="true">payments</span></span>
         <div><h3>Payments</h3><p>Your next payment is due on September 18.</p></div>
-        <button type="button" aria-label="View payments"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
+        <button type="button" routerLink="/member/payments" aria-label="View payments"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
       </article>
       <article class="activity-card">
         <span class="activity-card__icon activity-card__icon--red"><span class="material-symbols-rounded" aria-hidden="true">description</span></span>
         <div><h3>Claims</h3><p>No claims currently need your attention.</p></div>
-        <button type="button" aria-label="View claims"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
+        <button type="button" routerLink="/member/claims" aria-label="View claims"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
       </article>
       <article class="activity-card">
         <span class="activity-card__icon activity-card__icon--gold"><span class="material-symbols-rounded" aria-hidden="true">notifications</span></span>
         <div><h3>Notifications</h3><p>You have 3 unread updates.</p></div>
-        <button type="button" aria-label="View notifications"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
+        <button type="button" aria-label="View notifications" (click)="showNotificationHint()"><span class="material-symbols-rounded" aria-hidden="true">chevron_right</span></button>
       </article>
     </div>
   </div>
+  @if (qrSaved) { <div class="dashboard-toast" role="status"><span class="material-symbols-rounded">check_circle</span>Member QR saved in this UI prototype.</div> }
+  @if (notificationHint) { <div class="dashboard-toast" role="status"><span class="material-symbols-rounded">notifications</span>Use the notification bell in the top bar to view updates.</div> }
 </section>
