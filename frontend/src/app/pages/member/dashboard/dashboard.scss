@@ -168,3 +168,34 @@ button { font: inherit; }
 .primary-action { font-size: .8125rem; transition: background .16s ease, transform .16s ease, box-shadow .16s ease; }
 .primary-action:hover { background: #0f3b9c; transform: translateY(-1px); }
 button:focus-visible { outline: 3px solid rgba(40,100,223,.25); outline-offset: 2px; }
+
+@media (max-width: 560px) {
+  .page-heading { gap: 16px; margin-bottom: 20px; }
+  .eyebrow { font-size: .6875rem; }
+  .page-heading h2 { margin-bottom: 5px; font-size: 1.65rem; }
+  .page-heading p:not(.eyebrow) { font-size: .8125rem; line-height: 1.5; }
+  .primary-action { min-height: 48px; }
+
+  .summary-grid { gap: 10px; margin-bottom: 14px; }
+  .summary-card { min-height: 94px; gap: 13px; padding: 16px; }
+  .summary-card__icon { width: 44px; height: 44px; }
+  .summary-card strong { font-size: 1.2rem; }
+
+  .content-grid { gap: 14px; }
+  .panel { padding: 16px; }
+  .panel__header { margin-bottom: 13px; }
+  .panel__header button { min-height: 44px; padding-inline: 6px; }
+  .family-list, .activity-stack { gap: 8px; }
+  .family-member { min-height: 64px; padding: 11px; }
+  .activity-card { min-height: 76px; padding: 13px; }
+  .activity-card button { width: 44px; height: 44px; }
+
+  .member-id-dialog { width: 100%; max-height: 100dvh; border-radius: 18px 18px 0 0; margin: auto 0 0; }
+  .member-id-modal__header { padding-top: 16px; }
+  .member-id-modal__header > button { width: 44px; height: 44px; }
+  .member-id-modal__qr { width: 158px; height: 158px; }
+  .member-id-modal__qr span { font-size: 140px; }
+  .member-id-modal__actions { padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
+  .modal-button { min-height: 46px; }
+  .dashboard-toast { right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; justify-content: center; }
+}

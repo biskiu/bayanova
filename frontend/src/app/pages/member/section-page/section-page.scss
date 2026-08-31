@@ -492,3 +492,110 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .member-modal > footer { display: grid; grid-template-columns: 1fr 1fr; }
   .ticket-summary { grid-template-columns: 1fr; }
 }
+
+/* Phone-first portal treatment: compact hierarchy, card-like data, and thumb-friendly controls. */
+@media (max-width: 560px) {
+  .section-page { overflow: hidden; }
+  .page-heading { gap: 11px; margin-bottom: 20px; }
+  .page-heading__icon { width: 42px; height: 42px; border-radius: 12px; }
+  .page-heading__icon span { font-size: 22px; }
+  .page-heading h2 { margin-bottom: 3px; font-size: 1.45rem; }
+  .page-heading > div { min-width: 0; }
+  .page-heading > div > span { display: block; font-size: .8125rem; }
+
+  .profile-tabs {
+    width: calc(100% + 24px);
+    max-width: none;
+    margin: -4px -12px 18px;
+    padding: 4px 12px 8px;
+    border-width: 0 0 1px;
+    border-radius: 0;
+    scrollbar-width: none;
+  }
+  .profile-tabs::-webkit-scrollbar { display: none; }
+  .profile-tabs a { min-height: 44px; }
+
+  .panel, .metric-card, .toolbar, .status-banner, .balance-hero { border-radius: 14px; }
+  .two-grid, .profile-grid, .id-layout, .renew-grid, .payment-grid, .upload-grid, .support-grid { gap: 12px; }
+  .three-grid { gap: 10px; margin-bottom: 12px; }
+  .profile-summary { min-height: 0; padding: 22px 16px; }
+  .detail-panel, .two-grid > .panel, .payment-grid > .panel, .form-panel,
+  .upload-grid > .panel, .support-grid > .panel, .instructions, .renewal-plan, .checkout { padding: 17px; }
+  .panel-title { gap: 10px; margin-bottom: 16px; }
+  .panel-title .text-button { min-height: 44px; padding: 7px 4px; }
+
+  .status-banner { gap: 12px; padding: 17px; }
+  .status-banner__icon { width: 44px; height: 44px; }
+  .status-banner > div { min-width: calc(100% - 56px); }
+  .status-banner > .pill { margin-left: 56px; }
+  .metric-card { min-height: 92px; padding: 17px; }
+  .balance-hero { padding: 20px 18px; }
+  .balance-hero h3 { font-size: 1.8rem; }
+  .balance-hero > span { font-size: 42px; }
+
+  .toolbar { min-height: 0; gap: 12px; padding: 15px; }
+  .toolbar .primary-button, .toolbar .secondary-button { min-height: 48px; }
+  .member-grid { gap: 10px; }
+  .member-tile { padding: 16px; }
+  .primary-button, .secondary-button { min-height: 48px; }
+  .inline-actions { width: 100%; gap: 8px; }
+  .inline-actions > * { min-width: 0; flex: 1; }
+
+  .digital-card { border-radius: 16px; }
+  .digital-card__brand img { width: 105px; }
+  .digital-card__body { gap: 11px; }
+  .digital-card__foot { gap: 10px; font-size: .625rem; }
+
+  .amount-options { gap: 6px; }
+  .amount-options button { min-height: 48px; }
+  .form-grid { gap: 2px; }
+  .form-grid input, .form-grid select, .form-grid textarea,
+  .member-modal .modal-form input, .member-modal .modal-form select, .member-modal .modal-form textarea { font-size: 1rem; }
+  .form-actions { display: grid; grid-template-columns: 1fr 1.35fr; }
+  .drop-zone { padding: 26px 14px; }
+
+  .table-panel { padding: 14px; overflow: visible; }
+  .data-table { display: grid; min-width: 0; gap: 9px; }
+  .table-head { display: none; }
+  .table-row:not(.table-head) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 14px;
+    min-height: 0;
+    padding: 14px;
+    border: 1px solid #e5eaf2;
+    border-radius: 12px;
+    background: #fafbfd;
+  }
+  .table-row:not(.table-head) > span { min-width: 0; }
+  .table-row:not(.table-head) > span:nth-child(1) { grid-column: 1 / -1; }
+  .table-row:not(.table-head) > span:nth-child(n + 2)::before {
+    display: block;
+    margin-bottom: 3px;
+    color: #7b879a;
+    font-size: .625rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  [data-page='claims'] .table-row > span:nth-child(2)::before { content: 'Date'; }
+  [data-page='claims'] .table-row > span:nth-child(3)::before { content: 'Amount'; }
+  [data-page='claims'] .table-row > span:nth-child(4)::before { content: 'Status'; }
+  [data-page='payment-history'] .table-row > span:nth-child(2)::before { content: 'Reference'; }
+  [data-page='payment-history'] .table-row > span:nth-child(3)::before { content: 'Method'; }
+  [data-page='payment-history'] .table-row > span:nth-child(4)::before { content: 'Amount'; }
+  [data-page='claims'] .table-row:not(.table-head) > span:nth-child(4) { grid-column: 2; grid-row: 2 / span 2; align-self: end; text-align: right; }
+  .clickable-row { width: 100%; }
+
+  .announcement { gap: 12px; padding: 15px; }
+  .announcement__icon { width: 40px; height: 40px; }
+  .member-modal-backdrop { align-items: end; padding: 0; }
+  .member-modal { width: 100%; max-height: 92dvh; border-radius: 18px 18px 0 0; }
+  .member-modal > header { padding: 14px 16px; }
+  .member-modal > header > button { width: 44px; height: 44px; }
+  .member-modal__body { min-height: 0; padding: 18px 16px; }
+  .member-modal > footer { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); }
+  .member-modal > footer > button { min-width: 0; }
+  .share-link { align-items: stretch; flex-direction: column; }
+  .share-link button { min-height: 44px; justify-content: center; }
+  .member-toast { right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; justify-content: center; }
+}

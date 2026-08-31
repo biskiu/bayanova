@@ -138,5 +138,28 @@
     <main class="page-content">
       <router-outlet />
     </main>
+
+    <nav class="mobile-nav" aria-label="Quick member navigation">
+      <a routerLink="/member/dashboard" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">grid_view</span>
+        <span>Home</span>
+      </a>
+      <a routerLink="/member/membership-status" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">verified_user</span>
+        <span>Status</span>
+      </a>
+      <a routerLink="/member/qr-member-id" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">qr_code_2</span>
+        <span>Member ID</span>
+      </a>
+      <a routerLink="/member/payments" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">payments</span>
+        <span>Pay</span>
+      </a>
+      <button type="button" [attr.aria-expanded]="sidebarOpen" aria-label="Open all member pages" (click)="toggleSidebar()">
+        <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+        <span>More</span>
+      </button>
+    </nav>
   </div>
 </div>
