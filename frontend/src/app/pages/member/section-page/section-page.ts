@@ -38,7 +38,7 @@ export class SectionPage {
   modal: string | null = null;
   selectedItem: Record<string, string> = {};
   toastMessage = '';
-  selectedPaymentAmount = 1000;
+  selectedPaymentAmount = 200;
   selectedFileName = '';
 
   readonly headings: Record<SectionKey, PageHeading> = {
@@ -68,9 +68,9 @@ export class SectionPage {
   ];
 
   readonly transactions = [
-    { date: 'Aug 18, 2026', reference: 'PAY-082026-1842', method: 'GCash', amount: '₱500.00' },
-    { date: 'Jul 18, 2026', reference: 'PAY-072026-1605', method: 'Maya', amount: '₱500.00' },
-    { date: 'Jun 18, 2026', reference: 'PAY-062026-1339', method: 'GCash', amount: '₱500.00' },
+    { date: 'Aug 18, 2026', reference: 'PAY-082026-1842', method: 'GCash', amount: '₱200.00' },
+    { date: 'Jul 18, 2026', reference: 'PAY-072026-1605', method: 'Maya', amount: '₱200.00' },
+    { date: 'Jun 18, 2026', reference: 'PAY-062026-1339', method: 'GCash', amount: '₱200.00' },
   ];
 
   readonly announcements = [
