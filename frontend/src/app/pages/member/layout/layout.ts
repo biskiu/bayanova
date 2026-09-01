@@ -1,4 +1,4 @@
-import { Component, DestroyRef, HostListener, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
@@ -19,6 +19,10 @@ interface NavigationSection {
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
+  host: {
+    '(document:click)': 'handleDocumentClick()',
+    '(document:keydown.escape)': 'handleEscapeKey()',
+  },
 })
 export class Layout {
   private readonly destroyRef = inject(DestroyRef);
@@ -31,34 +35,28 @@ export class Layout {
   pageTitle = 'Dashboard';
 
   readonly notifications = [
-    { title: 'Your claim was approved', message: 'Claim #1023 is ready for the next step.', time: '10 minutes ago', icon: 'task_alt', tone: 'green' },
-    { title: 'Payment received', message: 'Your August subscription contribution was posted.', time: '2 hours ago', icon: 'payments', tone: 'blue' },
-    { title: 'Membership reminder', message: 'Your subscription renews on September 18, 2026.', time: 'Yesterday', icon: 'event', tone: 'gold' },
+    { title: 'General assembly notice', message: 'Member registration opens September 12.', time: '10 minutes ago', icon: 'how_to_vote', tone: 'green' },
+    { title: 'Community activity', message: 'Livelihood workshop registration closes September 18.', time: 'Yesterday', icon: 'diversity_3', tone: 'gold' },
   ];
 
   private readonly pageTitles: Record<string, string> = {
     '/member/dashboard': 'Dashboard',
     '/member/membership-status': 'Membership status',
-    '/member/fund-balance': 'Fund balance',
-    '/member/family-members': 'Family members',
-    '/member/qr-member-id': 'QR member ID',
-    '/member/membership-card': 'Digital membership card',
-    '/member/renew-subscription': 'Renew subscription',
-    '/member/claims': 'Claims',
-    '/member/payments': 'Payments',
-    '/member/payment-history': 'Payment history',
-    '/member/receipts': 'Receipts',
+    '/member/family-members': 'Household members',
+    '/member/membership-card': 'Member ID',
+    '/member/claims': 'Benefit requests',
+    '/member/payments': 'Membership payments',
     '/member/support': 'Support',
-    '/member/announcements': 'Announcements',
+    '/member/announcements': 'Community & assemblies',
     '/member/profile': 'Profile',
     '/member/profile/information': 'Personal information',
     '/member/profile/documents': 'Identity documents',
-    '/member/referral': 'Refer a friend',
+    '/member/referral': 'Invite a member',
   };
 
   readonly navigation: NavigationSection[] = [
     {
-      label: 'Overview',
+      label: 'My cooperative',
       items: [
         { label: 'Dashboard', icon: 'grid_view', route: '/member/dashboard' },
       ],
@@ -67,27 +65,28 @@ export class Layout {
       label: 'Membership',
       items: [
         { label: 'Membership Status', icon: 'verified_user', route: '/member/membership-status' },
-        { label: 'Fund Balance', icon: 'account_balance_wallet', route: '/member/fund-balance' },
-        { label: 'Family Members', icon: 'group', route: '/member/family-members' },
-        { label: 'QR Member ID', icon: 'qr_code_2', route: '/member/qr-member-id' },
-        { label: 'Digital Membership Card', icon: 'badge', route: '/member/membership-card' },
-        { label: 'Renew Subscription', icon: 'autorenew', route: '/member/renew-subscription' },
+        { label: 'Household Members', icon: 'group', route: '/member/family-members' },
       ],
     },
     {
-      label: 'Transactions',
+      label: 'Participation',
       items: [
-        { label: 'Claims', icon: 'description', route: '/member/claims' },
-        { label: 'Payments', icon: 'payments', route: '/member/payments' },
-        { label: 'Payment History', icon: 'receipt_long', route: '/member/payment-history' },
-        { label: 'Download Receipts', icon: 'download', route: '/member/receipts' },
+        { label: 'Community & Assemblies', icon: 'diversity_3', route: '/member/announcements' },
+        { label: 'Invite a Member', icon: 'person_add', route: '/member/referral' },
+      ],
+    },
+    { label: 'Member ID', items: [{ label: 'Member ID Card', icon: 'badge', route: '/member/membership-card' }] },
+    {
+      label: 'Services & records',
+      items: [
+        { label: 'Benefit Requests', icon: 'volunteer_activism', route: '/member/claims' },
+        { label: 'Membership Payments', icon: 'payments', route: '/member/payments' },
       ],
     },
     {
       label: 'Help & updates',
       items: [
         { label: 'Support Ticket', icon: 'support_agent', route: '/member/support' },
-        { label: 'Announcements', icon: 'campaign', route: '/member/announcements' },
       ],
     },
   ];
@@ -140,13 +139,11 @@ export class Layout {
     this.pageTitle = this.pageTitles[path] ?? 'Member portal';
   }
 
-  @HostListener('document:click')
   handleDocumentClick(): void {
     this.closeProfileMenu();
     this.closeNotifications();
   }
 
-  @HostListener('document:keydown.escape')
   handleEscapeKey(): void {
     this.closeProfileMenu();
     this.closeNotifications();

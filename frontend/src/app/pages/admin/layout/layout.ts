@@ -27,7 +27,7 @@ export class AdminLayout {
   readonly notifications = [
     { icon: 'person_add', title: 'New member application', copy: 'Maria Santos submitted an application.', time: '2 minutes ago', tone: 'blue' },
     { icon: 'description', title: 'Claim needs review', copy: 'Claim CLM-2026-0084 has new documents.', time: '18 minutes ago', tone: 'red' },
-    { icon: 'payments', title: 'Payment received', copy: 'A ₱500 contribution was posted.', time: '34 minutes ago', tone: 'green' },
+    { icon: 'diversity_3', title: 'Community program published', copy: 'The livelihood workshop is now visible to members.', time: '34 minutes ago', tone: 'green' },
     { icon: 'task_alt', title: 'Approval queue updated', copy: 'Three requests are marked high priority.', time: '1 hour ago', tone: 'gold' },
   ];
 
@@ -38,8 +38,8 @@ export class AdminLayout {
     ]},
     { label: 'Management', items: [
       { label: 'Members', icon: 'group', route: '/admin/members' },
+      { label: 'Membership Payments', icon: 'payments', route: '/admin/payments' },
       { label: 'Claims', icon: 'description', route: '/admin/claims' },
-      { label: 'Payments', icon: 'payments', route: '/admin/payments' },
       { label: 'Approvals', icon: 'task_alt', route: '/admin/approvals', badge: '8' },
       { label: 'Support Tickets', icon: 'support_agent', route: '/admin/support-tickets', badge: '14' },
     ]},
@@ -49,7 +49,6 @@ export class AdminLayout {
     ]},
     { label: 'Operations', items: [
       { label: 'CRM', icon: 'contacts', route: '/admin/crm' },
-      { label: 'Notifications', icon: 'notifications', route: '/admin/notifications' },
       { label: 'Document Management', icon: 'folder_open', route: '/admin/documents' },
     ]},
     { label: 'System', items: [

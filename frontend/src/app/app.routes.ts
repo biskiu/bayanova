@@ -76,38 +76,17 @@ export const routes: Routes = [
             data: { page: 'membership-status' },
           },
           {
-            path: 'fund-balance',
-            loadComponent: loadMemberSection,
-            data: { page: 'fund-balance' },
-          },
-          {
             path: 'family-members',
             loadComponent: loadMemberSection,
             data: { page: 'family-members' },
-          },
-          {
-            path: 'qr-member-id',
-            loadComponent: loadMemberSection,
-            data: { page: 'qr-member-id' },
           },
           {
             path: 'membership-card',
             loadComponent: loadMemberSection,
             data: { page: 'membership-card' },
           },
-          {
-            path: 'renew-subscription',
-            loadComponent: loadMemberSection,
-            data: { page: 'renew-subscription' },
-          },
           { path: 'claims', loadComponent: loadMemberSection, data: { page: 'claims' } },
           { path: 'payments', loadComponent: loadMemberSection, data: { page: 'payments' } },
-          {
-            path: 'payment-history',
-            loadComponent: loadMemberSection,
-            data: { page: 'payment-history' },
-          },
-          { path: 'receipts', loadComponent: loadMemberSection, data: { page: 'receipts' } },
           { path: 'edit-information', redirectTo: 'profile/information', pathMatch: 'full' },
           { path: 'upload-ids', redirectTo: 'profile/documents', pathMatch: 'full' },
           { path: 'referral', loadComponent: loadMemberSection, data: { page: 'referral' } },

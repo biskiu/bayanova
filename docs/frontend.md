@@ -22,7 +22,7 @@ Use the existing BayaNova palette and tokens before introducing new global varia
 
 ## Current interaction model
 
-Several pages are UI prototypes with hard-coded display data. Browser behaviors include local modal state, toast messages, clipboard/share actions, client-side CSV generation, print windows, and canvas-based membership-card output. These are not substitutes for server validation, authorization, payment processing, document storage, or durable records.
+Several pages are UI prototypes with hard-coded display data. Browser behaviors include local modal state, toast messages, clipboard/share actions, client-side CSV generation, print windows, and canvas-based membership-card output. These are not substitutes for server validation, authorization, secure file storage, or durable records.
 
 ## Validation
 
@@ -35,3 +35,4 @@ npm test
 
 Run the narrowest relevant command first, then a production build for route/template changes when practical.
 
+Membership payments are presented through an administrator-managed QR image. Transfers happen outside the portal, and the prototype stores the uploaded QR in browser-local storage.

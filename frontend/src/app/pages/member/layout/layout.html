@@ -55,7 +55,7 @@
           <span class="material-symbols-rounded" aria-hidden="true">menu</span>
         </button>
         <div>
-          <p class="topbar__eyebrow">Member portal</p>
+          <p class="topbar__eyebrow">BayaNova Cooperative</p>
           <h1>{{ pageTitle }}</h1>
         </div>
       </div>
@@ -112,7 +112,7 @@
               (click)="$event.stopPropagation()"
             >
               <div class="profile-menu__group">
-                <p>Manage account</p>
+                <p>Your cooperative account</p>
                 <a role="menuitem" routerLink="/member/profile" routerLinkActive="is-active" (click)="closeProfileMenu()">
                   <span class="profile-menu__icon material-symbols-rounded" aria-hidden="true">person</span>
                   <span><strong>Profile</strong></span>
@@ -122,7 +122,7 @@
               <div class="profile-menu__group profile-menu__group--secondary">
                 <a role="menuitem" routerLink="/member/referral" routerLinkActive="is-active" (click)="closeProfileMenu()">
                   <span class="profile-menu__icon material-symbols-rounded" aria-hidden="true">person_add</span>
-                  <span><strong>Refer a friend</strong></span>
+                  <span><strong>Invite a member</strong></span>
                 </a>
                 <a class="sign-out-link" role="menuitem" routerLink="/member/login" (click)="closeProfileMenu()">
                   <span class="profile-menu__icon material-symbols-rounded" aria-hidden="true">logout</span>
@@ -146,20 +146,20 @@
       </a>
       <a routerLink="/member/membership-status" routerLinkActive="is-active" ariaCurrentWhenActive="page">
         <span class="material-symbols-rounded" aria-hidden="true">verified_user</span>
-        <span>Status</span>
+        <span>Membership</span>
       </a>
-      <a routerLink="/member/qr-member-id" routerLinkActive="is-active" ariaCurrentWhenActive="page">
-        <span class="material-symbols-rounded" aria-hidden="true">qr_code_2</span>
+      <a routerLink="/member/announcements" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">diversity_3</span>
+        <span>Community</span>
+      </a>
+      <a routerLink="/member/membership-card" routerLinkActive="is-active" ariaCurrentWhenActive="page">
+        <span class="material-symbols-rounded" aria-hidden="true">badge</span>
         <span>Member ID</span>
       </a>
       <a routerLink="/member/payments" routerLinkActive="is-active" ariaCurrentWhenActive="page">
         <span class="material-symbols-rounded" aria-hidden="true">payments</span>
         <span>Pay</span>
       </a>
-      <button type="button" [attr.aria-expanded]="sidebarOpen" aria-label="Open all member pages" (click)="toggleSidebar()">
-        <span class="material-symbols-rounded" aria-hidden="true">menu</span>
-        <span>More</span>
-      </button>
     </nav>
   </div>
 </div>

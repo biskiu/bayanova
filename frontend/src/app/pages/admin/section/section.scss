@@ -116,8 +116,22 @@ article { border-color: var(--admin-line); border-radius: 16px; box-shadow: 0 1p
 .support-review__message small { color: var(--admin-blue); font-size: .6875rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .support-review__message p { margin: 0; color: #46556e; font-size: .875rem; line-height: 1.6; }
 
+
 button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(40,100,223,.24); outline-offset: 2px; }
 
 @media(max-width:1000px){.report-overview{grid-template-columns:1fr}.report-chart__canvas--donut{height:320px}}
 @media(max-width:760px){.section > header small{font-size:.8125rem}.stats{grid-template-columns:1fr}.stats article{min-height:auto}.modal-backdrop{padding:12px}.admin-modal{max-height:calc(100dvh - 24px)}.report-chart{padding:18px}}
 @media(max-width:560px){.section > header button{min-height:46px}.table-row{font-size:.8125rem}.report-chart__canvas{height:245px}}
+.payment-qr-admin { display: flex; align-items: center; gap: 22px; margin: 0 0 22px; padding: 20px; border: 1px solid #dce5f2; border-radius: 16px; background: linear-gradient(135deg, #f7faff, #fff); }
+.payment-qr-admin__preview, .qr-upload-preview { display: grid; place-items: center; width: 132px; height: 132px; flex: 0 0 132px; border: 1px dashed #b9c8df; border-radius: 12px; background: #fff; overflow: hidden; color: #2864df; }
+.payment-qr-admin__preview img, .qr-upload-preview img { width: 100%; height: 100%; object-fit: contain; }
+.payment-qr-admin h3 { margin: 3px 0 5px; }
+.payment-qr-admin p { max-width: 620px; margin: 0 0 12px; color: #718097; font-size: 13px; }
+.payment-qr-admin small { color: #718097; }
+.qr-upload-form { display: flex; gap: 24px; align-items: flex-start; }
+.qr-upload-form > div:last-child { flex: 1; }
+.qr-upload-form p { color: #718097; font-size: 13px; }
+.prototype-note { color: #718097; }
+.form-error { color: #c3263f !important; }
+.file-picker { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; color: #2864df; font-weight: 700; }
+.file-picker input { max-width: 220px; }

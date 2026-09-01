@@ -5,6 +5,15 @@
     @if (title !== 'Analytics' && title !== 'Support Tickets' && title !== 'Audit Logs') { <button type="button" (click)="openModal('action')"><span class="material-symbols-rounded">add</span>{{ config.action }}</button> }
   </header>
 
+  @if (title === 'Payments') {
+    <article class="payment-qr-admin">
+      <div class="payment-qr-admin__preview">
+        @if (contributionQrUrl()) { <img [src]="contributionQrUrl()" alt="Membership payment QR code"> } @else { <span class="material-symbols-rounded">qr_code_2</span> }
+      </div>
+      <div><small>Member payment instructions</small><h3>Membership payment QR</h3><p>Members scan this cooperative QR using their bank or e-wallet, then submit their payment reference through the cooperative’s normal process.</p><button class="secondary" type="button" (click)="openModal('action')"><span class="material-symbols-rounded">upload</span>{{ contributionQrUrl() ? 'Replace QR image' : 'Upload QR image' }}</button></div>
+    </article>
+  }
+
   @if (title !== 'Audit Logs') {
     <div class="stats">
       @for (stat of config.stats; track stat.label) { <article><small>{{ stat.label }}</small><strong>{{ stat.value }}</strong><span>{{ stat.detail }}</span></article> }
@@ -76,8 +85,8 @@
           <div class="modal-form"><label><span>Full name</span><input [value]="modalKind === 'record' ? selectedRow[0] : ''" placeholder="Member full name"></label><label><span>Email address</span><input type="email" placeholder="member@email.com"></label><label><span>Mobile number</span><input placeholder="+63 9XX XXX XXXX"></label><label><span>Home address</span><input placeholder="Complete address"></label><label><span>Membership</span><select><option>Family Plan</option><option>Individual Plan</option></select></label><label><span>Status</span><select><option>Pending</option><option>Active</option><option>Expired</option></select></label></div>
         } @else if (title === 'Claims') {
           <div class="modal-form"><label><span>Member</span><input placeholder="Search member"></label><label><span>Claim type</span><select><option>Medical consultation</option><option>Laboratory</option><option>Medicine</option><option>Other</option></select></label><label class="full-field"><span>Description</span><textarea placeholder="Describe the claim"></textarea></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Supporting documents</span><input type="file" multiple></label><label><span>Status</span><select><option>Pending</option><option>Under review</option><option>Approved</option><option>Rejected</option><option>Paid</option></select></label></div>
-        } @else if (title === 'Payments') {
-          <div class="modal-form"><label><span>Date</span><input type="date" value="2026-08-31"></label><label><span>Member</span><input placeholder="Search member"></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Method</span><select><option>GCash</option><option>Maya</option><option>Card</option><option>Cash</option></select></label><label><span>Reference</span><input placeholder="Payment reference"></label><label><span>Status</span><select><option>Successful</option><option>Pending</option><option>Failed</option></select></label></div>
+        } @else if (title === 'Payments' && modalKind === 'action') {
+          <div class="qr-upload-form"><div class="qr-upload-preview">@if (selectedQrPreview || contributionQrUrl()) { <img [src]="selectedQrPreview || contributionQrUrl()" alt="Membership payment QR preview"> } @else { <span class="material-symbols-rounded">qr_code_2</span> }</div><div><label class="file-picker"><span>Choose QR image</span><input type="file" accept="image/png,image/jpeg,image/webp" (change)="handleContributionQr($event)"></label><p>Upload the QR used for membership payments. PNG, JPG, or WebP up to 2 MB.</p><small class="prototype-note">Stored locally in this browser for this prototype.</small>@if (qrUploadError) { <p class="form-error">{{ qrUploadError }}</p> }</div></div>
         } @else if (title === 'Accounting') {
           <div class="modal-form"><label><span>Date</span><input type="date" value="2026-08-31"></label><label><span>Type</span><select><option>Income</option><option>Expense</option></select></label><label><span>Amount</span><input type="number" placeholder="0.00"></label><label><span>Reference</span><input placeholder="PAY-, CLM-, or EXP-"></label><label class="full-field"><span>Description</span><textarea placeholder="Transaction description"></textarea></label></div>
         } @else if (title === 'Reports') {
@@ -103,7 +112,9 @@
       </div>
       <footer>
         <button class="secondary" type="button" (click)="closeModal()">Cancel</button>
-        @if (title === 'Approvals' && modalKind !== 'filter' && modalKind !== 'export') {
+        @if (title === 'Payments' && modalKind === 'action') {
+          <button class="primary" type="button" [disabled]="!selectedQrFile" (click)="saveContributionQr()">Save payment QR</button>
+        } @else if (title === 'Approvals' && modalKind !== 'filter' && modalKind !== 'export') {
           <button class="danger-button" type="button" (click)="completeAction('Request rejected in the UI prototype.')">Reject</button><button class="primary" type="button" (click)="completeAction('Request approved in the UI prototype.')">Approve</button>
         } @else {
           <button class="primary" type="button" (click)="modalKind === 'export' ? exportData() : completeAction(modalKind === 'filter' ? 'Filters applied.' : undefined)">{{ modalKind === 'export' ? (exportFormat === 'pdf' ? 'Print' : 'Export') : modalKind === 'filter' ? 'Apply filters' : modalKind === 'record' ? 'Save changes' : config.action }}</button>

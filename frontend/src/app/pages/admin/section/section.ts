@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChartModule } from 'primeng/chart';
+import { ContributionQrService } from '../../../shared/contribution-qr.service';
 
 interface SectionData {
   action: string;
@@ -20,6 +21,7 @@ type ModalKind = 'action' | 'record' | 'filter' | 'export' | null;
   host: { '(document:keydown.escape)': 'handleEscape()' },
 })
 export class AdminSection {
+  private readonly contributionQr = inject(ContributionQrService);
   readonly title: string;
   readonly icon: string;
   readonly config: SectionData;
@@ -28,6 +30,11 @@ export class AdminSection {
   searchQuery = '';
   toastMessage = '';
   exportFormat: 'csv' | 'pdf' = 'csv';
+  selectedQrFile: File | null = null;
+  selectedQrPreview = '';
+  qrUploadError = '';
+  readonly contributionQrUrl = this.contributionQr.qrUrl;
+  readonly contributionQrFileName = this.contributionQr.fileName;
 
   readonly chartData = {
     labels: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -73,9 +80,9 @@ export class AdminSection {
   };
 
   private readonly sections: Record<string, SectionData> = {
+    Payments: this.data('Manage payment QR', [['Recorded this month','₱3,600.00','Member payments'],['Pending verification','12','Awaiting review'],['Payment instructions','QR enabled','External payment flow']], ['Payment','Member','Reference','Status'], [['Membership payment · August','Juan Dela Cruz','PAY-2026-0084','Recorded'],['Membership payment · August','Maria Santos','PAY-2026-0083','Pending'],['Membership payment · July','Roberto Garcia','PAY-2026-0079','Recorded'],['Membership payment · July','Ana Reyes','PAY-2026-0074','Needs review']]),
     Members: this.data('Add member', [['Total members','12,482','+4.8% this month'],['Active members','11,930','95.6% of total'],['Pending applications','127','18 added today']], ['Member','Contact','Membership','Status'], [['Juan Dela Cruz · BN-00482','juan@email.com · 0917 123 4567','Family Plan','Active'],['Maria Santos · BN-00481','maria@email.com · 0918 442 1052','Individual Plan','Pending'],['Roberto Garcia · BN-00480','roberto@email.com · 0919 783 2180','Family Plan','Active'],['Ana Reyes · BN-00479','ana@email.com · 0920 422 9931','Individual Plan','Needs review']]),
     Claims: this.data('Create claim', [['Open claims','184','32 need review'],['Approved this month','426','₱1.8M total value'],['Average processing','2.4 days','−0.6 days vs July']], ['Claim / Type','Member','Amount / Documents','Status'], [['CLM-2026-0084 · Consultation','Juan Dela Cruz','₱750.00 · 2 files','Under review'],['CLM-2026-0083 · Laboratory','Maria Santos','₱1,250.00 · 3 files','Approved'],['CLM-2026-0082 · Medicine','Roberto Garcia','₱860.00 · 1 file','Pending'],['CLM-2026-0081 · Dental care','Ana Reyes','₱1,500.00 · 2 files','Rejected']]),
-    Payments: this.data('Record payment', [['Collected this month','₱2.4M','+8.1% vs July'],['Successful payments','4,812','98.7% success rate'],['Failed payments','63','12 retrying today']], ['Reference / Date','Member','Method','Amount / Status'], [['PAY-0821-1842 · Aug 21, 2026','Juan Dela Cruz','GCash','₱500 · Successful'],['PAY-0821-1841 · Aug 21, 2026','Maria Santos','Maya','₱1,000 · Successful'],['PAY-0821-1840 · Aug 21, 2026','Roberto Garcia','Card','₱500 · Failed'],['PAY-0821-1839 · Aug 20, 2026','Ana Reyes','GCash','₱2,000 · Successful']]),
     Accounting: this.data('New transaction', [['Total income','₱2.40M','August 2026'],['Total expenses','₱1.82M','August 2026'],['Balance','₱577,750','Income less expenses']], ['Date','Type / Description','Reference','Amount'], [['Aug 21, 2026','Income · Membership contribution','PAY-0821-1842','+ ₱500'],['Aug 20, 2026','Expense · Claim disbursement','CLM-2026-0079','− ₱2,500'],['Aug 20, 2026','Income · Registration fee','REG-2026-1028','+ ₱1,000'],['Aug 19, 2026','Expense · Office supplies','EXP-2026-0204','− ₱3,200']]),
     Reports: this.data('Generate report', [['Generated this month','38','Membership, claims, finance'],['CSV exports','21','Ready to download'],['PDF exports','17','Ready to download']], ['Report','Type / Period','Generated','Status'], [['Monthly Membership Summary','Membership · August 2026','Aug 20, 2026','Ready'],['Claims Performance Report','Claims · August 2026','Aug 19, 2026','Ready'],['Payment Reconciliation','Payments · August 2026','Aug 18, 2026','Processing'],['Quarterly Operations Report','Combined · Q3 2026','Aug 15, 2026','Ready']]),
     Notifications: this.data('Create notification', [['Sent this month','24,680','In-app notifications'],['Read rate','81.4%','+3.1% this month'],['Drafts','3','Not yet sent']], ['Notification','Audience','Created','Status'], [['Community Health Day','All members','Aug 21, 2026','Sent'],['Payment Reminder — August','Overdue members','Aug 20, 2026','Sent'],['New Partner Clinics','All members','Aug 18, 2026','Sent'],['Portal Maintenance','All members','Aug 17, 2026','Draft']]),
@@ -109,7 +116,36 @@ export class AdminSection {
   openModal(kind: Exclude<ModalKind, null>, row: string[] = []): void {
     this.selectedRow = row;
     this.modalKind = kind;
+    if (this.title === 'Payments' && kind === 'action') {
+      this.selectedQrFile = null;
+      this.selectedQrPreview = '';
+      this.qrUploadError = '';
+    }
   }
+
+  handleContributionQr(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0] ?? null;
+    this.selectedQrFile = file;
+    this.selectedQrPreview = '';
+    this.qrUploadError = '';
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { this.qrUploadError = 'Please choose an image file.'; return; }
+    if (file.size > 2 * 1024 * 1024) { this.qrUploadError = 'The QR image must be 2 MB or smaller.'; return; }
+    const reader = new FileReader();
+    reader.onload = () => this.selectedQrPreview = typeof reader.result === 'string' ? reader.result : '';
+    reader.readAsDataURL(file);
+  }
+
+  async saveContributionQr(): Promise<void> {
+    if (!this.selectedQrFile) { this.qrUploadError = 'Choose a QR image first.'; return; }
+    try {
+      await this.contributionQr.save(this.selectedQrFile);
+      this.completeAction('Membership payment QR updated in this browser prototype.');
+    } catch (error) {
+      this.qrUploadError = error instanceof Error ? error.message : 'Unable to save the QR image.';
+    }
+  }
+
 
   signInMember(): void {
     this.router.navigate(['/member/dashboard']);

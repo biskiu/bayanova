@@ -15,7 +15,7 @@ The repository is a two-application workspace:
 
 The Angular app owns routing and the rendered user experience. It currently contains representative in-memory data and browser-only interactions such as modals, CSV/PDF export, clipboard sharing, and membership-card rendering.
 
-The Laravel app is the future home for HTTP endpoints, authentication, authorization, persistence, payments, claims, documents, notifications, and audit history. Those capabilities are **Planned** unless the backend code and routes establish otherwise.
+The Laravel app is the future home for HTTP endpoints, authentication, authorization, persistence, claims, documents, notifications, payment references, verification, and audit history. Those capabilities are **Planned** unless the backend code and routes establish otherwise. Membership payments are completed externally through an administrator-managed cooperative QR; there is no gateway integration in the prototype.
 
 There is no documented frontend-to-backend API contract yet. Do not create client calls or infer endpoint names without first defining the contract in `/docs` and implementing the matching backend surface.
 
@@ -36,4 +36,3 @@ Shared concerns should be introduced deliberately through small services or shar
 3. Framework defaults and generated READMEs.
 
 If a feature is ambiguous, preserve the existing behavior and document the ambiguity rather than fabricating production rules.
-

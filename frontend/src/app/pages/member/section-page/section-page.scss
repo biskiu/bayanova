@@ -50,7 +50,7 @@ button, input, select, textarea { font: inherit; }
 .profile-tabs .material-symbols-rounded { font-size: 17px; }
 
 .panel { border: 1px solid $line; border-radius: 16px; background: #fff; box-shadow: 0 8px 30px rgba(22, 39, 75, .035); }
-.two-grid, .profile-grid, .id-layout, .renew-grid, .payment-grid, .upload-grid, .support-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.two-grid, .profile-grid, .id-layout, .renew-grid, .upload-grid, .support-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .three-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
 .panel-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
 .panel-title h3, .panel h3 { margin: 0 0 4px; font-size: 15px; }
@@ -196,18 +196,26 @@ button, input, select, textarea { font: inherit; }
 .table-row small { color: $muted; font-size: 8px; }
 .table-head { padding-top: 5px; border: 0; color: #8b96a8; font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 
-.payment-grid { grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr); }
-.payment-grid > .panel { padding: 24px; }
-.field-label, .form-grid label { display: grid; gap: 6px; margin-bottom: 12px; color: #65738b; font-size: 11px; font-weight: 750; }
-.amount-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-.amount-options button { min-height: 40px; border: 1px solid $line; border-radius: 9px; background: #fff; color: #4d5c73; cursor: pointer; font-size: 11px; font-weight: 750; }
-.amount-options button.selected { border-color: $blue; background: #eef3ff; color: $blue; }
-.currency-input { display: flex; min-height: var(--portal-input-height); align-items: center; margin-bottom: 18px; border: 1px solid var(--portal-input-border); border-radius: var(--portal-input-radius); background: var(--portal-input-background); }
-.currency-input span { padding-left: 13px; color: $muted; font-size: 12px; }
-.currency-input input { width: 100%; min-height: var(--portal-input-height); padding: 10px; border: 0; outline: 0; background: transparent; color: $ink; font-size: var(--portal-input-font-size); }
-.payment-summary { height: fit-content; }
-.payment-summary > small { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 13px; color: $muted; font-size: 8px; }
-.payment-summary small span { font-size: 13px; }
+.form-grid label { display: grid; gap: 6px; margin-bottom: 12px; color: #65738b; font-size: 11px; font-weight: 750; }
+
+.contribution-qr-layout { display: grid; grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr); gap: 20px; max-width: 920px; }
+.contribution-qr-card, .contribution-instructions { padding: 25px; }
+.contribution-qr-image { display: grid; width: min(100%, 300px); aspect-ratio: 1; margin: 0 auto 18px; place-items: center; overflow: hidden; border: 8px solid #f1f4f8; border-radius: 18px; background: #fff; }
+.contribution-qr-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.contribution-recipient { display: grid; gap: 3px; padding: 14px; border: 1px solid $line; border-radius: 11px; background: #f8fafe; text-align: center; }
+.contribution-recipient span { color: $muted; font-size: .6875rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.contribution-recipient strong { color: $ink; font-size: .9375rem; }
+.contribution-recipient small { color: $muted; font-size: .75rem; overflow-wrap: anywhere; }
+.contribution-qr-download { width: 100%; margin-top: 12px; text-decoration: none; }
+.contribution-qr-empty { display: flex; min-height: 330px; align-items: center; justify-content: center; flex-direction: column; padding: 28px; border: 2px dashed #cad5e6; border-radius: 16px; background: #f8fafe; text-align: center; }
+.contribution-qr-empty > span { color: #93a2b8; font-size: 82px; }
+.contribution-qr-empty h3 { margin: 12px 0 5px; font-size: 1rem; }
+.contribution-qr-empty p { max-width: 330px; margin: 0; color: $muted; font-size: .8125rem; line-height: 1.6; }
+.contribution-instructions > .round-icon { margin-bottom: 18px; }
+.contribution-instructions > h3 { font-size: 1.125rem; }
+.contribution-instructions ol { display: grid; gap: 14px; margin: 22px 0; padding-left: 22px; color: #526078; font-size: .8125rem; line-height: 1.6; }
+.contribution-instructions li::marker { color: $blue; font-weight: 800; }
+.contribution-instructions .note p { font-size: .75rem; }
 
 .receipt-list { padding: 22px; }
 .receipt-row { display: flex; align-items: center; gap: 12px; padding: 15px 5px; border-top: 1px solid #edf0f5; }
@@ -257,7 +265,7 @@ button, input, select, textarea { font: inherit; }
 .empty-compact p { margin: 0; font-size: 9px; }
 
 .announcement-list { display: grid; gap: 13px; }
-.announcement { display: flex; gap: 16px; padding: 20px; }
+.announcement { display: flex; align-self: start; min-height: 0; height: fit-content; gap: 16px; padding: 18px 20px; }
 .announcement__icon { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border-radius: 12px; }
 .announcement__icon.blue { background: #edf3ff; color: $blue; }
 .announcement__icon.red { background: #fff0f2; color: $red; }
@@ -265,7 +273,7 @@ button, input, select, textarea { font: inherit; }
 .announcement > div { flex: 1; }
 .announcement small { color: #929cad; font-size: 8px; }
 .announcement h3 { margin-top: 4px; font-size: 14px; }
-.announcement p { max-width: 750px; }
+.announcement p { max-width: 750px; margin: 0; line-height: 1.5; }
 .announcement .text-button { margin-top: 9px; padding: 0; }
 
 .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -316,7 +324,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 @media (max-width: 760px) {
-  .profile-grid, .two-grid, .id-layout, .renew-grid, .payment-grid, .upload-grid, .support-grid { grid-template-columns: 1fr; }
+  .profile-grid, .two-grid, .id-layout, .renew-grid, .upload-grid, .support-grid, .contribution-qr-layout { grid-template-columns: 1fr; }
   .three-grid { grid-template-columns: 1fr; }
   .profile-summary { min-height: 300px; }
   .status-banner { align-items: flex-start; flex-wrap: wrap; }
@@ -425,9 +433,7 @@ button, input, select, textarea { font: inherit; }
 .table-head { min-height: 42px; color: #65738a; font-size: .6875rem; }
 .clickable-row { transition: background .15s ease; }
 
-.field-label, .form-grid label { gap: 8px; font-size: .8125rem; }
-.amount-options button { min-height: 44px; font-size: .8125rem; }
-.payment-summary > small { font-size: .75rem; }
+.form-grid label { gap: 8px; font-size: .8125rem; }
 .receipt-row { min-height: 70px; padding-block: 16px; }
 .receipt-row strong, .receipt-row b { font-size: .8125rem; }
 .receipt-row small { font-size: .75rem; }
@@ -516,11 +522,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .profile-tabs a { min-height: 44px; }
 
   .panel, .metric-card, .toolbar, .status-banner, .balance-hero { border-radius: 14px; }
-  .two-grid, .profile-grid, .id-layout, .renew-grid, .payment-grid, .upload-grid, .support-grid { gap: 12px; }
+  .two-grid, .profile-grid, .id-layout, .renew-grid, .upload-grid, .support-grid, .contribution-qr-layout { gap: 12px; }
   .three-grid { gap: 10px; margin-bottom: 12px; }
   .profile-summary { min-height: 0; padding: 22px 16px; }
-  .detail-panel, .two-grid > .panel, .payment-grid > .panel, .form-panel,
-  .upload-grid > .panel, .support-grid > .panel, .instructions, .renewal-plan, .checkout { padding: 17px; }
+  .detail-panel, .two-grid > .panel, .form-panel,
+  .upload-grid > .panel, .support-grid > .panel, .instructions, .renewal-plan, .checkout, .contribution-qr-card, .contribution-instructions { padding: 17px; }
   .panel-title { gap: 10px; margin-bottom: 16px; }
   .panel-title .text-button { min-height: 44px; padding: 7px 4px; }
 
@@ -546,13 +552,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .digital-card__body { gap: 11px; }
   .digital-card__foot { gap: 10px; font-size: .625rem; }
 
-  .amount-options { gap: 6px; }
-  .amount-options button { min-height: 48px; }
   .form-grid { gap: 2px; }
   .form-grid input, .form-grid select, .form-grid textarea,
   .member-modal .modal-form input, .member-modal .modal-form select, .member-modal .modal-form textarea { font-size: 1rem; }
   .form-actions { display: grid; grid-template-columns: 1fr 1.35fr; }
   .drop-zone { padding: 26px 14px; }
+  .contribution-qr-image { width: min(100%, 270px); }
+  .contribution-qr-empty { min-height: 260px; }
 
   .table-panel { padding: 14px; overflow: visible; }
   .data-table { display: grid; min-width: 0; gap: 9px; }

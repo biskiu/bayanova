@@ -17,25 +17,20 @@ The current frontend route map is defined in `frontend/src/app/app.routes.ts`. R
 | --- | --- |
 | `/member/login` | Member sign-in UI |
 | `/member/signup` | Member registration UI |
-| `/member/dashboard` | Member dashboard |
+| `/member/dashboard` | Cooperative member overview with assembly, household, community-program, and member-service summaries |
 | `/member/profile` | Member profile summary |
 | `/member/profile/information` | Personal information UI |
 | `/member/profile/documents` | Identity document upload UI |
 | `/member/membership-status` | Membership status UI |
-| `/member/fund-balance` | Subscription fund balance UI |
-| `/member/family-members` | Covered family members UI |
-| `/member/qr-member-id` | QR member ID UI |
-| `/member/membership-card` | Digital membership card UI |
-| `/member/renew-subscription` | Renewal UI |
-| `/member/claims` | Claims UI |
-| `/member/payments` | Payment UI |
-| `/member/payment-history` | Payment history UI |
-| `/member/receipts` | Receipt UI |
+| `/member/family-members` | Household members UI |
+| `/member/membership-card` | Plain member ID card UI (no QR code) |
+| `/member/payments` | Membership payment instructions and the admin-managed payment QR |
+| `/member/claims` | Member benefit-request UI |
 | `/member/edit-information` | Redirects to `/member/profile/information` |
 | `/member/upload-ids` | Redirects to `/member/profile/documents` |
-| `/member/referral` | Referral UI |
+| `/member/referral` | Member invitation UI |
 | `/member/support` | Support ticket UI |
-| `/member/announcements` | Announcements UI |
+| `/member/announcements` | Cooperative notices, assemblies, and community-program UI |
 
 ## Admin portal
 
@@ -47,7 +42,7 @@ The current frontend route map is defined in `frontend/src/app/app.routes.ts`. R
 | `/admin/profile` | Admin profile UI |
 | `/admin/members` | Member operations |
 | `/admin/claims` | Claims operations |
-| `/admin/payments` | Payment operations |
+| `/admin/payments` | Membership payment records and payment QR management |
 | `/admin/accounting` | Accounting operations |
 | `/admin/reports` | Reports and exports |
 | `/admin/notifications` | Notifications |
@@ -60,3 +55,10 @@ The current frontend route map is defined in `frontend/src/app/app.routes.ts`. R
 | `/admin/documents` | Document management |
 
 Member and admin section routes currently reuse generic section components with route `data` to select headings or datasets. A future implementation should preserve URLs while replacing prototype data with defined backend contracts.
+
+### Cooperative portal framing
+
+- **Current:** The member portal navigation and dashboard emphasize cooperative membership, participation, general assemblies, community programs, member IDs, household members, and member services.
+- **Prototype:** Membership status, participation counts, program schedules, and assembly details are representative display data only.
+- **Assumption:** Cooperative membership categories, voting eligibility, benefit eligibility, and any future financial rules must be confirmed before backend implementation.
+- **Current prototype:** Membership payments are completed externally by scanning an administrator-managed cooperative QR. The portal does not process transfers directly.

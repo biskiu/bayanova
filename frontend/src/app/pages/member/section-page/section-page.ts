@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { ContributionQrService } from '../../../shared/contribution-qr.service';
 
 type SectionKey =
   | 'profile'
   | 'membership-status'
   | 'fund-balance'
   | 'family-members'
-  | 'qr-member-id'
   | 'membership-card'
   | 'renew-subscription'
   | 'claims'
@@ -34,30 +34,33 @@ interface PageHeading {
   host: { '(document:keydown.escape)': 'handleEscape()' },
 })
 export class SectionPage {
+  private readonly contributionQr = inject(ContributionQrService);
+
   readonly page: SectionKey;
   modal: string | null = null;
   selectedItem: Record<string, string> = {};
   toastMessage = '';
-  selectedPaymentAmount = 200;
   selectedFileName = '';
+  selectedPaymentAmount = 200;
+  readonly contributionQrUrl = this.contributionQr.qrUrl;
+  readonly contributionQrFileName = this.contributionQr.fileName;
 
   readonly headings: Record<SectionKey, PageHeading> = {
-    profile: { eyebrow: 'Account', title: 'My Profile', description: 'View your personal and membership information.', icon: 'person' },
-    'membership-status': { eyebrow: 'Membership', title: 'Membership Status', description: 'Review your plan, coverage period, and account standing.', icon: 'verified_user' },
-    'fund-balance': { eyebrow: 'Membership', title: 'Subscription Fund Balance', description: 'Track your available fund and recent contributions.', icon: 'account_balance_wallet' },
-    'family-members': { eyebrow: 'Membership', title: 'Covered Family Members', description: 'Manage the individuals covered by your membership.', icon: 'group' },
-    'qr-member-id': { eyebrow: 'Member ID', title: 'QR Member ID', description: 'Present this code at participating BayaNova partners.', icon: 'qr_code_2' },
-    'membership-card': { eyebrow: 'Member ID', title: 'Digital Membership Card', description: 'Your portable proof of active BayaNova membership.', icon: 'badge' },
-    'renew-subscription': { eyebrow: 'Membership', title: 'Renew Subscription', description: 'Keep your membership and family coverage active.', icon: 'autorenew' },
-    claims: { eyebrow: 'Transactions', title: 'Claims', description: 'Review and monitor your submitted benefit claims.', icon: 'description' },
-    payments: { eyebrow: 'Transactions', title: 'Payments', description: 'Make a contribution to your subscription fund.', icon: 'payments' },
-    'payment-history': { eyebrow: 'Transactions', title: 'Payment History', description: 'Review all payments posted to your account.', icon: 'receipt_long' },
-    receipts: { eyebrow: 'Transactions', title: 'Download Receipts', description: 'Access official receipts for your completed payments.', icon: 'download' },
+    profile: { eyebrow: 'Cooperative account', title: 'My Profile', description: 'View your personal and cooperative membership information.', icon: 'person' },
+    'membership-status': { eyebrow: 'Membership', title: 'Membership Status', description: 'Review your cooperative membership and account standing.', icon: 'verified_user' },
+    'fund-balance': { eyebrow: 'Member capital', title: 'Capital & Contributions', description: 'Review your prototype share capital and contribution records.', icon: 'savings' },
+    'family-members': { eyebrow: 'Membership', title: 'Household Members', description: 'Manage household members connected to your membership.', icon: 'group' },
+    'membership-card': { eyebrow: 'Member ID', title: 'Member ID Card', description: 'Your portable proof of active BayaNova cooperative membership.', icon: 'badge' },
+    'renew-subscription': { eyebrow: 'Membership', title: 'Annual Membership', description: 'Review the prototype annual membership contribution flow.', icon: 'autorenew' },
+    claims: { eyebrow: 'Member services', title: 'Benefit Requests', description: 'Review and monitor requests for member assistance.', icon: 'volunteer_activism' },
+    payments: { eyebrow: 'Membership', title: 'Membership Payments', description: 'View the cooperative payment QR and instructions.', icon: 'payments' },
+    'payment-history': { eyebrow: 'Member capital', title: 'Contribution History', description: 'Review contributions posted to your prototype account.', icon: 'receipt_long' },
+    receipts: { eyebrow: 'Member records', title: 'Contribution Receipts', description: 'Access receipts for your recorded contributions.', icon: 'download' },
     'edit-information': { eyebrow: 'Profile', title: 'Personal Information', description: 'Keep your contact and personal details up to date.', icon: 'manage_accounts' },
     'upload-ids': { eyebrow: 'Profile', title: 'Identity Documents', description: 'Submit identification documents for verification.', icon: 'verified' },
-    referral: { eyebrow: 'Community', title: 'Referral Link', description: 'Invite family and friends to join the BayaNova community.', icon: 'share' },
+    referral: { eyebrow: 'Community', title: 'Invite a Member', description: 'Invite others to learn about BayaNova cooperative membership.', icon: 'share' },
     support: { eyebrow: 'Help', title: 'Support Tickets', description: 'Ask for help and follow the status of your requests.', icon: 'support_agent' },
-    announcements: { eyebrow: 'Updates', title: 'Announcements', description: 'Read the latest news and advisories from BayaNova.', icon: 'campaign' },
+    announcements: { eyebrow: 'Participation', title: 'Community & Assemblies', description: 'Follow cooperative notices, assemblies, and community programs.', icon: 'diversity_3' },
   };
 
   readonly familyMembers = [
@@ -74,9 +77,9 @@ export class SectionPage {
   ];
 
   readonly announcements = [
-    { date: 'August 20, 2026', title: 'Community health day this September', copy: 'Members and covered dependents are invited to our free community health screening.', tone: 'blue' },
-    { date: 'August 12, 2026', title: 'Updated partner clinic directory', copy: 'Three new partner clinics have been added in Bacolod City and nearby areas.', tone: 'red' },
-    { date: 'August 2, 2026', title: 'Scheduled portal maintenance', copy: 'The member portal will undergo routine maintenance on August 24 from 1–3 AM.', tone: 'gold' },
+    { date: 'August 28, 2026', title: 'General Assembly 2026', copy: 'Members are invited to hear cooperative updates and participate in the September 12 general assembly.', tone: 'blue' },
+    { date: 'August 20, 2026', title: 'Livelihood skills workshop', copy: 'Registration is open for a member workshop focused on practical livelihood and enterprise skills.', tone: 'red' },
+    { date: 'August 12, 2026', title: 'Community health day this September', copy: 'Members and their households are invited to the September community health activity.', tone: 'gold' },
   ];
 
   constructor(route: ActivatedRoute) {
@@ -112,12 +115,6 @@ export class SectionPage {
     await navigator.clipboard?.writeText('https://bayanova.ph/register?ref=BN-2026-00482').catch(() => undefined);
     this.toastMessage = 'Referral link copied.';
     window.setTimeout(() => this.toastMessage = '', 2400);
-  }
-
-  async shareQr(): Promise<void> {
-    const shareData = { title: 'BayaNova Member ID', text: 'Juan Dela Cruz · BN-2026-00482' };
-    if (navigator.share) await navigator.share(shareData).catch(() => undefined);
-    else this.openModal('share-qr');
   }
 
   handleEscape(): void { this.closeModal(); }
@@ -238,15 +235,13 @@ export class SectionPage {
     context.font = '700 20px Inter, sans-serif';
     context.fillText('BN-2026-00482', 205, 310);
 
-    this.drawQrPattern(context, 726, 156, 190);
-
     context.fillStyle = 'rgba(5,19,54,.24)';
     context.fillRect(0, 510, canvas.width, 90);
     context.fillStyle = 'rgba(255,255,255,.86)';
     context.font = '600 16px Inter, sans-serif';
-    context.fillText('Family Membership', 58, 562);
+    context.fillText('Cooperative Member', 58, 562);
     context.textAlign = 'right';
-    context.fillText('Valid until 03/18/2027', 942, 562);
+    context.fillText('Member since 03/18/2024', 942, 562);
     context.restore();
     return canvas;
   }
