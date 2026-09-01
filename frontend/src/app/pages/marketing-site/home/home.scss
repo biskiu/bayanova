@@ -502,11 +502,21 @@ img { display: block; max-width: 100%; }
 }
 
 .membership-card {
+  position: relative;
+  overflow: hidden;
   background: #fff;
   border-radius: 32px;
   padding: clamp(28px, 3.2vw, 40px);
   box-shadow: 0 28px 70px rgba(15, 23, 42, .10);
   border: 1px solid rgba(31, 91, 255, .1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 7px;
+    background: linear-gradient(90deg, #3f7cff 0%, #8b5cf6 34%, #ff7a18 68%, #16b981 100%);
+  }
 
   &__label {
     color: #173E8F;
@@ -524,7 +534,7 @@ img { display: block; max-width: 100%; }
 
   &__amount {
     color: #1F5BFF;
-    font-size: clamp(3.2rem, 4vw, 4.5rem);
+    font-size: clamp(2.8rem, 4vw, 4.1rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -2px;
@@ -1105,7 +1115,10 @@ img { display: block; max-width: 100%; }
 }
 
 .faq-card {
-  display: block;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 18px;
+  align-content: start;
   background: #fff;
   border: 1px solid rgba(241, 245, 249, .95);
   border-radius: 18px;
@@ -1117,16 +1130,14 @@ img { display: block; max-width: 100%; }
 .faq-card--mobile { display: none; }
 
 .faq-card__summary {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  align-items: start;
-  gap: 18px;
+  display: contents;
   list-style: none;
   cursor: default;
 
   &::-webkit-details-marker { display: none; }
 
   h3 {
+    grid-column: 2;
     color: #0F172A;
     font-size: 15px;
     font-weight: 700;
@@ -1136,6 +1147,8 @@ img { display: block; max-width: 100%; }
 }
 
 .faq-card__icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
   width: 44px;
   height: 44px;
   border-radius: 12px;
@@ -1163,7 +1176,8 @@ img { display: block; max-width: 100%; }
 
 .faq-card__answer {
   display: block;
-  margin: -17px 0 0 62px;
+  grid-column: 2;
+  margin: 14px 0 0;
   color: #64748B;
   font-size: 13px;
   line-height: 1.55;
@@ -1198,6 +1212,7 @@ img { display: block; max-width: 100%; }
     width: 40px;
     height: 40px;
     flex-basis: 40px;
+    grid-row: auto;
   }
 
   .faq-card__chevron {
@@ -1883,7 +1898,7 @@ img { display: block; max-width: 100%; }
   max-width: 470px;
   margin: 14px 0 12px;
   color: var(--about-navy);
-  font-size: clamp(38px, 3.3vw, 54px);
+  font-size: clamp(32px, 2.7vw, 44px);
   line-height: .98;
   letter-spacing: 0;
   font-weight: 900;
@@ -2104,7 +2119,7 @@ img { display: block; max-width: 100%; }
   }
 
   .about-section .about-heading {
-    font-size: clamp(38px, 4.4vw, 52px);
+    font-size: clamp(32px, 3.6vw, 42px);
   }
 
   .about-section .about-content {
@@ -2154,7 +2169,7 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 640px) {
   .about-section .about-heading {
-    font-size: clamp(36px, 10vw, 48px);
+    font-size: clamp(32px, 8vw, 40px);
   }
 
   .about-section .heart-divider {
@@ -2567,7 +2582,7 @@ img { display: block; max-width: 100%; }
   }
 
   .about-section .about-heading {
-    font-size: clamp(2rem, 10vw, 2.6rem);
+    font-size: clamp(1.9rem, 8vw, 2.3rem);
   }
 
   .about-section .heart-divider {
